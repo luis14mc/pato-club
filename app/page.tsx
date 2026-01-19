@@ -44,18 +44,18 @@ export default function ComingSoon() {
         </div>
 
         {/* Título Principal */}
-        <h1
-          className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold leading-tight"
+        <h6
+          className="text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-bold leading-tight"
           style={{
             color: '#000000',
             fontFamily: 'var(--font-bricolage), serif',
             letterSpacing: '0.05em',
           }}
         >
-          EL LUJO ESTÁ LLEGANDO
+          self-explanatory
           <br />
-          A HONDURAS
-        </h1>
+          
+        </h6>
 
         {/* Línea decorativa */}
         <div className="flex justify-center">
@@ -76,7 +76,7 @@ export default function ComingSoon() {
         >
           Valentine's Edition & Core Collection.
           <br />
-          <span className="italic">Muy pronto.</span>
+          <span className="italic">01.02.26</span>
         </p>
 
         {/* Iconos de Redes Sociales */}
