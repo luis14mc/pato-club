@@ -2,7 +2,7 @@
 
 import { Instagram } from 'lucide-react';
 import { SiTiktok } from 'react-icons/si';
-import Logo from '@/components/Logo';
+import Image from 'next/image';
 import { motion } from 'framer-motion';
 
 export default function ComingSoon() {
@@ -11,11 +11,16 @@ export default function ComingSoon() {
       className="min-h-screen flex flex-col items-center justify-center px-4 sm:px-6 relative overflow-hidden"
       style={{ backgroundColor: '#ECE0C8' }}
     >
-      {/* Isotipo decorativo de fondo (muy sutil) */}
+      {/* Logo decorativo de fondo (muy sutil) */}
       <div className="absolute inset-0 flex items-center justify-center opacity-[0.03] pointer-events-none">
-        <div className="w-[800px] h-[800px] relative">
-          <Logo variant="black" size={800} />
-        </div>
+        <Image
+          src="/pato oficial.png"
+          alt="Pato Club Background"
+          width={800}
+          height={800}
+          className="object-contain"
+          priority
+        />
       </div>
 
       {/* Contenido Principal */}
@@ -27,7 +32,14 @@ export default function ComingSoon() {
       >
         {/* Logo Principal */}
         <div className="flex justify-center mb-12">
-          <Logo variant="black" size={120} />
+          <Image
+            src="/Pato TM black.png"
+            alt="Pato Club"
+            width={200}
+            height={80}
+            className="object-contain"
+            priority
+          />
         </div>
 
         {/* Título Principal */}
