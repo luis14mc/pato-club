@@ -1,65 +1,107 @@
-import Image from "next/image";
+'use client';
+
+import { useState } from 'react';
+import Navbar from '@/components/Navbar';
+import Hero from '@/components/Hero';
+import ProductCard from '@/components/ProductCard';
+import ProductModal from '@/components/ProductModal';
+import ValentineBanner from '@/components/ValentineBanner';
+import Footer from '@/components/Footer';
+import WhatsAppButton from '@/components/WhatsAppButton';
+import { Product } from '@/types/product';
+import { products } from '@/data/products';
 
 export default function Home() {
+  const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const handleProductClick = (product: Product) => {
+    setSelectedProduct(product);
+    setIsModalOpen(true);
+  };
+
+  const handleCloseModal = () => {
+    setIsModalOpen(false);
+    setTimeout(() => setSelectedProduct(null), 300);
+  };
+
   return (
-    <div className="flex min-h-screen items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex min-h-screen w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
+    <div className="min-h-screen">
+      {/* Navbar importado */}
+      <Navbar />
+
+      {/* Espaciador para el navbar fijo */}
+      <div className="h-20" />
+
+      {/* Hero Section */}
+      <Hero />
+
+      {/* Products Section - Espaciado generoso (menos es más) */}
+      <section id="products" className="bg-white max-w-[1400px] mx-auto px-6 sm:px-8 lg:px-12 py-40">
+        {/* Header de la Colección */}
+        <div className="mb-32 text-center">
+          <h2 className="font-serif text-6xl md:text-7xl lg:text-8xl font-bold mb-8 text-black tracking-tighter">
+            Colección
+          </h2>
+          <p className="text-black/70 text-xl max-w-3xl mx-auto leading-relaxed">
+            Cada pieza está diseñada para durar. Materiales premium,
+            construcción impecable y diseño atemporal.
           </p>
         </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
+
+        {/* Grid de Productos con espaciado amplio */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-x-12 gap-y-28">
+          {products.map((product) => (
+            <ProductCard
+              key={product.id}
+              product={product}
+              onClick={handleProductClick}
             />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
+          ))}
         </div>
-      </main>
+
+        {/* Espaciador inferior generoso */}
+        <div className="mt-40" />
+      </section>
+
+      {/* About Section - Espaciado generoso */}
+      <section id="about" className="bg-black text-white py-32">
+        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-12">
+          <h2 className="font-serif text-6xl md:text-7xl lg:text-8xl font-bold tracking-tighter">
+            Sobre Nosotros
+          </h2>
+          <div className="space-y-8 text-xl text-zinc-400 leading-relaxed">
+            <p>
+              Pato Club nació de la necesidad de crear piezas que trasciendan
+              las tendencias fugaces del streetwear convencional.
+            </p>
+            <p>
+              Trabajamos con los mejores materiales y fabricantes para
+              garantizar que cada producto no solo se vea excepcional, sino que
+              dure toda una vida.
+            </p>
+            <p className="text-gold font-bold text-2xl mt-12">
+              No seguimos tendencias. Las creamos.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* Valentine's Banner */}
+      <ValentineBanner />
+
+      {/* Footer */}
+      <Footer />
+
+      {/* Product Modal con Framer Motion */}
+      <ProductModal
+        product={selectedProduct}
+        isOpen={isModalOpen}
+        onClose={handleCloseModal}
+      />
+
+      {/* Botón Flotante de WhatsApp */}
+      <WhatsAppButton />
     </div>
   );
 }
