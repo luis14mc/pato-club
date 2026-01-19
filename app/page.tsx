@@ -33,7 +33,7 @@ export default function ComingSoon() {
         <div className="flex justify-center">
           <div className="relative w-[200px] h-[80px] sm:w-[240px] sm:h-[100px] md:w-[280px] md:h-[120px]">
             <Image
-              src="/Pato TM black.png"
+              src="/PatoTMblack.png"
               alt="Pato Club"
               fill
               className="object-contain"
