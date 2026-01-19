@@ -1,6 +1,6 @@
 'use client';
 
-import Logo from './Logo';
+import Isotipo from './Isotipo';
 
 export default function Hero() {
   return (
@@ -18,20 +18,26 @@ export default function Hero() {
         }} />
       </div>
 
-      {/* Logo decorativo gigante de fondo */}
+      {/* Isotipo decorativo gigante de fondo */}
       <div className="absolute inset-0 flex items-center justify-center opacity-5">
-        <Logo variant="white" size={600} />
+        <Isotipo size={600} />
       </div>
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-32 text-center">
         <div className="space-y-12">
-          {/* Logo principal gigante con tipografía Bricolage Grotesque */}
+          {/* Isotipo principal (pato) */}
           <div className="flex justify-center">
-            <Logo variant="white" size={200} className="mb-8" />
+            <Isotipo size={180} className="mb-8" />
           </div>
           
-          <h1 className="font-serif text-6xl md:text-7xl lg:text-8xl font-bold tracking-tighter">
-            PATO CLUB
+          <h1 
+            className="font-serif text-6xl md:text-7xl lg:text-8xl font-bold"
+            style={{
+              letterSpacing: '0.15em',
+              fontFamily: 'var(--font-bricolage), serif',
+            }}
+          >
+            Pato CLUB
           </h1>
           
           <p className="text-lg md:text-xl text-zinc-400 max-w-2xl mx-auto leading-relaxed">

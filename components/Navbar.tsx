@@ -184,11 +184,13 @@ export default function Navbar() {
               <Link
                 href="/new-arrivals"
                 onClick={closeMenu}
-                className={`font-serif text-4xl md:text-5xl font-bold tracking-tighter transition-colors duration-200 ${
-                  isActive('/new-arrivals')
-                    ? 'text-gold'
-                    : 'text-black hover:text-gold'
-                }`}
+                className="font-serif text-4xl md:text-5xl font-bold tracking-tighter transition-colors duration-200"
+                style={{
+                  color: isActive('/new-arrivals') ? '#D09306' : '#000000',
+                  fontFamily: 'var(--font-bricolage), serif',
+                }}
+                onMouseEnter={(e) => e.currentTarget.style.color = '#D09306'}
+                onMouseLeave={(e) => e.currentTarget.style.color = isActive('/new-arrivals') ? '#D09306' : '#000000'}
               >
                 NEW ARRIVALS
               </Link>
@@ -196,11 +198,13 @@ export default function Navbar() {
               <Link
                 href="/basics"
                 onClick={closeMenu}
-                className={`font-serif text-4xl md:text-5xl font-bold tracking-tighter transition-colors duration-200 ${
-                  isActive('/basics')
-                    ? 'text-gold'
-                    : 'text-black hover:text-gold'
-                }`}
+                className="font-serif text-4xl md:text-5xl font-bold tracking-tighter transition-colors duration-200"
+                style={{
+                  color: isActive('/basics') ? '#D09306' : '#000000',
+                  fontFamily: 'var(--font-bricolage), serif',
+                }}
+                onMouseEnter={(e) => e.currentTarget.style.color = '#D09306'}
+                onMouseLeave={(e) => e.currentTarget.style.color = isActive('/basics') ? '#D09306' : '#000000'}
               >
                 BASICS
               </Link>

@@ -3,20 +3,17 @@ import Image from 'next/image';
 interface IsotipoProps {
   className?: string;
   size?: number;
-  variant?: 'color' | 'white' | 'black';
 }
 
-export default function Isotipo({ className = '', size = 24, variant = 'color' }: IsotipoProps) {
-  // Si existe isotipo.png lo usamos, si no, usamos el logo pero más pequeño
-  const src = variant === 'white' ? '/Pato white.png' : '/Pato black.png';
-  
+export default function Isotipo({ className = '', size = 24 }: IsotipoProps) {
   return (
     <Image
-      src={src}
+      src="/isotipo.png"
       alt="Pato Club Isotipo"
       width={size}
       height={size}
       className={`object-contain ${className}`}
+      priority
     />
   );
 }

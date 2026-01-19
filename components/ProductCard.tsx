@@ -10,9 +10,8 @@ interface ProductCardProps {
 }
 
 export default function ProductCard({ product, onClick }: ProductCardProps) {
-  const [isHovered, setIsHovered] = useState(false);
+  const [imageLoaded, setImageLoaded] = useState(false);
 
-  // Formatear precio con Intl.NumberFormat
   const formatPrice = (price: number) => {
     return new Intl.NumberFormat('es-HN', {
       style: 'decimal',
@@ -21,109 +20,115 @@ export default function ProductCard({ product, onClick }: ProductCardProps) {
     }).format(price);
   };
 
-  // Detectar si es edición especial Valentine's
-  const isValentineEdition = 
-    product.name.toLowerCase().includes('valentine') || 
-    product.name.toLowerCase().includes('love is red');
-
-  // Para futuras implementaciones de badges
-  const isNew = false; // Cambiar según lógica de negocio
-  const isSoldOut = false; // Cambiar según lógica de negocio
+  const isValentineEdition = product.category === 'Edición Especial';
 
   return (
-    <article
-      className="group cursor-pointer"
-      onMouseEnter={() => setIsHovered(true)}
-      onMouseLeave={() => setIsHovered(false)}
+    <article 
+      className="group cursor-pointer w-full" 
       onClick={() => onClick(product)}
       role="button"
       tabIndex={0}
-      onKeyDown={(e) => {
-        if (e.key === 'Enter' || e.key === ' ') {
-          e.preventDefault();
-          onClick(product);
-        }
-      }}
+      aria-label={`Ver detalles de ${product.name}`}
     >
-      {/* Contenedor de Imagen */}
-      <div className="relative aspect-[3/4] overflow-hidden bg-zinc-50 mb-6">
-        {/* Imagen con efecto zoom */}
-        <Image
-          src={product.image}
-          alt={product.name}
-          fill
-          sizes="(max-width: 640px) 100vw, (max-width: 768px) 50vw, (max-width: 1024px) 33vw, 25vw"
-          className="object-cover transition-transform duration-700 ease-out group-hover:scale-105"
-          priority={false}
-        />
-
-        {/* Badges de Estado - USO DE DORADO PARA EDICIÓN ESPECIAL */}
-        <div className="absolute top-4 left-4 z-10 flex flex-col gap-2">
-          {/* Badge de Edición Especial - DORADO #D09306 */}
+      {/* Card minimalista - SOLO imagen sobre crema */}
+      <div className="group relative overflow-hidden transition-all duration-500 hover:-translate-y-1">
+        {/* Imagen protagonista */}
+        <div 
+          className="relative aspect-[3/4] overflow-hidden mb-6"
+          style={{ backgroundColor: '#ECE0C8' }}
+        >
+          <Image
+            src={product.image}
+            alt={product.name}
+            fill
+            sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
+            className={`object-cover transition-all duration-700 group-hover:scale-105 ${
+              imageLoaded ? 'opacity-100' : 'opacity-0'
+            }`}
+            onLoad={() => setImageLoaded(true)}
+            priority={false}
+          />
+          
+          {/* Badge minimalista - Solo borde */}
           {isValentineEdition && (
-            <span className="inline-block px-3 py-1 text-[10px] tracking-[0.2em] uppercase bg-gold text-black font-bold border border-gold shadow-md">
-              Edición Especial
-            </span>
+            <div className="absolute top-3 left-3 z-10">
+              <span 
+                className="inline-block px-3 py-1 text-[10px] tracking-[0.2em] uppercase font-bold"
+                style={{
+                  border: '1px solid #000000',
+                  backgroundColor: 'rgba(236, 224, 200, 0.95)',  // Crema semi-transparente
+                  color: '#000000',
+                  fontFamily: 'var(--font-bricolage), serif',
+                  fontWeight: '700',
+                }}
+              >
+                VALENTINE'S
+              </span>
+            </div>
           )}
-
-          {/* Badge de Nuevo - Verde Bosque */}
-          {isNew && (
-            <span className="inline-block px-3 py-1 text-[10px] tracking-[0.2em] uppercase bg-forest text-white font-bold border border-forest shadow-md">
-              Nuevo
-            </span>
-          )}
-
-          {/* Badge de Agotado - Bronce */}
-          {isSoldOut && (
-            <span className="inline-block px-3 py-1 text-[10px] tracking-[0.2em] uppercase bg-bronze text-white font-bold border border-bronze shadow-md">
-              Agotado
-            </span>
-          )}
+          
+          {/* Botón minimalista - outline */}
+          <div className="absolute inset-x-0 bottom-0 translate-y-full group-hover:translate-y-0 transition-transform duration-500">
+            <button 
+              className="w-full py-4 font-body font-bold tracking-widest text-xs uppercase transition-colors duration-200"
+              style={{ 
+                minHeight: '44px',
+                border: '1px solid #000000',
+                backgroundColor: 'rgba(236, 224, 200, 0.98)',
+                color: '#000000',
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.backgroundColor = '#000000';
+                e.currentTarget.style.color = '#FFFFFF';
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.backgroundColor = 'rgba(236, 224, 200, 0.98)';
+                e.currentTarget.style.color = '#000000';
+              }}
+            >
+              VISTA RÁPIDA
+            </button>
+          </div>
         </div>
 
-        {/* Botón "VISTA RÁPIDA" */}
-        <div
-          className={`absolute inset-x-0 bottom-0 flex items-end justify-center pb-6 transition-all duration-500 ease-out ${
-            isHovered
-              ? 'opacity-100 translate-y-0'
-              : 'opacity-0 translate-y-4 pointer-events-none'
-          }`}
-        >
-          <button
-            className="px-8 py-3 bg-white text-black text-sm tracking-widest font-bold hover:bg-bronze hover:text-white transition-colors duration-300 shadow-lg"
-            onClick={(e) => {
-              e.stopPropagation();
-              onClick(product);
+        {/* Información limpia - minimalismo máximo */}
+        <div className="space-y-3">
+          {/* Categoría sutil */}
+          <p 
+            className="text-[11px] tracking-[0.2em] uppercase font-medium"
+            style={{ 
+              color: '#000000',
+              opacity: 0.5,
             }}
           >
-            VISTA RÁPIDA
-          </button>
+            {product.category}
+          </p>
+
+          {/* Nombre del producto - protagonista */}
+          <h3 
+            className="text-base md:text-lg leading-tight font-normal"
+            style={{
+              color: '#000000',
+              fontFamily: 'var(--font-work-sans), sans-serif',
+              lineHeight: '1.4',
+            }}
+          >
+            {product.name}
+          </h3>
+          
+          {/* Precio destacado con mucho espacio */}
+          <p 
+            className="text-xl md:text-2xl font-bold pt-2"
+            style={{ 
+              fontFamily: 'var(--font-bricolage), serif',
+              color: '#000000',
+              fontWeight: '700',
+              letterSpacing: '-0.02em',
+            }}
+          >
+            L. {formatPrice(product.price)}
+          </p>
         </div>
-
-        {/* Overlay sutil en hover */}
-        <div
-          className={`absolute inset-0 bg-black transition-opacity duration-500 ${
-            isHovered ? 'opacity-5' : 'opacity-0'
-          }`}
-        />
-      </div>
-
-      {/* Información del Producto */}
-      <div className="space-y-2">
-        {/* Categoría */}
-        <p className="text-[11px] tracking-[0.15em] uppercase text-zinc-500 font-medium">
-          {product.category}
-        </p>
-
-        {/* Nombre del Producto */}
-        <h3 className="text-base font-normal text-black leading-snug">
-          {product.name}
-        </h3>
-
-        {/* Precio */}
-        <p className="text-base font-bold text-black">
-          L. {formatPrice(product.price)}
-        </p>
       </div>
     </article>
   );

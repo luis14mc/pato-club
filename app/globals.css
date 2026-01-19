@@ -1,47 +1,28 @@
 @import "tailwindcss";
 
 @theme {
-  /* === FUENTES PATO CLUB === */
-  --font-sans: var(--font-work-sans), 'Helvetica Neue', system-ui, sans-serif;
-  --font-serif: var(--font-bricolage), 'Bricolage Grotesque', serif;
+  /* Fuentes personalizadas */
+  --font-title: var(--font-bricolage), serif;
+  --font-body: var(--font-work-sans), system-ui, sans-serif;
   
-  /* === PALETA DE MARCA === */
-  /* Primary Colors */
-  --color-black: #000000;
-  --color-white: #FFFFFF;
-  --color-cream: #ECE0C8;
-  
-  /* Secondary Colors */
-  --color-bronze: #A27852;
-  --color-forest: #014B28;
-  --color-gold: #D09306;
-  
-  /* Semantic Colors */
-  --color-background: #ECE0C8;
-  --color-foreground: #000000;
-  
-  /* Zinc grays (mantener para elementos UI) */
-  --color-zinc-50: #fafafa;
-  --color-zinc-100: #f4f4f5;
-  --color-zinc-200: #e4e4e7;
-  --color-zinc-300: #d4d4d8;
-  --color-zinc-400: #a1a1aa;
-  --color-zinc-500: #71717a;
-  --color-zinc-600: #52525b;
-  --color-zinc-700: #3f3f46;
-  --color-zinc-800: #27272a;
-  --color-zinc-900: #18181b;
+  /* Colores personalizados */
+  --color-primary-black: #000000;
+  --color-primary-white: #FFFFFF;
+  --color-primary-cream: #ECE0C8;
+  --color-secondary-bronze: #A27852;
+  --color-secondary-forest: #014B28;
+  --color-secondary-gold: #D09306;
 }
 
 :root {
-  --font-work-sans: 'Work Sans';
   --font-bricolage: 'Bricolage Grotesque';
+  --font-work-sans: 'Work Sans';
 }
 
 body {
-  background: var(--color-cream);
-  color: var(--color-black);
-  font-family: var(--font-sans);
+  background: var(--color-primary-cream);
+  color: var(--color-primary-black);
+  font-family: var(--font-body);
 }
 
 /* Smooth scroll behavior */
@@ -49,10 +30,22 @@ html {
   scroll-behavior: smooth;
 }
 
-/* Custom utility classes */
-.text-gradient-gold {
-  background: linear-gradient(135deg, var(--color-gold) 0%, var(--color-bronze) 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+/* Ocultar scrollbar en carrusel móvil */
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* Parallax effect */
+@supports (background-attachment: fixed) {
+  .parallax {
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
 }

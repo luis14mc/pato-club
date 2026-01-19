@@ -3,13 +3,14 @@
 import { useState } from 'react';
 import Navbar from '@/components/Navbar';
 import Hero from '@/components/Hero';
-import ProductCard from '@/components/ProductCard';
-import ProductModal from '@/components/ProductModal';
 import ValentineBanner from '@/components/ValentineBanner';
+import CollectionSection from '@/components/CollectionSection';
+import LifestyleBanner from '@/components/LifestyleBanner';
 import Footer from '@/components/Footer';
+import ProductModal from '@/components/ProductModal';
 import WhatsAppButton from '@/components/WhatsAppButton';
-import { Product } from '@/types/product';
 import { products } from '@/data/products';
+import { Product } from '@/types/product';
 
 export default function Home() {
   const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
@@ -25,82 +26,76 @@ export default function Home() {
     setTimeout(() => setSelectedProduct(null), 300);
   };
 
+  // Filtrar productos
+  const valentineProducts = products.filter(p => p.category === 'Edición Especial');
+  const basicsProducts = products.filter(p => p.category === 'Basics');
+  const hoodiesProducts = products.filter(p => p.category === 'Hoodies');
+  const allOtherProducts = products.filter(
+    p => !['Edición Especial', 'Basics', 'Hoodies'].includes(p.category)
+  );
+
   return (
-    <div className="min-h-screen">
-      {/* Navbar importado */}
+    <div className="min-h-screen" style={{ backgroundColor: '#ECE0C8' }}>
       <Navbar />
-
-      {/* Espaciador para el navbar fijo */}
       <div className="h-20" />
-
-      {/* Hero Section */}
       <Hero />
 
-      {/* Products Section - Espaciado generoso (menos es más) */}
-      <section id="products" className="bg-white max-w-[1400px] mx-auto px-6 sm:px-8 lg:px-12 py-40">
-        {/* Header de la Colección */}
-        <div className="mb-32 text-center">
-          <h2 className="font-serif text-6xl md:text-7xl lg:text-8xl font-bold mb-8 text-black tracking-tighter">
-            Colección
-          </h2>
-          <p className="text-black/70 text-xl max-w-3xl mx-auto leading-relaxed">
-            Cada pieza está diseñada para durar. Materiales premium,
-            construcción impecable y diseño atemporal.
-          </p>
-        </div>
-
-        {/* Grid de Productos con espaciado amplio */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-x-12 gap-y-28">
-          {products.map((product) => (
-            <ProductCard
-              key={product.id}
-              product={product}
-              onClick={handleProductClick}
-            />
-          ))}
-        </div>
-
-        {/* Espaciador inferior generoso */}
-        <div className="mt-40" />
-      </section>
-
-      {/* About Section - Espaciado generoso */}
-      <section id="about" className="bg-black text-white py-32">
-        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-12">
-          <h2 className="font-serif text-6xl md:text-7xl lg:text-8xl font-bold tracking-tighter">
-            Sobre Nosotros
-          </h2>
-          <div className="space-y-8 text-xl text-zinc-400 leading-relaxed">
-            <p>
-              Pato Club nació de la necesidad de crear piezas que trasciendan
-              las tendencias fugaces del streetwear convencional.
-            </p>
-            <p>
-              Trabajamos con los mejores materiales y fabricantes para
-              garantizar que cada producto no solo se vea excepcional, sino que
-              dure toda una vida.
-            </p>
-            <p className="text-gold font-bold text-2xl mt-12">
-              No seguimos tendencias. Las creamos.
-            </p>
-          </div>
-        </div>
-      </section>
-
-      {/* Valentine's Banner */}
+      {/* Valentine's - Minimalista con borde sutil */}
       <ValentineBanner />
+      
+      {valentineProducts.length > 0 && (
+        <CollectionSection
+          id="valentine-products"
+          title="Edición Especial"
+          description="Piezas únicas para celebrar con estilo."
+          products={valentineProducts}
+          isValentine={true}
+          onProductClick={handleProductClick}
+        />
+      )}
 
-      {/* Footer */}
-      <Footer />
-
-      {/* Product Modal con Framer Motion */}
-      <ProductModal
-        product={selectedProduct}
-        isOpen={isModalOpen}
-        onClose={handleCloseModal}
+      {/* Lifestyle - Contraste negro */}
+      <LifestyleBanner
+        title="Hecho con Intención"
+        subtitle="Streetwear que trasciende tendencias."
+        buttonText="EXPLORAR"
+        onButtonClick={() => {
+          const basicsSection = document.getElementById('basics-section');
+          basicsSection?.scrollIntoView({ behavior: 'smooth' });
+        }}
       />
 
-      {/* Botón Flotante de WhatsApp */}
+      {/* Resto de colecciones - Todo crema */}
+      {basicsProducts.length > 0 && (
+        <CollectionSection
+          id="basics-section"
+          title="Basics"
+          description="Esenciales atemporales."
+          products={basicsProducts}
+          onProductClick={handleProductClick}
+        />
+      )}
+
+      {hoodiesProducts.length > 0 && (
+        <CollectionSection
+          title="Hoodies"
+          description="Comodidad y estilo."
+          products={hoodiesProducts}
+          onProductClick={handleProductClick}
+        />
+      )}
+
+      {allOtherProducts.length > 0 && (
+        <CollectionSection
+          title="Colección Completa"
+          description="Todo nuestro catálogo."
+          products={allOtherProducts}
+          onProductClick={handleProductClick}
+        />
+      )}
+
+      <Footer />
+      <ProductModal product={selectedProduct} isOpen={isModalOpen} onClose={handleCloseModal} />
       <WhatsAppButton />
     </div>
   );
