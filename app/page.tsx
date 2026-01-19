@@ -1,7 +1,6 @@
 'use client';
 
-import { Instagram } from 'lucide-react';
-import { SiTiktok } from 'react-icons/si';
+import { SiInstagram, SiWhatsapp } from 'react-icons/si';
 import Image from 'next/image';
 import { motion } from 'framer-motion';
 
@@ -11,10 +10,10 @@ export default function ComingSoon() {
       className="min-h-screen flex flex-col items-center justify-center px-4 sm:px-6 relative overflow-hidden"
       style={{ backgroundColor: '#ECE0C8' }}
     >
-      {/* Logo decorativo de fondo (muy sutil) */}
-      <div className="absolute inset-0 flex items-center justify-center opacity-[0.03] pointer-events-none">
+      {/* Logo decorativo de fondo (sutil) */}
+      <div className="absolute inset-0 flex items-center justify-center opacity-[0.08] pointer-events-none">
         <Image
-          src="/pato oficial.png"
+          src="/isotipo.png"
           alt="Pato Club Background"
           width={800}
           height={800}
@@ -86,27 +85,26 @@ export default function ComingSoon() {
           className="pt-16 flex items-center justify-center gap-8"
         >
           <a
-            href="https://www.instagram.com/patoclub"
+            href="https://www.instagram.com/patoclubhn"
             target="_blank"
             rel="noopener noreferrer"
             className="transition-opacity duration-300 hover:opacity-60"
             aria-label="Instagram"
           >
-            <Instagram
+            <SiInstagram
               className="w-7 h-7 sm:w-8 sm:h-8"
               style={{ color: '#000000' }}
-              strokeWidth={1.5}
             />
           </a>
 
           <a
-            href="https://www.tiktok.com/@patoclub"
+            href="https://wa.me/50496309525?text=Hola%20Pato%20Club%2C%20quiero%20m%C3%A1s%20informaci%C3%B3n%20sobre%20la%20colecci%C3%B3n."
             target="_blank"
             rel="noopener noreferrer"
             className="transition-opacity duration-300 hover:opacity-60"
-            aria-label="TikTok"
+            aria-label="WhatsApp"
           >
-            <SiTiktok
+            <SiWhatsapp
               className="w-7 h-7 sm:w-8 sm:h-8"
               style={{ color: '#000000' }}
             />
@@ -118,7 +116,7 @@ export default function ComingSoon() {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.8, delay: 0.6 }}
-          className="pt-8"
+          className="pt-8 pb-32"
         >
           <span
             className="inline-block px-6 py-2 text-xs tracking-[0.3em] uppercase font-bold border"
@@ -138,7 +136,7 @@ export default function ComingSoon() {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 0.8, delay: 0.8 }}
-        className="absolute bottom-8 text-center"
+        className="absolute bottom-8 text-center w-full"
       >
         <p
           className="text-xs"
