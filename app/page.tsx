@@ -1,102 +1,144 @@
 'use client';
 
-import { useState } from 'react';
-import Navbar from '@/components/Navbar';
-import Hero from '@/components/Hero';
-import ValentineBanner from '@/components/ValentineBanner';
-import CollectionSection from '@/components/CollectionSection';
-import LifestyleBanner from '@/components/LifestyleBanner';
-import Footer from '@/components/Footer';
-import ProductModal from '@/components/ProductModal';
-import WhatsAppButton from '@/components/WhatsAppButton';
-import { products } from '@/data/products';
-import { Product } from '@/types/product';
+import { Instagram } from 'lucide-react';
+import { SiTiktok } from 'react-icons/si';
+import Logo from '@/components/Logo';
+import { motion } from 'framer-motion';
 
-export default function Home() {
-  const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
-  const [isModalOpen, setIsModalOpen] = useState(false);
-
-  const handleProductClick = (product: Product) => {
-    setSelectedProduct(product);
-    setIsModalOpen(true);
-  };
-
-  const handleCloseModal = () => {
-    setIsModalOpen(false);
-    setTimeout(() => setSelectedProduct(null), 300);
-  };
-
-  // Filtrar productos
-  const valentineProducts = products.filter(p => p.category === 'Edición Especial');
-  const basicsProducts = products.filter(p => p.category === 'Basics');
-  const hoodiesProducts = products.filter(p => p.category === 'Hoodies');
-  const allOtherProducts = products.filter(
-    p => !['Edición Especial', 'Basics', 'Hoodies'].includes(p.category)
-  );
-
+export default function ComingSoon() {
   return (
-    <div className="min-h-screen" style={{ backgroundColor: '#ECE0C8' }}>
-      <Navbar />
-      <div className="h-20" />
-      <Hero />
+    <div
+      className="min-h-screen flex flex-col items-center justify-center px-4 sm:px-6 relative overflow-hidden"
+      style={{ backgroundColor: '#ECE0C8' }}
+    >
+      {/* Isotipo decorativo de fondo (muy sutil) */}
+      <div className="absolute inset-0 flex items-center justify-center opacity-[0.03] pointer-events-none">
+        <div className="w-[800px] h-[800px] relative">
+          <Logo variant="black" size={800} />
+        </div>
+      </div>
 
-      {/* Valentine's - Minimalista con borde sutil */}
-      <ValentineBanner />
-      
-      {valentineProducts.length > 0 && (
-        <CollectionSection
-          id="valentine-products"
-          title="Edición Especial"
-          description="Piezas únicas para celebrar con estilo."
-          products={valentineProducts}
-          isValentine={true}
-          onProductClick={handleProductClick}
-        />
-      )}
+      {/* Contenido Principal */}
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.8, ease: 'easeOut' }}
+        className="relative z-10 text-center space-y-12 max-w-4xl mx-auto"
+      >
+        {/* Logo Principal */}
+        <div className="flex justify-center mb-12">
+          <Logo variant="black" size={120} />
+        </div>
 
-      {/* Lifestyle - Contraste negro */}
-      <LifestyleBanner
-        title="Hecho con Intención"
-        subtitle="Streetwear que trasciende tendencias."
-        buttonText="EXPLORAR"
-        onButtonClick={() => {
-          const basicsSection = document.getElementById('basics-section');
-          basicsSection?.scrollIntoView({ behavior: 'smooth' });
-        }}
-      />
+        {/* Título Principal */}
+        <h1
+          className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold leading-tight tracking-tight"
+          style={{
+            color: '#000000',
+            fontFamily: 'var(--font-bricolage), serif',
+            letterSpacing: '0.05em',
+          }}
+        >
+          EL LUJO ESTÁ LLEGANDO
+          <br />
+          A HONDURAS
+        </h1>
 
-      {/* Resto de colecciones - Todo crema */}
-      {basicsProducts.length > 0 && (
-        <CollectionSection
-          id="basics-section"
-          title="Basics"
-          description="Esenciales atemporales."
-          products={basicsProducts}
-          onProductClick={handleProductClick}
-        />
-      )}
+        {/* Línea decorativa */}
+        <div className="flex justify-center">
+          <div
+            className="w-24 h-[2px]"
+            style={{ backgroundColor: '#000000' }}
+          />
+        </div>
 
-      {hoodiesProducts.length > 0 && (
-        <CollectionSection
-          title="Hoodies"
-          description="Comodidad y estilo."
-          products={hoodiesProducts}
-          onProductClick={handleProductClick}
-        />
-      )}
+        {/* Subtítulo */}
+        <p
+          className="text-lg sm:text-xl md:text-2xl leading-relaxed"
+          style={{
+            color: '#000000',
+            fontFamily: 'var(--font-work-sans), sans-serif',
+            opacity: 0.8,
+          }}
+        >
+          Valentine's Edition & Core Collection.
+          <br />
+          <span className="italic">Muy pronto.</span>
+        </p>
 
-      {allOtherProducts.length > 0 && (
-        <CollectionSection
-          title="Colección Completa"
-          description="Todo nuestro catálogo."
-          products={allOtherProducts}
-          onProductClick={handleProductClick}
-        />
-      )}
+        {/* Iconos de Redes Sociales */}
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.8, delay: 0.4 }}
+          className="pt-16 flex items-center justify-center gap-8"
+        >
+          <a
+            href="https://www.instagram.com/patoclub"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="transition-opacity duration-300 hover:opacity-60"
+            aria-label="Instagram"
+          >
+            <Instagram
+              className="w-7 h-7 sm:w-8 sm:h-8"
+              style={{ color: '#000000' }}
+              strokeWidth={1.5}
+            />
+          </a>
 
-      <Footer />
-      <ProductModal product={selectedProduct} isOpen={isModalOpen} onClose={handleCloseModal} />
-      <WhatsAppButton />
+          <a
+            href="https://www.tiktok.com/@patoclub"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="transition-opacity duration-300 hover:opacity-60"
+            aria-label="TikTok"
+          >
+            <SiTiktok
+              className="w-7 h-7 sm:w-8 sm:h-8"
+              style={{ color: '#000000' }}
+            />
+          </a>
+        </motion.div>
+
+        {/* Tag de Coming Soon */}
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.8, delay: 0.6 }}
+          className="pt-8"
+        >
+          <span
+            className="inline-block px-6 py-2 text-xs tracking-[0.3em] uppercase font-bold border"
+            style={{
+              color: '#000000',
+              borderColor: '#000000',
+              fontFamily: 'var(--font-bricolage), serif',
+            }}
+          >
+            Coming Soon
+          </span>
+        </motion.div>
+      </motion.div>
+
+      {/* Footer Legal Minimalista */}
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 0.8, delay: 0.8 }}
+        className="absolute bottom-8 text-center"
+      >
+        <p
+          className="text-xs"
+          style={{
+            color: '#000000',
+            fontFamily: 'var(--font-work-sans), sans-serif',
+            opacity: 0.4,
+          }}
+        >
+          © 2026 Pato Club. Honduras.
+        </p>
+      </motion.div>
     </div>
   );
 }
