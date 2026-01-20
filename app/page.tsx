@@ -3,12 +3,12 @@
 import { useState } from 'react';
 import Navbar from '@/components/Navbar';
 import Hero from '@/components/Hero';
-import ValentineBanner from '@/components/ValentineBanner';
 import CollectionSection from '@/components/CollectionSection';
 import LifestyleBanner from '@/components/LifestyleBanner';
 import Footer from '@/components/Footer';
 import ProductModal from '@/components/ProductModal';
 import WhatsAppButton from '@/components/WhatsAppButton';
+import ScrollToTop from '@/components/ScrollToTop';
 import { products } from '@/data/products';
 import { Product } from '@/types/product';
 
@@ -30,9 +30,7 @@ export default function Home() {
   const valentineProducts = products.filter(p => p.category === 'Edición Especial');
   const basicsProducts = products.filter(p => p.category === 'Basics');
   const hoodiesProducts = products.filter(p => p.category === 'Hoodies');
-  const allOtherProducts = products.filter(
-    p => !['Edición Especial', 'Basics', 'Hoodies'].includes(p.category)
-  );
+  const allProducts = products; // Todos los productos para Colección Completa
 
   return (
     <div className="min-h-screen" style={{ backgroundColor: '#ECE0C8' }}>
@@ -40,14 +38,12 @@ export default function Home() {
       <div className="h-20" />
       <Hero />
 
-      {/* Valentine's - Minimalista con borde sutil */}
-      <ValentineBanner />
-      
+      {/* Love is Red - Edición Especial */}
       {valentineProducts.length > 0 && (
         <CollectionSection
           id="valentine-products"
-          title="Edición Especial"
-          description="Piezas únicas para celebrar con estilo."
+          title="Love is Red"
+          description="Edición especial para celebrar con estilo."
           products={valentineProducts}
           isValentine={true}
           onProductClick={handleProductClick}
@@ -57,19 +53,14 @@ export default function Home() {
       {/* Lifestyle - Contraste negro */}
       <LifestyleBanner
         title="Hecho con Intención"
-        subtitle="Streetwear que trasciende tendencias."
-        buttonText="EXPLORAR"
-        onButtonClick={() => {
-          const basicsSection = document.getElementById('basics-section');
-          basicsSection?.scrollIntoView({ behavior: 'smooth' });
-        }}
+        subtitle="Sin etiquetas - Sin Disculpas - Sin Explicaciones"
       />
 
       {/* Resto de colecciones - Todo crema */}
       {basicsProducts.length > 0 && (
         <CollectionSection
           id="basics-section"
-          title="Basics"
+          title="Básicos"
           description="Esenciales atemporales."
           products={basicsProducts}
           onProductClick={handleProductClick}
@@ -78,18 +69,22 @@ export default function Home() {
 
       {hoodiesProducts.length > 0 && (
         <CollectionSection
+          id="hoodies-section"
           title="Hoodies"
           description="Comodidad y estilo."
           products={hoodiesProducts}
           onProductClick={handleProductClick}
+          backgroundColor="cream-soft"
         />
       )}
 
-      {allOtherProducts.length > 0 && (
+      {allProducts.length > 0 && (
         <CollectionSection
+          id="all-products"
           title="Colección Completa"
           description="Todo nuestro catálogo."
-          products={allOtherProducts}
+          products={allProducts}
+          showFilters={true}
           onProductClick={handleProductClick}
         />
       )}
@@ -97,6 +92,7 @@ export default function Home() {
       <Footer />
       <ProductModal product={selectedProduct} isOpen={isModalOpen} onClose={handleCloseModal} />
       <WhatsAppButton />
+      <ScrollToTop />
     </div>
   );
 }

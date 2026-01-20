@@ -1,11 +1,12 @@
 'use client';
 
+import Image from 'next/image';
 import Isotipo from './Isotipo';
 
 export default function Hero() {
   return (
     <section className="relative min-h-[calc(100vh-5rem)] flex items-center justify-center bg-black text-white overflow-hidden">
-      {/* Background pattern */}
+      {/* Background pattern rayado */}
       <div className="absolute inset-0 opacity-5">
         <div className="absolute inset-0" style={{
           backgroundImage: `repeating-linear-gradient(
@@ -18,22 +19,24 @@ export default function Hero() {
         }} />
       </div>
 
-      {/* Isotipo decorativo gigante de fondo */}
+      {/* Logo decorativo gigante de fondo */}
       <div className="absolute inset-0 flex items-center justify-center opacity-5">
-        <Isotipo size={600} />
+        <Image
+          src="/Pato_oficial_blanco.png"
+          alt="Pato Club Background"
+          width={600}
+          height={600}
+          className="object-contain"
+          priority
+        />
       </div>
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-32 text-center">
         <div className="space-y-12">
-          {/* Isotipo principal (pato) */}
-          <div className="flex justify-center">
-            <Isotipo size={180} className="mb-8" />
-          </div>
-          
           <h1 
             className="font-serif text-6xl md:text-7xl lg:text-8xl font-bold"
             style={{
-              letterSpacing: '0.15em',
+              letterSpacing: '-0.02em',
               fontFamily: 'var(--font-bricolage), serif',
             }}
           >
@@ -41,18 +44,28 @@ export default function Hero() {
           </h1>
           
           <p className="text-lg md:text-xl text-zinc-400 max-w-2xl mx-auto leading-relaxed">
-            Streetwear de lujo para los que no siguen tendencias.
-            <br />
-            Crean las suyas.
+            Ser Pato no necesita explicación
           </p>
 
           <div className="pt-8">
             <button
               onClick={() => {
-                const productsSection = document.getElementById('products');
-                productsSection?.scrollIntoView({ behavior: 'smooth' });
+                const firstSection = document.getElementById('valentine-products');
+                firstSection?.scrollIntoView({ behavior: 'smooth' });
               }}
-              className="group inline-flex items-center gap-3 bg-bronze text-white px-10 py-5 hover:bg-gold hover:text-black transition-all duration-300 shadow-2xl hover:shadow-bronze/50 font-bold tracking-widest text-sm"
+              className="group inline-flex items-center gap-3 px-10 py-5 transition-all duration-300 shadow-2xl font-bold tracking-widest text-sm"
+              style={{
+                backgroundColor: '#D09306',
+                color: '#000000',
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.backgroundColor = '#A27852';
+                e.currentTarget.style.color = '#FFFFFF';
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.backgroundColor = '#D09306';
+                e.currentTarget.style.color = '#000000';
+              }}
             >
               <span>
                 EXPLORAR COLECCIÓN
@@ -74,10 +87,10 @@ export default function Hero() {
           </div>
         </div>
 
-        {/* Scroll indicator con color bronce */}
+        {/* Scroll indicator con color dorado */}
         <div className="absolute bottom-12 left-1/2 -translate-x-1/2 animate-bounce">
-          <div className="w-6 h-10 border-2 border-bronze/50 rounded-full flex justify-center pt-2">
-            <div className="w-1 h-3 bg-bronze rounded-full" />
+          <div className="w-6 h-10 border-2 rounded-full flex justify-center pt-2" style={{ borderColor: 'rgba(208, 147, 6, 0.5)' }}>
+            <div className="w-1 h-3 rounded-full" style={{ backgroundColor: '#D09306' }} />
           </div>
         </div>
       </div>

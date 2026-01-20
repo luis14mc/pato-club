@@ -13,15 +13,9 @@ interface ProductModalProps {
 }
 
 const TALLAS = ['XS-S', 'M-L', 'XL', 'XXL'];
-const COLORES = [
-  { name: 'Negro', hex: '#000000' },
-  { name: 'Rojo', hex: '#DC2626' },
-  { name: 'Blanco', hex: '#FFFFFF' },
-];
 
 export default function ProductModal({ product, isOpen, onClose }: ProductModalProps) {
   const [tallaSeleccionada, setTallaSeleccionada] = useState<string>('');
-  const [colorSeleccionado, setColorSeleccionado] = useState<string>('');
 
   // Cerrar con tecla ESC
   useEffect(() => {
@@ -48,7 +42,6 @@ export default function ProductModal({ product, isOpen, onClose }: ProductModalP
   useEffect(() => {
     if (product) {
       setTallaSeleccionada('');
-      setColorSeleccionado('');
     }
   }, [product]);
 
@@ -56,14 +49,14 @@ export default function ProductModal({ product, isOpen, onClose }: ProductModalP
 
   // Construir mensaje de WhatsApp
   const handleComprar = () => {
-    if (!tallaSeleccionada || !colorSeleccionado) {
-      alert('Por favor selecciona una talla y un color');
+    if (!tallaSeleccionada) {
+      alert('Por favor selecciona una talla');
       return;
     }
 
-    const mensaje = `Hola Pato Club, me interesa el producto *${product.name}* (Código: ${product.id}) en talla *${tallaSeleccionada}* y color *${colorSeleccionado}*. ¿Tienen disponibilidad?`;
+    const mensaje = `Hola Pato Club, me interesa la *${product.name}* en talla *${tallaSeleccionada}*. ¿Tienen disponibilidad?`;
     
-    const whatsappUrl = `https://wa.me/50433333333?text=${encodeURIComponent(mensaje)}`;
+    const whatsappUrl = `https://wa.me/50496309525?text=${encodeURIComponent(mensaje)}`;
     window.open(whatsappUrl, '_blank');
   };
 
@@ -71,39 +64,70 @@ export default function ProductModal({ product, isOpen, onClose }: ProductModalP
     <AnimatePresence>
       {isOpen && (
         <>
-          {/* Backdrop con blur */}
+          {/* Backdrop Premium */}
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.3 }}
-            className="fixed inset-0 z-[70] bg-black/40 backdrop-blur-xl"
+            className="fixed inset-0 z-[110] bg-black/50 backdrop-blur-sm"
             onClick={onClose}
           />
 
-          {/* Modal Container - RESPONSIVE OPTIMIZADO */}
-          <div className="fixed inset-0 z-[80] flex items-center justify-center p-2 sm:p-4 pointer-events-none overflow-y-auto">
+          {/* Modal Container - MOBILE FIRST - Z-INDEX SUPERIOR AL NAVBAR */}
+          <div className="fixed inset-0 z-[120] flex items-end md:items-center justify-center pointer-events-none">
             <motion.div
-              initial={{ opacity: 0, scale: 0.95, y: 20 }}
-              animate={{ opacity: 1, scale: 1, y: 0 }}
-              exit={{ opacity: 0, scale: 0.95, y: 20 }}
-              transition={{ duration: 0.3, ease: 'easeOut' }}
-              className="relative w-full max-w-6xl my-4 bg-white shadow-2xl pointer-events-auto max-h-[95vh] overflow-hidden"
+              initial={{ opacity: 0, y: '100%' }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: '100%' }}
+              transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
+              className="relative w-full md:max-w-6xl md:mx-4 pointer-events-auto overflow-hidden md:rounded-t-lg"
+              style={{
+                backgroundColor: '#FAF6F1', // Crema suave
+                maxHeight: '95vh',
+              }}
               onClick={(e) => e.stopPropagation()}
             >
-              {/* Botón de Cierre - MEJORADO PARA MOBILE */}
-              <button
-                onClick={onClose}
-                className="absolute top-3 right-3 sm:top-4 sm:right-4 z-[100] w-10 h-10 sm:w-12 sm:h-12 flex items-center justify-center bg-black text-white hover:bg-gold hover:text-black rounded-full transition-all duration-200 shadow-2xl"
-                aria-label="Cerrar modal"
+              {/* Header con Botón de Cierre - ZONA SEGURA CON PADDING */}
+              <div 
+                className="sticky top-0 z-50 flex items-center justify-between px-4 py-3 md:px-6 md:py-4 pt-6 md:pt-4"
+                style={{
+                  backgroundColor: '#FAF6F1',
+                  borderBottom: '1px solid rgba(0, 0, 0, 0.1)',
+                }}
               >
-                <X className="w-5 h-5 sm:w-6 sm:h-6" strokeWidth={2.5} />
-              </button>
+                <h3 
+                  className="text-xs tracking-[0.2em] uppercase font-bold"
+                  style={{
+                    color: '#000000',
+                    fontFamily: 'var(--font-bricolage), serif',
+                  }}
+                >
+                  VISTA RÁPIDA
+                </h3>
+                
+                {/* Botón X - ÁREA TÁCTIL 44x44px - TOP-6 RIGHT-6 */}
+                <button
+                  onClick={onClose}
+                  className="flex items-center justify-center transition-all duration-200 -mr-2"
+                  style={{
+                    minWidth: '44px',
+                    minHeight: '44px',
+                    color: '#000000',
+                  }}
+                  aria-label="Cerrar modal"
+                >
+                  <X className="w-7 h-7" strokeWidth={2.5} />
+                </button>
+              </div>
 
-              {/* Layout RESPONSIVE - Columna única en mobile, dos en desktop */}
-              <div className="flex flex-col md:grid md:grid-cols-2 max-h-[95vh] overflow-y-auto">
-                {/* Columna Imagen - AJUSTADA PARA MOBILE */}
-                <div className="relative bg-zinc-50 h-[40vh] sm:h-[50vh] md:h-auto md:min-h-[600px]">
+              {/* Contenido con Scroll */}
+              <div className="overflow-y-auto" style={{ maxHeight: 'calc(95vh - 72px)' }}>
+
+                {/* Layout RESPONSIVE - Columna única en mobile, dos en desktop */}
+                <div className="flex flex-col md:grid md:grid-cols-2">
+                  {/* Columna Imagen - AJUSTADA PARA MOBILE */}
+                  <div className="relative h-[40vh] sm:h-[50vh] md:h-auto md:min-h-[600px]" style={{ backgroundColor: '#FFFFFF' }}>
                   <Image
                     src={product.image}
                     alt={product.name}
@@ -112,19 +136,37 @@ export default function ProductModal({ product, isOpen, onClose }: ProductModalP
                     className="object-cover"
                     priority
                   />
-                </div>
+                  </div>
 
-                {/* Columna Información - PADDING OPTIMIZADO */}
-                <div className="p-4 sm:p-6 md:p-8 lg:p-12 flex flex-col">
+                  {/* Columna Información - PADDING OPTIMIZADO */}
+                  <div className="p-6 sm:p-8 md:p-10 lg:p-12 flex flex-col" style={{ backgroundColor: '#FAF6F1' }}>
                   {/* Header del Producto */}
                   <div className="mb-6">
-                    <p className="text-[10px] sm:text-xs tracking-widest uppercase text-zinc-500 mb-2">
+                    <p 
+                      className="text-[10px] sm:text-xs tracking-widest uppercase mb-2"
+                      style={{
+                        color: '#A27852',
+                        fontFamily: 'var(--font-work-sans), sans-serif',
+                      }}
+                    >
                       {product.category}
                     </p>
-                    <h2 className="font-serif text-2xl sm:text-3xl md:text-4xl font-bold text-black mb-3 pr-8">
+                    <h2 
+                      className="text-2xl sm:text-3xl md:text-4xl font-bold mb-3 pr-8"
+                      style={{
+                        color: '#000000',
+                        fontFamily: 'var(--font-bricolage), serif',
+                      }}
+                    >
                       {product.name}
                     </h2>
-                    <p className="text-xl sm:text-2xl font-semibold text-black">
+                    <p 
+                      className="text-xl sm:text-2xl font-semibold"
+                      style={{
+                        color: '#000000',
+                        fontFamily: 'var(--font-bricolage), serif',
+                      }}
+                    >
                       L. {new Intl.NumberFormat('es-HN', {
                         minimumFractionDigits: 2,
                         maximumFractionDigits: 2,
@@ -133,13 +175,26 @@ export default function ProductModal({ product, isOpen, onClose }: ProductModalP
                   </div>
 
                   {/* Descripción - TEXTO AJUSTADO */}
-                  <p className="text-sm sm:text-base text-zinc-700 leading-relaxed mb-6">
+                  <p 
+                    className="text-sm sm:text-base leading-relaxed mb-6"
+                    style={{
+                      color: '#000000',
+                      opacity: 0.7,
+                      fontFamily: 'var(--font-work-sans), sans-serif',
+                    }}
+                  >
                     {product.description}
                   </p>
 
                   {/* Selector de Tallas - WRAP EN MOBILE */}
                   <div className="mb-6">
-                    <label className="block text-xs sm:text-sm tracking-wider uppercase text-black font-bold mb-3">
+                    <label 
+                      className="block text-xs sm:text-sm tracking-wider uppercase font-bold mb-3"
+                      style={{
+                        color: '#000000',
+                        fontFamily: 'var(--font-bricolage), serif',
+                      }}
+                    >
                       Selecciona tu talla
                     </label>
                     <div className="flex flex-wrap gap-2 sm:gap-3">
@@ -147,11 +202,34 @@ export default function ProductModal({ product, isOpen, onClose }: ProductModalP
                         <button
                           key={talla}
                           onClick={() => setTallaSeleccionada(talla)}
-                          className={`px-4 sm:px-6 py-2 sm:py-3 text-xs sm:text-sm font-bold tracking-wide transition-all duration-200 ${
+                          className="px-4 sm:px-6 py-2 sm:py-3 text-xs sm:text-sm font-bold tracking-wide transition-all duration-200 border-2"
+                          style={
                             tallaSeleccionada === talla
-                              ? 'border-2 border-black bg-black text-white'
-                              : 'border-2 border-zinc-300 text-black hover:border-bronze hover:text-bronze'
-                          }`}
+                              ? {
+                                  borderColor: '#000000',
+                                  backgroundColor: '#000000',
+                                  color: '#FFFFFF',
+                                  fontFamily: 'var(--font-work-sans), sans-serif',
+                                }
+                              : {
+                                  borderColor: '#D1D5DB',
+                                  backgroundColor: 'transparent',
+                                  color: '#000000',
+                                  fontFamily: 'var(--font-work-sans), sans-serif',
+                                }
+                          }
+                          onMouseEnter={(e) => {
+                            if (tallaSeleccionada !== talla) {
+                              e.currentTarget.style.borderColor = '#A27852';
+                              e.currentTarget.style.color = '#A27852';
+                            }
+                          }}
+                          onMouseLeave={(e) => {
+                            if (tallaSeleccionada !== talla) {
+                              e.currentTarget.style.borderColor = '#D1D5DB';
+                              e.currentTarget.style.color = '#000000';
+                            }
+                          }}
                         >
                           {talla}
                         </button>
@@ -159,74 +237,110 @@ export default function ProductModal({ product, isOpen, onClose }: ProductModalP
                     </div>
                   </div>
 
-                  {/* Selector de Colores */}
-                  <div className="mb-6">
-                    <label className="block text-xs sm:text-sm tracking-wider uppercase text-black font-bold mb-3">
-                      Color
-                    </label>
-                    <div className="flex gap-3">
-                      {COLORES.map((color) => (
-                        <button
-                          key={color.name}
-                          onClick={() => setColorSeleccionado(color.name)}
-                          className={`w-10 h-10 sm:w-12 sm:h-12 rounded-full transition-all duration-200 ${
-                            colorSeleccionado === color.name
-                              ? 'ring-4 ring-offset-2 ring-black scale-110'
-                              : 'ring-2 ring-zinc-300 hover:scale-105 hover:ring-bronze'
-                          }`}
-                          style={{ backgroundColor: color.hex }}
-                          aria-label={color.name}
-                          title={color.name}
-                        >
-                          {color.hex === '#FFFFFF' && (
-                            <span className="w-full h-full block rounded-full border-2 border-zinc-300" />
-                          )}
-                        </button>
-                      ))}
-                    </div>
-                    {colorSeleccionado && (
-                      <p className="text-xs sm:text-sm text-zinc-600 mt-2 font-medium">
-                        Color: <span className="text-black font-bold">{colorSeleccionado}</span>
-                      </p>
-                    )}
-                  </div>
-
                   {/* Características - COMPACTO EN MOBILE */}
                   {product.features && product.features.length > 0 && (
                     <div className="mb-6">
-                      <h3 className="text-xs sm:text-sm tracking-wider uppercase text-black font-bold mb-3">
+                      <h3 
+                        className="text-xs sm:text-sm tracking-wider uppercase font-bold mb-3"
+                        style={{
+                          color: '#000000',
+                          fontFamily: 'var(--font-bricolage), serif',
+                        }}
+                      >
                         Características
                       </h3>
                       <ul className="space-y-2">
                         {product.features.map((feature, index) => (
                           <li key={index} className="flex items-start gap-2">
-                            <Check className="w-4 h-4 sm:w-5 sm:h-5 text-forest flex-shrink-0 mt-0.5" strokeWidth={2.5} />
-                            <span className="text-xs sm:text-sm text-zinc-700 leading-tight">{feature}</span>
+                            <Check className="w-4 h-4 sm:w-5 sm:h-5 flex-shrink-0 mt-0.5" style={{ color: '#014B28' }} strokeWidth={2.5} />
+                            <span 
+                              className="text-xs sm:text-sm leading-tight"
+                              style={{
+                                color: '#000000',
+                                opacity: 0.7,
+                                fontFamily: 'var(--font-work-sans), sans-serif',
+                              }}
+                            >{feature}</span>
                           </li>
                         ))}
                       </ul>
                     </div>
                   )}
 
-                  {/* Botón de Comprar - STICKY EN MOBILE */}
-                  <div className="mt-auto pt-4 sm:pt-6 space-y-2 sm:space-y-3 sticky bottom-0 bg-white pb-4">
+                  {/* Botones de Acción - MOBILE FIRST */}
+                  <div className="mt-auto pt-6 space-y-3"
+                    style={{
+                      backgroundColor: '#FAF6F1',
+                    }}
+                  >
                     <button
                       onClick={handleComprar}
-                      disabled={!tallaSeleccionada || !colorSeleccionado}
-                      className={`w-full h-12 sm:h-14 tracking-widest text-xs sm:text-sm font-bold transition-all duration-300 shadow-lg ${
-                        tallaSeleccionada && colorSeleccionado
-                          ? 'bg-forest text-white hover:bg-gold hover:text-black'
-                          : 'bg-zinc-200 text-zinc-400 cursor-not-allowed'
-                      }`}
+                      disabled={!tallaSeleccionada}
+                      style={
+                        tallaSeleccionada
+                          ? {
+                              backgroundColor: '#014B28',
+                              color: '#FFFFFF',
+                              fontFamily: 'var(--font-work-sans), sans-serif',
+                            }
+                          : {
+                              backgroundColor: '#E5E7EB',
+                              color: '#9CA3AF',
+                              fontFamily: 'var(--font-work-sans), sans-serif',
+                            }
+                      }
+                      className="w-full h-14 sm:h-16 tracking-widest text-sm sm:text-base font-bold transition-all duration-300 shadow-lg"
+                      onMouseEnter={(e) => {
+                        if (tallaSeleccionada) {
+                          e.currentTarget.style.backgroundColor = '#D09306';
+                          e.currentTarget.style.color = '#000000';
+                        }
+                      }}
+                      onMouseLeave={(e) => {
+                        if (tallaSeleccionada) {
+                          e.currentTarget.style.backgroundColor = '#014B28';
+                          e.currentTarget.style.color = '#FFFFFF';
+                        }
+                      }}
                     >
-                      COMPRAR VÍA WHATSAPP
+                      PEDIR POR WHATSAPP
                     </button>
                     
-                    {(!tallaSeleccionada || !colorSeleccionado) && (
-                      <p className="text-[10px] sm:text-xs text-zinc-500 text-center font-medium">
-                        ⚠️ Selecciona talla y color
+                    {!tallaSeleccionada && (
+                      <p 
+                        className="text-[10px] sm:text-xs text-center font-medium"
+                        style={{
+                          color: '#000000',
+                          opacity: 0.5,
+                          fontFamily: 'var(--font-work-sans), sans-serif',
+                        }}
+                      >
+                        ⚠️ Selecciona una talla
                       </p>
                     )}
+
+                    {/* Botón Cerrar Adicional - SEGURIDAD MÓVIL */}
+                    <button
+                      onClick={onClose}
+                      className="w-full h-12 sm:h-14 tracking-widest text-xs sm:text-sm font-bold transition-all duration-300 border-2"
+                      style={{
+                        borderColor: '#000000',
+                        backgroundColor: 'transparent',
+                        color: '#000000',
+                        fontFamily: 'var(--font-work-sans), sans-serif',
+                      }}
+                      onMouseEnter={(e) => {
+                        e.currentTarget.style.backgroundColor = '#000000';
+                        e.currentTarget.style.color = '#FAF6F1';
+                      }}
+                      onMouseLeave={(e) => {
+                        e.currentTarget.style.backgroundColor = 'transparent';
+                        e.currentTarget.style.color = '#000000';
+                      }}
+                    >
+                      CERRAR
+                    </button>
+                  </div>
                   </div>
                 </div>
               </div>

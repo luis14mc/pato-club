@@ -30,34 +30,36 @@ export default function ProductCard({ product, onClick }: ProductCardProps) {
       tabIndex={0}
       aria-label={`Ver detalles de ${product.name}`}
     >
-      {/* Card minimalista - SOLO imagen sobre crema */}
-      <div className="group relative overflow-hidden transition-all duration-500 hover:-translate-y-1">
-        {/* Imagen protagonista */}
+      {/* Card Premium - Minimalista y elegante */}
+      <div className="group relative overflow-hidden transition-all duration-700 hover:-translate-y-2">
+        {/* Imagen protagonista con efecto premium */}
         <div 
-          className="relative aspect-[3/4] overflow-hidden mb-6"
-          style={{ backgroundColor: '#ECE0C8' }}
+          className="relative aspect-[3/4] overflow-hidden mb-6 bg-white"
         >
           <Image
             src={product.image}
             alt={product.name}
             fill
             sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
-            className={`object-cover transition-all duration-700 group-hover:scale-105 ${
+            className={`object-cover transition-all duration-1000 group-hover:scale-110 ${
               imageLoaded ? 'opacity-100' : 'opacity-0'
             }`}
             onLoad={() => setImageLoaded(true)}
             priority={false}
           />
           
-          {/* Badge minimalista - Solo borde */}
+          {/* Overlay sutil en hover para efecto premium */}
+          <div className="absolute inset-0 bg-black opacity-0 group-hover:opacity-5 transition-opacity duration-700" />
+          
+          {/* Badge Premium - Minimalista */}
           {isValentineEdition && (
-            <div className="absolute top-3 left-3 z-10">
+            <div className="absolute top-4 left-4 z-10">
               <span 
-                className="inline-block px-3 py-1 text-[10px] tracking-[0.2em] uppercase font-bold"
+                className="inline-block px-4 py-2 text-[10px] tracking-[0.25em] uppercase font-bold backdrop-blur-sm"
                 style={{
-                  border: '1px solid #000000',
-                  backgroundColor: 'rgba(236, 224, 200, 0.95)',  // Crema semi-transparente
-                  color: '#000000',
+                  border: '1.5px solid #631B26',
+                  backgroundColor: 'rgba(255, 255, 255, 0.95)',
+                  color: '#631B26',  // Rojo vino original
                   fontFamily: 'var(--font-bricolage), serif',
                   fontWeight: '700',
                 }}
@@ -67,22 +69,27 @@ export default function ProductCard({ product, onClick }: ProductCardProps) {
             </div>
           )}
           
-          {/* Botón minimalista - outline */}
-          <div className="absolute inset-x-0 bottom-0 translate-y-full group-hover:translate-y-0 transition-transform duration-500">
+          {/* Botón Premium - Dorado que pasa a Rojo en Valentine's */}
+          <div className="absolute inset-x-0 bottom-0 translate-y-full group-hover:translate-y-0 transition-all duration-500 ease-out">
             <button 
-              className="w-full py-4 font-body font-bold tracking-widest text-xs uppercase transition-colors duration-200"
+              className="w-full py-5 font-body font-bold tracking-[0.15em] text-xs uppercase transition-all duration-300"
               style={{ 
-                minHeight: '44px',
-                border: '1px solid #000000',
-                backgroundColor: 'rgba(236, 224, 200, 0.98)',
+                minHeight: '56px',
+                backgroundColor: '#D09306',
                 color: '#000000',
+                fontFamily: 'var(--font-bricolage), serif',
               }}
               onMouseEnter={(e) => {
-                e.currentTarget.style.backgroundColor = '#000000';
-                e.currentTarget.style.color = '#FFFFFF';
+                if (isValentineEdition) {
+                  e.currentTarget.style.backgroundColor = '#631B26';
+                  e.currentTarget.style.color = '#FFFFFF';
+                } else {
+                  e.currentTarget.style.backgroundColor = '#000000';
+                  e.currentTarget.style.color = '#FFFFFF';
+                }
               }}
               onMouseLeave={(e) => {
-                e.currentTarget.style.backgroundColor = 'rgba(236, 224, 200, 0.98)';
+                e.currentTarget.style.backgroundColor = '#D09306';
                 e.currentTarget.style.color = '#000000';
               }}
             >
@@ -91,39 +98,39 @@ export default function ProductCard({ product, onClick }: ProductCardProps) {
           </div>
         </div>
 
-        {/* Información limpia - minimalismo máximo */}
-        <div className="space-y-3">
-          {/* Categoría sutil */}
+        {/* Información Premium - Espaciado generoso */}
+        <div className="space-y-4 px-2">
+          {/* Categoría ultra sutil */}
           <p 
-            className="text-[11px] tracking-[0.2em] uppercase font-medium"
+            className="text-[10px] tracking-[0.25em] uppercase font-semibold"
             style={{ 
-              color: '#000000',
-              opacity: 0.5,
+              color: '#A27852',
+              fontFamily: 'var(--font-work-sans), sans-serif',
             }}
           >
             {product.category}
           </p>
 
-          {/* Nombre del producto - protagonista */}
+          {/* Nombre del producto - Elegante */}
           <h3 
-            className="text-base md:text-lg leading-tight font-normal"
+            className="text-lg md:text-xl leading-tight font-medium"
             style={{
               color: '#000000',
               fontFamily: 'var(--font-work-sans), sans-serif',
-              lineHeight: '1.4',
+              lineHeight: '1.3',
             }}
           >
             {product.name}
           </h3>
           
-          {/* Precio destacado con mucho espacio */}
+          {/* Precio Premium - Destacado */}
           <p 
-            className="text-xl md:text-2xl font-bold pt-2"
+            className="text-2xl md:text-3xl font-bold pt-1"
             style={{ 
               fontFamily: 'var(--font-bricolage), serif',
               color: '#000000',
               fontWeight: '700',
-              letterSpacing: '-0.02em',
+              letterSpacing: '-0.01em',
             }}
           >
             L. {formatPrice(product.price)}

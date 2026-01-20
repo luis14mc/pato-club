@@ -1,12 +1,12 @@
 'use client';
 
-import { MessageCircle } from 'lucide-react';
+import { SiWhatsapp } from 'react-icons/si';
 import { motion } from 'framer-motion';
 
 export default function WhatsAppButton() {
   const handleClick = () => {
     const mensaje = 'Hola Pato Club, tengo una consulta sobre sus productos. ¿Podrían ayudarme?';
-    const whatsappUrl = `https://wa.me/50433333333?text=${encodeURIComponent(mensaje)}`;
+    const whatsappUrl = `https://wa.me/50496309525?text=${encodeURIComponent(mensaje)}`;
     window.open(whatsappUrl, '_blank');
   };
 
@@ -43,7 +43,7 @@ export default function WhatsAppButton() {
           e.currentTarget.style.boxShadow = '0 4px 14px 0 rgba(1, 75, 40, 0.39)';
         }}
       >
-        <MessageCircle className="w-5 h-5" strokeWidth={2} style={{ color: '#FFFFFF' }} />
+        <SiWhatsapp className="w-5 h-5" style={{ color: '#FFFFFF' }} />
         <span 
           className="hidden sm:inline"
           style={{

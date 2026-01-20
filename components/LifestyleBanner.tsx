@@ -16,7 +16,7 @@ export default function LifestyleBanner({
   return (
     <section 
       className="relative w-full py-32 md:py-40 lg:py-48"
-      style={{ backgroundColor: '#000000' }}  // Negro para contraste
+      style={{ backgroundColor: '#001F14' }}  // Verde oscuro sutil
     >
       {/* Contenido minimalista */}
       <div className="relative z-10 h-full flex items-center justify-center text-center px-4 sm:px-6">

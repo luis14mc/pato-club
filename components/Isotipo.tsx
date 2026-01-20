@@ -8,7 +8,7 @@ interface IsotipoProps {
 export default function Isotipo({ className = '', size = 24 }: IsotipoProps) {
   return (
     <Image
-      src="/isotipo.png"
+      src="/Pato black.png"
       alt="Pato Club Isotipo"
       width={size}
       height={size}
