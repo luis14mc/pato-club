@@ -109,3 +109,8 @@ pato-club/
 ---
 
 **Hecho con intención en Honduras 🇭🇳**
+
+## 👨‍💻 Desarrollado por
+
+**Luis Martínez Cerrato**  
+Full Stack Developer
