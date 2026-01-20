@@ -72,8 +72,65 @@ export default function Navbar() {
             </Link>
           </div>
 
-          {/* Menú Hamburguesa - SOLO ELEMENTO DERECHO */}
-          <div className="flex items-center justify-end">
+          {/* Menú Desktop - SOLO VISIBLE EN DESKTOP */}
+          <div className="hidden md:flex items-center gap-8 lg:gap-10">
+            <Link
+              href="#valentine-products"
+              onClick={(e) => {
+                e.preventDefault();
+                const section = document.getElementById('valentine-products');
+                section?.scrollIntoView({ behavior: 'smooth' });
+              }}
+              className="text-sm lg:text-base font-semibold tracking-wider uppercase transition-colors duration-200"
+              style={{
+                color: '#000000',
+                fontFamily: 'var(--font-bricolage), serif',
+              }}
+              onMouseEnter={(e) => e.currentTarget.style.color = '#D09306'}
+              onMouseLeave={(e) => e.currentTarget.style.color = '#000000'}
+            >
+              NEW ARRIVALS
+            </Link>
+            
+            <Link
+              href="#basics-section"
+              onClick={(e) => {
+                e.preventDefault();
+                const section = document.getElementById('basics-section');
+                section?.scrollIntoView({ behavior: 'smooth' });
+              }}
+              className="text-sm lg:text-base font-semibold tracking-wider uppercase transition-colors duration-200"
+              style={{
+                color: '#000000',
+                fontFamily: 'var(--font-bricolage), serif',
+              }}
+              onMouseEnter={(e) => e.currentTarget.style.color = '#D09306'}
+              onMouseLeave={(e) => e.currentTarget.style.color = '#000000'}
+            >
+              BÁSICOS
+            </Link>
+
+            <Link
+              href="#all-products"
+              onClick={(e) => {
+                e.preventDefault();
+                const section = document.getElementById('all-products');
+                section?.scrollIntoView({ behavior: 'smooth' });
+              }}
+              className="text-sm lg:text-base font-semibold tracking-wider uppercase transition-colors duration-200"
+              style={{
+                color: '#000000',
+                fontFamily: 'var(--font-bricolage), serif',
+              }}
+              onMouseEnter={(e) => e.currentTarget.style.color = '#D09306'}
+              onMouseLeave={(e) => e.currentTarget.style.color = '#000000'}
+            >
+              PRODUCTOS
+            </Link>
+          </div>
+
+          {/* Menú Hamburguesa - SOLO VISIBLE EN MOBILE */}
+          <div className="flex md:hidden items-center justify-end">
             <button
               onClick={() => setIsMenuOpen(!isMenuOpen)}
               className="p-2 transition-colors duration-200"
