@@ -3,8 +3,9 @@
 import { useState } from 'react';
 import Navbar from '@/components/Navbar';
 import Hero from '@/components/Hero';
+import ValentineBanner from '@/components/ValentineBanner';
 import CollectionSection from '@/components/CollectionSection';
-import LifestyleBanner from '@/components/LifestyleBanner';
+import BasicsBanner from '@/components/BasicsBanner';
 import Footer from '@/components/Footer';
 import ProductModal from '@/components/ProductModal';
 import WhatsAppButton from '@/components/WhatsAppButton';
@@ -30,7 +31,9 @@ export default function Home() {
   const valentineProducts = products.filter(p => p.category === 'Edición Especial');
   const basicsProducts = products.filter(p => p.category === 'Basics');
   const hoodiesProducts = products.filter(p => p.category === 'Hoodies');
-  const allProducts = products; // Todos los productos para Colección Completa
+  const tshirtProducts = products.filter(p => p.category === 'Camiseta');
+  const pantsProducts = products.filter(p => p.category === 'Pantalón Deportivo');
+  const allProducts = products; 
 
   return (
     <div className="min-h-screen" style={{ backgroundColor: '#ECE0C8' }}>
@@ -39,6 +42,7 @@ export default function Home() {
       <Hero />
 
       {/* Love is Red - Edición Especial */}
+      <ValentineBanner />
       {valentineProducts.length > 0 && (
         <CollectionSection
           id="valentine-products"
@@ -50,13 +54,10 @@ export default function Home() {
         />
       )}
 
-      {/* Lifestyle - Contraste negro */}
-      <LifestyleBanner
-        title="Hecho con Intención"
-        subtitle="Sin etiquetas - Sin Disculpas - Sin Explicaciones"
-      />
+      {/* Banner de Transición con imagen bgbasicos.webp */}
+      <BasicsBanner />
 
-      {/* Resto de colecciones - Todo crema */}
+      {/* Colección de Básicos */}
       {basicsProducts.length > 0 && (
         <CollectionSection
           id="basics-section"
@@ -67,6 +68,7 @@ export default function Home() {
         />
       )}
 
+      {/* Colección de Hoodies */}
       {hoodiesProducts.length > 0 && (
         <CollectionSection
           id="hoodies-section"
@@ -78,6 +80,31 @@ export default function Home() {
         />
       )}
 
+      {/* NUEVA SECCIÓN: Pantalón Deportivo */}
+      {pantsProducts.length > 0 && (
+        <CollectionSection
+          id="pants-section"
+          title="Pantalón Deportivo"
+          description="Confort y movimiento."
+          products={pantsProducts}
+          onProductClick={handleProductClick}
+          backgroundColor="cream"
+        />
+      )}
+
+      {/* NUEVA SECCIÓN: Camisetas */}
+      {tshirtProducts.length > 0 && (
+        <CollectionSection
+          id="tshirts-section"
+          title="Camiseta"
+          description="Básicos esenciales."
+          products={tshirtProducts}
+          onProductClick={handleProductClick}
+          backgroundColor="cream-soft"
+        />
+      )}
+
+      {/* Colección Completa con Filtros */}
       {allProducts.length > 0 && (
         <CollectionSection
           id="all-products"

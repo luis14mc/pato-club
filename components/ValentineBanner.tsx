@@ -1,96 +1,63 @@
 'use client';
 
+import Image from 'next/image';
+import { motion, useScroll, useTransform } from 'framer-motion';
+import { useRef } from 'react';
+
 export default function ValentineBanner() {
+  const containerRef = useRef<HTMLDivElement>(null);
+  const { scrollYProgress } = useScroll({
+    target: containerRef,
+    offset: ["start end", "end start"]
+  });
+
+  // Efecto Parallax: Aumentamos el rango de movimiento para que sea más notable
+  const y = useTransform(scrollYProgress, [0, 1], ["-25%", "25%"]);
+
   return (
     <section 
-      className="relative py-20 sm:py-24 md:py-32 overflow-hidden"
-      style={{ backgroundColor: '#ECE0C8' }}  // Crema - minimalismo
+      ref={containerRef}
+      className="relative w-full h-[50vh] md:h-[70vh] overflow-hidden bg-black flex items-center justify-center"
     >
-      {/* Contenedor con padding móvil */}
-      <div className="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 md:px-8 lg:px-12 space-y-6 sm:space-y-8 text-center">
-        {/* Badge minimalista - Borde fino */}
-        <span 
-          className="inline-flex items-center gap-2 sm:gap-3 px-4 sm:px-5 py-2 sm:py-2.5 text-xs sm:text-sm tracking-[0.3em] uppercase font-bold"
-          style={{
-            border: '1px solid #000000',  // Borde negro fino
-            backgroundColor: 'transparent',
-            color: '#000000',
-            fontFamily: 'var(--font-bricolage), serif',
-          }}
-        >
-          <svg className="w-3 h-3 sm:w-4 sm:h-4" fill="currentColor" viewBox="0 0 20 20">
-            <path
-              fillRule="evenodd"
-              d="M3.172 5.172a4 4 0 015.656 0L10 6.343l1.172-1.171a4 4 0 115.656 5.656L10 17.657l-6.828-6.829a4 4 0 010-5.656z"
-              clipRule="evenodd"
-            />
-          </svg>
-          Valentine's Edition
-        </span>
-
-        {/* Título minimalista - Negro sobre crema */}
-        <h2 
-          className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold leading-tight"
-          style={{
-            letterSpacing: '0.05em',
-            color: '#000000',
-            fontFamily: 'var(--font-bricolage), serif',
-          }}
-        >
-          Love is Red
-        </h2>
-
-        {/* Descripción limpia */}
-        <p 
-          className="text-sm sm:text-base md:text-lg max-w-2xl mx-auto leading-relaxed font-normal"
+      {/* Background Image con Parallax */}
+      <motion.div 
+        className="absolute inset-0 z-0 h-[120%] w-full"
+        style={{ y }}
+      >
+        <Image
+          src="/bgvalentine.webp"
+          alt="Valentine's Special Edition"
+          fill
+          className="object-cover"
           style={{ 
-            color: '#000000',
-            fontFamily: 'var(--font-work-sans), sans-serif',
-            opacity: 0.8,
+            imageRendering: '-webkit-optimize-contrast'
           }}
-        >
-          Edición especial para celebrar con estilo.
-        </p>
+          unoptimized={true}
+        />
+        {/* Overlay sutil */}
+        <div className="absolute inset-0 bg-black/10" />
+      </motion.div>
 
-        {/* Botón minimalista - Outline */}
-        <div className="pt-6 sm:pt-8">
-          <button
-            onClick={() => {
-              const productsSection = document.getElementById('valentine-products');
-              productsSection?.scrollIntoView({ behavior: 'smooth' });
-            }}
-            className="inline-flex items-center gap-2 sm:gap-3 px-8 sm:px-10 py-3 sm:py-4 font-bold tracking-widest text-xs sm:text-sm transition-all duration-300"
+      {/* Contenido del Banner */}
+      <div className="relative z-10 w-full h-full flex flex-col items-center pt-8 px-4">
+        <div className="text-center space-y-2">
+          <h2 
+            className="text-[10px] sm:text-xs md:text-sm font-bold tracking-[0.5em] uppercase text-white opacity-90"
+            style={{ fontFamily: 'var(--font-bricolage), serif' }}
+          >
+            EDICIÓN ESPECIAL PARA CELEBRAR CON ESTILO
+          </h2>
+          
+          <h3 
+            className="text-[10px] sm:text-xs md:text-sm font-bold tracking-[0.4em] uppercase"
             style={{ 
-              minHeight: '44px',
-              border: '2px solid #000000',
-              backgroundColor: 'transparent',
-              color: '#000000',
+              color: '#D90429', // Rojo más brillante y vibrante
               fontFamily: 'var(--font-bricolage), serif',
-            }}
-            onMouseEnter={(e) => {
-              e.currentTarget.style.backgroundColor = '#000000';
-              e.currentTarget.style.color = '#FFFFFF';
-            }}
-            onMouseLeave={(e) => {
-              e.currentTarget.style.backgroundColor = 'transparent';
-              e.currentTarget.style.color = '#000000';
+              textShadow: '0 0-10px rgba(217, 4, 41, 0.3)' // Sutil resplandor
             }}
           >
-            <span>VER COLECCIÓN</span>
-            <svg
-              className="w-4 h-4 sm:w-5 sm:h-5"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-            >
-              <path
-                strokeLinecap="square"
-                strokeLinejoin="miter"
-                strokeWidth={2}
-                d="M17 8l4 4m0 0l-4 4m4-4H3"
-              />
-            </svg>
-          </button>
+            VALENTINE´S EDITION
+          </h3>
         </div>
       </div>
     </section>

@@ -44,30 +44,17 @@ export default function ProductCard({ product, onClick }: ProductCardProps) {
             className={`object-cover transition-all duration-1000 group-hover:scale-110 ${
               imageLoaded ? 'opacity-100' : 'opacity-0'
             }`}
+            style={{ 
+              imageRendering: '-webkit-optimize-contrast',
+            }}
             onLoad={() => setImageLoaded(true)}
             priority={false}
+            quality={95}
+            decoding="async"
           />
           
           {/* Overlay sutil en hover para efecto premium */}
           <div className="absolute inset-0 bg-black opacity-0 group-hover:opacity-5 transition-opacity duration-700" />
-          
-          {/* Badge Premium - Minimalista */}
-          {isValentineEdition && (
-            <div className="absolute top-4 left-4 z-10">
-              <span 
-                className="inline-block px-4 py-2 text-[10px] tracking-[0.25em] uppercase font-bold backdrop-blur-sm"
-                style={{
-                  border: '1.5px solid #631B26',
-                  backgroundColor: 'rgba(255, 255, 255, 0.95)',
-                  color: '#631B26',  // Rojo vino original
-                  fontFamily: 'var(--font-bricolage), serif',
-                  fontWeight: '700',
-                }}
-              >
-                VALENTINE'S
-              </span>
-            </div>
-          )}
           
           {/* Botón Premium - Dorado que pasa a Rojo en Valentine's */}
           <div className="absolute inset-x-0 bottom-0 translate-y-full group-hover:translate-y-0 transition-all duration-500 ease-out">
