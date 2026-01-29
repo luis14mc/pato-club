@@ -156,7 +156,7 @@ export const products: Product[] = [
     id: 'PC003610',
     name: 'Pato CLUB Hoodie Negro – Boxy Fit',
     price: 1045,
-    image: '/products/hoodies/hoodie-negro.webp',
+    image: '/products/hoodies/Hoodie-negro.webp',
     category: 'Hoodies',
     description: 'Diseño boxy con estructura, mangas anchas, canalé grueso en la cintura y puños, capucha estructurada, bolsas invisibles, comodidad y estilo urbano elevado.',
     features: [
@@ -173,7 +173,7 @@ export const products: Product[] = [
     id: 'PC003620',
     name: 'Pato CLUB Hoodie Blanco – Boxy Fit',
     price: 1045,
-    image: '/products/hoodies/hoodie-blanco.webp',
+    image: '/products/hoodies/Hoodie-blanco.webp',
     category: 'Hoodies',
     description: 'Diseño boxy con estructura, mangas anchas, canalé grueso en la cintura y puños, capucha estructurada, bolsas invisibles, comodidad y estilo urbano elevado.',
     features: [
@@ -190,7 +190,7 @@ export const products: Product[] = [
     id: 'PC003630',
     name: 'Pato CLUB Hoodie Verde – Boxy Fit',
     price: 1045,
-    image: '/products/hoodies/hoodie-verde.webp',
+    image: '/products/hoodies/Hoodie-verde.webp',
     category: 'Hoodies',
     description: 'Diseño boxy con estructura, mangas anchas, canalé grueso en la cintura y puños, capucha estructurada, bolsas invisibles, comodidad y estilo urbano elevado.',
     features: [
@@ -207,7 +207,7 @@ export const products: Product[] = [
     id: 'PC003640',
     name: 'Pato CLUB Hoodie Rojo Vino – Boxy Fit',
     price: 1045,
-    image: '/products/hoodies/hoodie-rojo-vino.webp',
+    image: '/products/hoodies/Hoodie-rojo-vino.webp',
     category: 'Hoodies',
     description: 'Diseño boxy con estructura, mangas anchas, canalé grueso en la cintura y puños, capucha estructurada, bolsas invisibles, comodidad y estilo urbano elevado.',
     features: [
@@ -224,7 +224,7 @@ export const products: Product[] = [
     id: 'PC003650',
     name: 'Pato CLUB Hoodie Gris – Boxy Fit',
     price: 1045,
-    image: '/products/hoodies/hoodie-gris.webp',
+    image: '/products/hoodies/Hoodie-gris.webp',
     category: 'Hoodies',
     description: 'Diseño boxy con estructura, mangas anchas, canalé grueso en la cintura y puños, capucha estructurada, bolsas invisibles, comodidad y estilo urbano elevado.',
     features: [
@@ -241,7 +241,7 @@ export const products: Product[] = [
     id: 'PC003700',
     name: 'Pato CLUB Hoodie Azul – Boxy Fit',
     price: 1045,
-    image: '/products/hoodies/hoodie-azul.webp',
+    image: '/products/hoodies/Hoodie-azul.webp',
     category: 'Hoodies',
     description: 'Diseño boxy con estructura, mangas anchas, canalé grueso en la cintura y puños, capucha estructurada, bolsas invisibles, comodidad y estilo urbano elevado.',
     features: [
