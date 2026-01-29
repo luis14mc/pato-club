@@ -458,60 +458,6 @@ export const products: Product[] = [
     ],
     sizes: [ 'S', 'M', 'L', 'XL']
   },
-  {
-    id: 'PC004500',
-    name: 'Pato Club Varsity Jacket Olive',
-    price: 1245,
-    image: '/products/jacket-olive.jpg',
-    category: 'Jackets',
-    description: 'Chaqueta estilo varsity en color oliva. Statement piece con acabados premium.',
-    features: [
-      'Material resistente al viento',
-      'Forro interior acolchado',
-      'Bolsillos laterales profundos',
-      'Parches bordados exclusivos',
-    ],
-  },
-  {
-    id: 'PC002250',
-    name: 'Pato Club pants WIDE Legs',
-    price: 845,
-    image: '/products/wide-legs-pants.jpg',
-    category: 'Pantalones',
-    description: 'Pantalones de pierna ancha con corte moderno. Máxima comodidad y estilo streetwear.',
-    features: [
-      'Corte Wide Leg',
-      'Tela resistente y cómoda',
-      'Ajuste relajado',
-      'Diseño contemporáneo',
-    ],
-  },
-  {
-    id: 'PC005100',
-    name: 'Pato Club Cap Navy',
-    price: 395,
-    image: '/products/cap-navy.jpg',
-    category: 'Accesorios',
-    description: 'Gorra navy con logo bordado. El complemento perfecto para completar tu look.',
-    features: [
-      'Algodón estructurado',
-      'Visera curva',
-      'Logo bordado 3D',
-      'Ajuste con hebilla trasera',
-    ],
-  },
-  {
-    id: 'PC005200',
-    name: 'Pato Club Tote Bag Black',
-    price: 445,
-    image: '/products/tote-black.jpg',
-    category: 'Accesorios',
-    description: 'Bolsa tote negra con logo. Práctica, espaciosa y con estilo Pato Club.',
-    features: [
-      'Lona de algodón resistente',
-      'Asas reforzadas',
-      'Bolsillo interior con zipper',
-      'Capacidad 15L',
-    ],
-  },
+  
+
 ];
