@@ -31,8 +31,8 @@ export default function Home() {
   const valentineProducts = products.filter(p => p.category === 'Edición Especial');
   const basicsProducts = products.filter(p => p.category === 'Basics');
   const hoodiesProducts = products.filter(p => p.category === 'Hoodies');
-  const tshirtProducts = products.filter(p => p.category === 'Camiseta');
   const pantsProducts = products.filter(p => p.category === 'Pantalón Deportivo');
+  const tshirtProducts = products.filter(p => p.category === 'Camiseta');
   const allProducts = products; 
 
   return (
