@@ -26,7 +26,7 @@ export const metadata: Metadata = {
     siteName: "Pato Club",
     images: [
       {
-        url: "/og-preview.webp", // Asegúrate de que esta imagen exista o se cree
+        url: "/og-preview.webp",
         width: 1200,
         height: 600,
         alt: "Pato Club Streetwear Honduras",
@@ -34,6 +34,10 @@ export const metadata: Metadata = {
     ],
     locale: "es_HN",
     type: "website",
+  },
+  icons: {
+    icon: "/PTMwhite.png",
+    apple: "/PTMwhite.png",
   },
   twitter: {
     card: "summary_large_image",

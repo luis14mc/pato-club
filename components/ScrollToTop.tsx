@@ -40,7 +40,7 @@ export default function ScrollToTop() {
           exit={{ opacity: 0, scale: 0.8 }}
           transition={{ duration: 0.3 }}
           onClick={scrollToTop}
-          className="fixed bottom-28 right-6 sm:bottom-24 sm:right-8 z-50 flex items-center justify-center rounded-full shadow-2xl transition-all duration-300"
+          className="fixed bottom-24 right-6 z-50 flex items-center justify-center rounded-full shadow-2xl transition-all duration-300"
           style={{
             width: '56px',
             height: '56px',

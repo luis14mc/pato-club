@@ -76,16 +76,29 @@ export default function ProductModal({ product, isOpen, onClose }: ProductModalP
             >
               {/* Header Fijo */}
               <div className="flex items-center justify-between px-6 py-4 bg-[#FAF6F1] border-b border-black/5 z-30">
-                <span className="text-[10px] tracking-[0.3em] uppercase font-bold text-black/40" style={{ fontFamily: 'var(--font-bricolage), serif' }}>
-                  Detalles del Producto
-                </span>
+                <div className="flex flex-col">
+                  <span className="text-[10px] tracking-[0.3em] uppercase font-bold text-black/40" style={{ fontFamily: 'var(--font-bricolage), serif' }}>
+                    Detalles del Producto
+                  </span>
+                  <div className="hidden md:flex items-center gap-1 mt-1">
+                    <motion.div 
+                      animate={{ y: [0, 4, 0] }}
+                      transition={{ duration: 2, repeat: Infinity }}
+                    >
+                      <svg className="w-3 h-3 text-[#A27852]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
+                      </svg>
+                    </motion.div>
+                    <span className="text-[8px] uppercase tracking-widest text-[#A27852] font-semibold">Desliza para ver más</span>
+                  </div>
+                </div>
                 <button onClick={onClose} className="p-2 hover:bg-black/5 rounded-full transition-colors">
                   <X className="w-6 h-6 text-black" />
                 </button>
               </div>
 
               {/* Contenido Principal con Scroll */}
-              <div className="flex-grow overflow-y-auto scrollbar-hide">
+              <div className="flex-grow overflow-y-auto scroll-smooth custom-scrollbar">
                 <div className="flex flex-col md:flex-row h-full">
                   
                 {/* Lado Izquierdo: Imagen (Fija en PC si el contenido es corto, scroll en móvil) */}
