@@ -5,7 +5,7 @@ export const products: Product[] = [
     id: 'PC003750',
     name: 'Pato CLUB - Love is Red Edition',
     price: 1245,
-    image: '/products/valentines/Hoodie-rojo-pareja.webp',
+    image: '/products/valentines/modals/hoodierojo-modal.webp',
     category: 'Edición Especial',
     description: 'Una pieza que encapsula la intensidad del amor, la pasión y la fuerza emocional.',
     features: [
@@ -17,7 +17,7 @@ export const products: Product[] = [
       'cálida y confortable'
     ],
     colors: [
-      { name: 'Rojo', hex: '#631B26', image: '/products/valentines/modals/hoodierojo-modal.webp' }
+      { name: 'Rojo', hex: '#A7050B', image: '/products/valentines/modals/hoddie-rojo-modal.webp' }
     ],
     sizes: ['S', 'M', 'L', 'XL']
   },
@@ -25,7 +25,7 @@ export const products: Product[] = [
     id: 'PC001600',
     name: 'Pato CLUB – Anti-Valentine’s Edition',
     price: 745,
-    image: '/products/valentines/antivalentine.webp',
+    image: '/products/valentines/modals/antivalentine/antivalentine-blanco-modal.webp',
     category: 'Edición Especial',
     description: 'Diseñada para quienes no siguen reglas ni celebran lo convencional. Esta camiseta representa independencia, actitud y no siguen a la manada.',
     features: [
@@ -48,7 +48,7 @@ export const products: Product[] = [
     id: 'PC001800',
     name: 'Pato CLUB – The Golden Pair Edition',
     price: 745,
-    image: '/products/valentines/goldenpair.webp',
+    image: '/products/valentines/modals/goldenpair/goldenpair-blanca-modal.webp',
     category: 'Edición Especial',
     description: 'Inspirada en la conexión real, una prenda que celebra la monogamia, la complicidad y la fuerza de los lazos auténticos.',
     features: [
@@ -71,7 +71,7 @@ export const products: Product[] = [
     id: 'PC001810',
     name: 'Pato CLUB – Friendship Edition',
     price: 745,
-    image: '/products/valentines/frienship.webp',
+    image: '/products/valentines/modals/frienship/frienship-blanco-modal.webp',
     category: 'Edición Especial',
     description: 'Un homenaje a la amistad auténtica, expresado a través de un diseño limpio, retro y de estética cartoon.',
     features: [
@@ -108,6 +108,7 @@ export const products: Product[] = [
       { name: 'azul', hex: '#0027A4', image: '/products/hoodies/modals/hoodie-azul-modal.webp' },
       { name: 'negro', hex: '#000000', image: '/products/hoodies/modals/hoodie-negro-modal.webp' },
       { name: 'blanco', hex: '#FFFFFF', image: '/products/hoodies/modals/hoodie-blanco-modal.webp' },
+      { name: 'rojo', hex: '#A7050B', image: '/products/hoodies/modals/hoodie-rojo-modal.webp' },
     ],
     sizes: [ 'S', 'M', 'L', 'XL']
   },
@@ -207,9 +208,9 @@ export const products: Product[] = [
   },
   {
     id: 'PC003640',
-    name: 'Pato CLUB Hoodie Rojo Vino – Boxy Fit',
+    name: 'Pato CLUB Hoodie Rojo – Boxy Fit',
     price: 1045,
-    image: '/products/hoodies/Hoodie-rojo-vino.webp',
+    image: '/products/hoodies/Hoodie-rojo.webp',
     category: 'Hoodies',
     description: 'Diseño boxy con estructura, mangas anchas, canalé grueso en la cintura y puños, capucha estructurada, bolsas invisibles, comodidad y estilo urbano elevado.',
     features: [
@@ -218,7 +219,7 @@ export const products: Product[] = [
       'Cálida y confortable',
     ],
     colors: [
-      { name: 'Rojo Vino', hex: '#740000', image: '/products/hoodies/modals/hoodie-rojovino-modal.webp' },
+      { name: 'Rojo Vino', hex: '#A7050B', image: '/products/hoodies/modals/hoodie-rojo-modal.webp' },
     ],
     sizes: [ 'S', 'M', 'L', 'XL']
   },
@@ -358,23 +359,7 @@ export const products: Product[] = [
     ],
     sizes: [ 'S', 'M', 'L', 'XL']
   },
-  {
-    id: 'PC005010',
-    name: 'Pato CLUB Camiseta Negra – Semi-Oversize',
-    price: 645,
-    image: '/products/camisetas/modals/camisa-negra-modal.webp',
-    category: 'Camiseta',
-    description: 'Diseño minimalista, silueta moderna boxy, semi oversize, caída elegante, alto gramaje y confort para el día a día.',
-    features: [
-      '65% Rayón – 30% Nylon – 5% Spandex',
-      'Suavidad, durabilidad y caída elegante',
-      'Cuello redondo reforzado',
-    ],
-    colors: [
-      { name: 'negro', hex: '#000000', image: '/products/camisetas/modals/camisa-negra-modal.webp' },
-    ],
-    sizes: [ 'S', 'M', 'L', 'XL']
-  },
+  
   {
     id: 'PC005020',
     name: 'Pato CLUB Camiseta Blanca – Semi-Oversize',
