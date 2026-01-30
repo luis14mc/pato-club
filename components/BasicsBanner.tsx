@@ -19,7 +19,6 @@ export default function BasicsBanner() {
       ref={containerRef}
       className="relative w-full h-[50vh] md:h-[70vh] overflow-hidden bg-black flex items-center justify-center"
     >
-      {/* Background Image con Parallax */}
       <motion.div 
         className="absolute inset-0 z-0 h-[120%] w-full"
         style={{ y }}
@@ -34,11 +33,9 @@ export default function BasicsBanner() {
           }}
           unoptimized={true}
         />
-        {/* Overlay sutil */}
         <div className="absolute inset-0 bg-black/20" />
       </motion.div>
 
-      {/* Contenido del Banner - Restaurando Estilo Original de Lifestyle */}
       <div className="relative z-10 w-full h-full flex items-center justify-center text-center px-4 sm:px-6">
         <div className="max-w-4xl space-y-8 md:space-y-10">
           <h2 

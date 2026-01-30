@@ -8,12 +8,13 @@ Pato Club es una tienda en línea minimalista y elegante que muestra colecciones
 
 ## 🚀 Tecnologías
 
-- **Framework:** Next.js 15.1.6 (App Router)
+- **Framework:** Next.js 16 (App Router)
 - **Lenguaje:** TypeScript
 - **Estilos:** Tailwind CSS
 - **Animaciones:** Framer Motion
-- **Iconos:** React Icons, Lucide React
+- **Iconos:** Lucide React, React Icons
 - **Fuentes:** Bricolage Grotesque, Work Sans
+- **Optimización:** WebP, Next.js Image, SEO Metadata
 
 ## 📦 Instalación
 
@@ -32,79 +33,76 @@ npm run dev
 
 # Compilar para producción
 npm run build
-
-# Iniciar servidor de producción
-npm start
 ```
 
 ## 🎨 Paleta de Colores
 
-- **Crema Principal:** `#ECE0C8`
-- **Crema Suave:** `#FAF6F1`
-- **Verde Bosque:** `#014B28`
-- **Verde Oscuro:** `#001F14`
-- **Dorado:** `#D09306`
-- **Bronce:** `#A27852`
-- **Rojo Vino:** `#631B26`
-- **Negro:** `#000000`
-- **Blanco:** `#FFFFFF`
+- **Crema Principal:** `#ECE0C8` (Fondo principal)
+- **Crema Suave:** `#FAF6F1` (Modales y secciones alternas)
+- **Verde Bosque:** `#014B28` (Botones de acción y acentos)
+- **Dorado:** `#D09306` (Hover y elementos premium)
+- **Rojo Vino:** `#631B26` (Edición especial Valentine's)
 
 ## 📱 Características
 
-- ✅ Diseño responsive (móvil, tablet, desktop)
-- ✅ Navegación minimalista y elegante
-- ✅ Secciones de productos organizadas por categorías
-- ✅ Modal de vista rápida de productos
-- ✅ Integración directa con WhatsApp
-- ✅ Botón flotante de contacto
-- ✅ Botón "Volver arriba"
-- ✅ Animaciones suaves con Framer Motion
-- ✅ Footer con redes sociales
-- ✅ Optimización de imágenes con Next.js Image
+- ✅ **SEO Optimizado:** Meta tags configuradas para OpenGraph, Twitter y buscadores.
+- ✅ **Diseño Responsive:** Experiencia fluida en móvil, tablet y desktop.
+- ✅ **Modal de Producto:** Vista detallada con scroll personalizado, selección de talla/color y características.
+- ✅ **Integración WhatsApp:** Pedidos directos y botón flotante de contacto dinámico.
+- ✅ **Optimización de Rendimiento:** Uso de imágenes WebP, `image-rendering` optimizado y carga diferida.
+- ✅ **Navegación Fluida:** Scroll suave entre secciones y menú móvil animado.
 
-## 📂 Estructura del Proyecto
+## 📂 Estructura Completa del Proyecto
 
-```
+```text
 pato-club/
-├── app/                    # App Router de Next.js
-│   ├── page.tsx           # Página principal
-│   ├── layout.tsx         # Layout global
-│   └── globals.css        # Estilos globales
-├── components/            # Componentes React
-│   ├── Navbar.tsx         # Barra de navegación
-│   ├── Hero.tsx           # Sección hero
-│   ├── CollectionSection.tsx
-│   ├── ProductCard.tsx
-│   ├── ProductModal.tsx
-│   ├── Footer.tsx
-│   ├── WhatsAppButton.tsx
-│   └── ScrollToTop.tsx
-├── data/                  # Datos del catálogo
-│   └── products.ts        # Productos
-├── types/                 # TypeScript types
-│   └── product.ts
-└── public/               # Archivos estáticos
-    ├── products/         # Imágenes de productos
-    └── *.png            # Logos y assets
+├── app/                        # Núcleo de la aplicación (App Router)
+│   ├── layout.tsx              # Estructura global, SEO y Fuentes
+│   ├── page.tsx                # Página principal (Home)
+│   ├── globals.css             # Estilos globales y scrollbars personalizados
+│   └── not-found.tsx           # Manejo de errores 404
+├── components/                 # Componentes de la interfaz
+│   ├── Navbar.tsx              # Navegación principal y menú móvil
+│   ├── Hero.tsx                # Sección de impacto inicial con Parallax
+│   ├── CollectionSection.tsx   # Motor de renderizado de colecciones y filtros
+│   ├── ProductCard.tsx         # Tarjeta de producto individual con efectos hover
+│   ├── ProductModal.tsx        # Modal detallado con lógica de compra
+│   ├── ValentineBanner.tsx     # Banner temático de edición especial
+│   ├── BasicsBanner.tsx        # Banner de transición a básicos
+│   ├── Footer.tsx              # Pie de página minimalista
+│   ├── WhatsAppButton.tsx      # Botón flotante de contacto directo
+│   ├── ScrollToTop.tsx         # Botón de navegación rápida hacia arriba
+│   ├── Logo.tsx                # Componente de marca principal
+│   └── Isotipo.tsx             # Componente de marca secundario
+├── data/                       # Gestión de datos
+│   └── products.ts             # Catálogo maestro de productos (Single Source of Truth)
+├── public/                     # Recursos estáticos optimizados
+│   ├── products/               # Galería de productos organizada por categorías
+│   ├── PTMwhite.png            # Favicon y logos de marca
+│   ├── hero.webp               # Imagen principal optimizada
+│   └── og-preview.webp         # Vista previa para compartir en redes
+├── types/                      # Definiciones de tipos
+│   └── product.ts              # Interfaces de TypeScript para productos
+└── package.json                # Dependencias y scripts del proyecto
 ```
 
-## 🛍️ Colecciones
+## 🛍️ Colecciones y Secciones
 
-- **Love is Red:** Edición especial Valentine's (4 productos)
-- **Básicos:** Esenciales atemporales (3 productos)
-- **Hoodies:** Colección de sudaderas (6 productos)
-- **Colección Completa:** Todo el catálogo
+1.  **Love is Red (Valentine's):** Edición limitada con estética romántica.
+2.  **Básicos:** Esenciales atemporales (Hoodie Boxy, Pantalón Wide Leg, Camiseta Dos Tonos).
+3.  **Hoodies:** Colección completa de sudaderas en 6 colores premium.
+4.  **Pantalón Deportivo:** Siluetas Wide Leg diseñadas para el movimiento.
+5.  **Camisetas:** Cortes Semi-Oversize en materiales de alta calidad.
 
-## 📞 Contacto
+## 📞 Canales Oficiales
 
-- **WhatsApp:** +504 9630 9525
+- **WhatsApp:** [+504 9630 9525](https://wa.me/50496309525)
 - **Instagram:** [@patoclubhn](https://www.instagram.com/patoclubhn)
 - **TikTok:** [@patoclubhn](https://www.tiktok.com/@patoclubhn)
-- **Facebook:** [Pato Club](https://www.facebook.com/share/17oate4viE/)
 
 ## 📄 Licencia
 
-© 2026 Pato Club. Todos los derechos reservados.
+© 2026 Pato Club. Todos los derechos reservados. Este software y sus activos son propiedad exclusiva de Pato Club. El uso, reproducción o distribución sin autorización previa está estrictamente prohibido.
 
 ---
 

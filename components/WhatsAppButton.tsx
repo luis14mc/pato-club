@@ -12,7 +12,6 @@ export default function WhatsAppButton() {
       const firstSection = document.getElementById('valentine-products');
       if (firstSection) {
         const rect = firstSection.getBoundingClientRect();
-        // Bloqueado en el Hero: Solo mostrar cuando la primera sección llegue a la mitad superior de la pantalla
         if (rect.top <= window.innerHeight * 0.3) {
           setIsVisible(true);
         } else {
@@ -22,7 +21,7 @@ export default function WhatsAppButton() {
     };
 
     window.addEventListener('scroll', handleScroll);
-    handleScroll(); // Verificar estado inicial
+    handleScroll();
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 

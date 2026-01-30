@@ -86,7 +86,7 @@ export const products: Product[] = [
       { name: 'Gris', hex: '#767171', image: '/products/valentines/modals/frienship/frienship-gris-modal.webp' },
       { name: 'verde', hex: '#484E30', image: '/products/valentines/modals/frienship/frienship-verde-modal.webp' },
       { name: 'azul', hex: '#0027A4', image: '/products/valentines/modals/frienship/frienship-azul-modal.webp' },
-      { name: 'Blanco', hex: '#FFFFF', image: '/products/valentines/modals/frienship/frienship-blanco-modal.webp' },
+      { name: 'Blanco', hex: '#FFFFFF', image: '/products/valentines/modals/frienship/frienship-blanco-modal.webp' },
     ],
     sizes: [ 'S', 'M', 'L', 'XL']
   },
@@ -103,7 +103,6 @@ export const products: Product[] = [
       'Cálida y confortable',
     ],
     colors: [
-      
       { name: 'Gris', hex: '#767171', image: '/products/hoodies/modals/hoodie-gris-modal.webp' },
       { name: 'verde', hex: '#484E30', image: '/products/hoodies/modals/hoodie-verde-modal.webp' },
       { name: 'azul', hex: '#0027A4', image: '/products/hoodies/modals/hoodie-azul-modal.webp' },

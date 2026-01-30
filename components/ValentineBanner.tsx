@@ -19,7 +19,6 @@ export default function ValentineBanner() {
       ref={containerRef}
       className="relative w-full h-[50vh] md:h-[70vh] overflow-hidden bg-black flex items-center justify-center"
     >
-      {/* Background Image con Parallax */}
       <motion.div 
         className="absolute inset-0 z-0 h-[120%] w-full"
         style={{ y }}
@@ -34,11 +33,9 @@ export default function ValentineBanner() {
           }}
           unoptimized={true}
         />
-        {/* Overlay sutil */}
         <div className="absolute inset-0 bg-black/10" />
       </motion.div>
 
-      {/* Contenido del Banner */}
       <div className="relative z-10 w-full h-full flex flex-col items-center pt-8 px-4">
         <div className="text-center space-y-2">
           <h2 
@@ -51,9 +48,9 @@ export default function ValentineBanner() {
           <h3 
             className="text-[10px] sm:text-xs md:text-sm font-bold tracking-[0.4em] uppercase"
             style={{ 
-              color: '#D90429', // Rojo más brillante y vibrante
+              color: '#D90429',
               fontFamily: 'var(--font-bricolage), serif',
-              textShadow: '0 0-10px rgba(217, 4, 41, 0.3)' // Sutil resplandor
+              textShadow: '0 0-10px rgba(217, 4, 41, 0.3)'
             }}
           >
             VALENTINE´S EDITION

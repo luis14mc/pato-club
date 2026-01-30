@@ -2,14 +2,12 @@ import type { Metadata } from "next";
 import { Bricolage_Grotesque, Work_Sans } from "next/font/google";
 import "./globals.css";
 
-// Bricolage Grotesque para títulos (similar a la identidad de marca)
 const bricolage = Bricolage_Grotesque({
   variable: "--font-bricolage",
   subsets: ["latin"],
   display: "swap",
 });
 
-// Work Sans para cuerpo (alternativa limpia a Larke Neue)
 const workSans = Work_Sans({
   variable: "--font-work-sans",
   subsets: ["latin"],
@@ -36,11 +34,14 @@ export const metadata: Metadata = {
     type: "website",
   },
   icons: {
-    icon: [
-      { url: "/PTMwhite.png" },
-      { url: "/PTMwhite.png", sizes: "32x32", type: "image/png" },
-    ],
-    apple: "/PTMwhite.png",
+    icon: "/favicon.ico",
+    apple: "/favicon.ico",
+  },
+  authors: [{ name: "Luis Martínez Cerrato", url: "https://github.com/luis14mc" }],
+  creator: "Luis Martínez Cerrato",
+  publisher: "Pato Club",
+  other: {
+    "developer-contact": "Luis Martínez Cerrato - Full Stack Developer",
   },
   twitter: {
     card: "summary_large_image",

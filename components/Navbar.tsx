@@ -54,7 +54,6 @@ export default function Navbar() {
     >
       <nav className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-20">
-          {/* Logo - IZQUIERDA EN DESKTOP, CENTRADO EN MOBILE */}
           <div className="flex-1 flex justify-start md:justify-start">
             <Link
               href="/"
@@ -72,7 +71,6 @@ export default function Navbar() {
             </Link>
           </div>
 
-          {/* Menú Desktop - CENTRADO */}
           <div className="hidden md:flex flex-[2] items-center justify-center gap-8 lg:gap-10">
             <Link
               href="#valentine-products"
@@ -129,7 +127,6 @@ export default function Navbar() {
             </Link>
           </div>
 
-          {/* Espacio para mantener equilibrio en desktop o menú hamburguesa en mobile */}
           <div className="flex-1 flex items-center justify-end">
             <div className="md:hidden">
               <button
@@ -152,7 +149,6 @@ export default function Navbar() {
         </div>
       </nav>
 
-      {/* Mobile Menu - FONDO SÓLIDO GARANTIZADO */}
       <AnimatePresence>
         {isMenuOpen && (
           <motion.div
@@ -172,7 +168,6 @@ export default function Navbar() {
               bottom: 0,
             }}
           >
-            {/* Header del menú con botón de cierre prominente */}
             <div 
               className="flex items-center justify-between h-20 px-6 border-b-2 border-black/20"
               style={{ backgroundColor: '#ECE0C8' }}
@@ -195,12 +190,10 @@ export default function Navbar() {
               </button>
             </div>
 
-            {/* Contenido del menú con fondo garantizado */}
             <nav 
               className="flex flex-col items-center justify-center h-[calc(100vh-5rem)] space-y-8 px-6 bg-[#ECE0C8]"
               style={{ backgroundColor: '#ECE0C8' }}
             >
-              {/* Logo Superior - PatoTM */}
               <div className="mb-6">
                 <div className="relative w-[180px] h-[70px] opacity-90">
                   <Image
@@ -213,7 +206,6 @@ export default function Navbar() {
                 </div>
               </div>
 
-              {/* Enlaces de navegación - Simplificados */}
               <Link
                 href="#valentine-products"
                 onClick={(e) => {

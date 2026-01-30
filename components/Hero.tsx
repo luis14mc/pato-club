@@ -20,7 +20,6 @@ export default function Hero() {
       ref={containerRef}
       className="relative w-full h-[100vh] flex items-center justify-center bg-black text-white overflow-hidden"
     >
-      {/* Background Hero Image con Parallax */}
       <motion.div 
         className="absolute inset-0 z-0 h-[120%] w-full"
         style={{ y }}
@@ -69,7 +68,7 @@ export default function Hero() {
               }}
               className="group inline-flex items-center gap-3 px-10 py-5 transition-all duration-300 shadow-2xl font-bold tracking-widest text-sm"
               style={{
-                backgroundColor: '#B07D05', // Dorado más oscuro
+                backgroundColor: '#B07D05',
                 color: '#000000',
                 fontFamily: 'var(--font-bricolage), serif',
               }}
@@ -102,7 +101,6 @@ export default function Hero() {
           </div>
         </div>
 
-        {/* Scroll indicator con color dorado oscuro */}
         <div className="absolute bottom-12 left-1/2 -translate-x-1/2 animate-bounce">
           <div className="w-6 h-10 border-2 rounded-full flex justify-center pt-2" style={{ borderColor: 'rgba(176, 125, 5, 0.5)' }}>
             <div className="w-1 h-3 rounded-full" style={{ backgroundColor: '#B07D05' }} />

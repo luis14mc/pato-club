@@ -33,10 +33,8 @@ export default function CollectionSection({
     return '#ECE0C8';
   };
 
-  // Obtener categorías únicas
   const categories = ['Todos', ...Array.from(new Set(products.map(p => p.category)))];
 
-  // Filtrar productos según categoría seleccionada
   const filteredProducts = selectedCategory === 'Todos' 
     ? products 
     : products.filter(p => p.category === selectedCategory);
@@ -47,13 +45,10 @@ export default function CollectionSection({
       className="py-10 sm:py-12 md:py-16 lg:py-20" 
       style={{ backgroundColor: getBackgroundColor() }}
     >
-      {/* Contenedor CENTRADO con mucho spacing */}
       <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Header minimalista con borde Valentine's si aplica */}
         <div 
           className="mb-8 sm:mb-10 md:mb-12 text-center pb-0 relative"
         >
-          {/* Reemplazo de Título por Imagen en Valentine's Section */}
           {isValentine ? (
             <div className="flex flex-col items-center mb-0">
               <div className="relative w-full max-w-[800px] aspect-[4/1] mb-0">
@@ -95,8 +90,6 @@ export default function CollectionSection({
             </>
           )}
 
-          {/* Logo decorativo al costado - Solo Valentine's - VISIBLE EN TODAS LAS RESOLUCIONES */}
-          
           {showFilters && (
             <div className="flex flex-wrap items-center justify-center gap-3 mt-8 px-4">
               {categories.map((category) => (
@@ -131,7 +124,6 @@ export default function CollectionSection({
             </div>
           )}
           
-          {/* Línea decorativa romántica - Solo Valentine's - RESPONSIVE */}
           {isValentine && (
             <div className="flex items-center justify-center mt-0 mb-0 pt-0">
               <div className="flex items-center gap-2 md:gap-4">
@@ -163,7 +155,6 @@ export default function CollectionSection({
           )}
         </div>
 
-        {/* Grid limpio con mucho spacing - productos protagonistas - CENTRADO SI HAY POCOS */}
         <div 
           className={`grid grid-cols-1 gap-8 md:gap-10 lg:gap-12 justify-center ${
             filteredProducts.length === 1

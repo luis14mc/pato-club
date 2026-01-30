@@ -30,9 +30,7 @@ export default function ProductCard({ product, onClick }: ProductCardProps) {
       tabIndex={0}
       aria-label={`Ver detalles de ${product.name}`}
     >
-      {/* Card Premium - Minimalista y elegante */}
       <div className="group relative overflow-hidden transition-all duration-700 hover:-translate-y-2">
-        {/* Imagen protagonista con efecto premium */}
         <div 
           className="relative aspect-[3/4] overflow-hidden mb-6 bg-white"
         >
@@ -52,12 +50,11 @@ export default function ProductCard({ product, onClick }: ProductCardProps) {
             loading="lazy"
             quality={95}
             decoding="async"
+            unoptimized={true}
           />
           
-          {/* Overlay sutil en hover para efecto premium */}
           <div className="absolute inset-0 bg-black opacity-0 group-hover:opacity-5 transition-opacity duration-700" />
           
-          {/* Botón Premium - Dorado que pasa a Rojo en Valentine's */}
           <div className="absolute inset-x-0 bottom-0 translate-y-full group-hover:translate-y-0 transition-all duration-500 ease-out">
             <button 
               className="w-full py-5 font-body font-bold tracking-[0.15em] text-xs uppercase transition-all duration-300"
@@ -86,9 +83,7 @@ export default function ProductCard({ product, onClick }: ProductCardProps) {
           </div>
         </div>
 
-        {/* Información Premium - Espaciado generoso */}
         <div className="space-y-4 px-2">
-          {/* Categoría ultra sutil */}
           <p 
             className="text-[10px] tracking-[0.25em] uppercase font-semibold"
             style={{ 
@@ -99,7 +94,6 @@ export default function ProductCard({ product, onClick }: ProductCardProps) {
             {product.category}
           </p>
 
-          {/* Nombre del producto - Elegante */}
           <h3 
             className="text-lg md:text-xl leading-tight font-medium"
             style={{
@@ -111,7 +105,6 @@ export default function ProductCard({ product, onClick }: ProductCardProps) {
             {product.name}
           </h3>
           
-          {/* Precio Premium - Destacado */}
           <p 
             className="text-2xl md:text-3xl font-bold pt-1"
             style={{ 

@@ -27,7 +27,6 @@ export default function Home() {
     setTimeout(() => setSelectedProduct(null), 300);
   };
 
-  // Filtrar productos
   const valentineProducts = products.filter(p => p.category === 'Edición Especial');
   const basicsProducts = products.filter(p => p.category === 'Basics');
   const hoodiesProducts = products.filter(p => p.category === 'Hoodies');
@@ -41,7 +40,6 @@ export default function Home() {
       <div className="h-20" />
       <Hero />
 
-      {/* Love is Red - Edición Especial */}
       <ValentineBanner />
       {valentineProducts.length > 0 && (
         <CollectionSection
@@ -54,10 +52,8 @@ export default function Home() {
         />
       )}
 
-      {/* Banner de Transición con imagen bgbasicos.webp */}
       <BasicsBanner />
 
-      {/* Colección de Básicos */}
       {basicsProducts.length > 0 && (
         <CollectionSection
           id="basics-section"
@@ -68,7 +64,6 @@ export default function Home() {
         />
       )}
 
-      {/* Colección de Hoodies */}
       {hoodiesProducts.length > 0 && (
         <CollectionSection
           id="hoodies-section"
@@ -80,7 +75,6 @@ export default function Home() {
         />
       )}
 
-      {/* NUEVA SECCIÓN: Pantalón Deportivo */}
       {pantsProducts.length > 0 && (
         <CollectionSection
           id="pants-section"
@@ -92,7 +86,6 @@ export default function Home() {
         />
       )}
 
-      {/* NUEVA SECCIÓN: Camisetas */}
       {tshirtProducts.length > 0 && (
         <CollectionSection
           id="tshirts-section"
@@ -104,7 +97,6 @@ export default function Home() {
         />
       )}
 
-      {/* Colección Completa con Filtros */}
       {allProducts.length > 0 && (
         <CollectionSection
           id="all-products"

@@ -74,7 +74,6 @@ export default function ProductModal({ product, isOpen, onClose }: ProductModalP
               className="relative w-full h-full sm:h-auto sm:max-h-[90vh] sm:max-w-5xl bg-[#FAF6F1] pointer-events-auto overflow-hidden sm:rounded-2xl shadow-2xl flex flex-col z-[150]"
               onClick={(e) => e.stopPropagation()}
             >
-              {/* Header Fijo */}
               <div className="flex items-center justify-between px-6 py-4 bg-[#FAF6F1] border-b border-black/5 z-30">
                 <div className="flex flex-col">
                   <span className="text-[10px] tracking-[0.3em] uppercase font-bold text-black/40" style={{ fontFamily: 'var(--font-bricolage), serif' }}>
@@ -97,11 +96,9 @@ export default function ProductModal({ product, isOpen, onClose }: ProductModalP
                 </button>
               </div>
 
-              {/* Contenido Principal con Scroll */}
               <div className="flex-grow overflow-y-auto scroll-smooth custom-scrollbar">
                 <div className="flex flex-col md:flex-row h-full">
                   
-                {/* Lado Izquierdo: Imagen (Fija en PC si el contenido es corto, scroll en móvil) */}
                 <div className="w-full md:w-1/2 bg-white flex items-center justify-center p-0 border-r border-black/5">
                   <div className="relative w-full h-[50vh] md:h-full">
                     <Image
@@ -115,7 +112,6 @@ export default function ProductModal({ product, isOpen, onClose }: ProductModalP
                   </div>
                 </div>
 
-                  {/* Lado Derecho: Información */}
                   <div className="w-full md:w-1/2 p-6 md:p-10 lg:p-12 space-y-8">
                     <div className="space-y-3">
                       <p className="text-[10px] tracking-[0.2em] uppercase text-[#A27852] font-semibold" style={{ fontFamily: 'var(--font-work-sans), sans-serif' }}>
