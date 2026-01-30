@@ -36,7 +36,10 @@ export const metadata: Metadata = {
     type: "website",
   },
   icons: {
-    icon: "/PTMwhite.png",
+    icon: [
+      { url: "/PTMwhite.png" },
+      { url: "/PTMwhite.png", sizes: "32x32", type: "image/png" },
+    ],
     apple: "/PTMwhite.png",
   },
   twitter: {
