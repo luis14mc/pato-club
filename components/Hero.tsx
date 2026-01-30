@@ -27,7 +27,7 @@ export default function Hero() {
       >
         <Image
           src="/hero.webp"
-          alt="Pato Club Hero"
+          alt="Pato Club Streetwear Honduras"
           fill
           className="object-cover"
           style={{ 
@@ -35,6 +35,7 @@ export default function Hero() {
             imageRendering: '-webkit-optimize-contrast'
           }}
           priority
+          fetchPriority="high"
           unoptimized={true}
         />
       </motion.div>

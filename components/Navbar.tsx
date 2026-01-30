@@ -54,8 +54,8 @@ export default function Navbar() {
     >
       <nav className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-20">
-          {/* Logo - CENTRADO EN MOBILE, IZQUIERDA EN DESKTOP */}
-          <div className="flex-1 flex justify-center md:justify-start">
+          {/* Logo - IZQUIERDA EN DESKTOP, CENTRADO EN MOBILE */}
+          <div className="flex-1 flex justify-start md:justify-start">
             <Link
               href="/"
               className="hover:opacity-80 transition-opacity duration-200"
@@ -72,8 +72,8 @@ export default function Navbar() {
             </Link>
           </div>
 
-          {/* Menú Desktop - SOLO VISIBLE EN DESKTOP */}
-          <div className="hidden md:flex items-center gap-8 lg:gap-10">
+          {/* Menú Desktop - CENTRADO */}
+          <div className="hidden md:flex flex-[2] items-center justify-center gap-8 lg:gap-10">
             <Link
               href="#valentine-products"
               onClick={(e) => {
@@ -129,23 +129,25 @@ export default function Navbar() {
             </Link>
           </div>
 
-          {/* Menú Hamburguesa - SOLO VISIBLE EN MOBILE */}
-          <div className="flex md:hidden items-center justify-end">
-            <button
-              onClick={() => setIsMenuOpen(!isMenuOpen)}
-              className="p-2 transition-colors duration-200"
-              style={{
-                minWidth: '44px',
-                minHeight: '44px',
-              }}
-              aria-label="Menú"
-            >
-              {isMenuOpen ? (
-                <X className="w-6 h-6 text-black" strokeWidth={2} />
-              ) : (
-                <Menu className="w-6 h-6 text-black" strokeWidth={2} />
-              )}
-            </button>
+          {/* Espacio para mantener equilibrio en desktop o menú hamburguesa en mobile */}
+          <div className="flex-1 flex items-center justify-end">
+            <div className="md:hidden">
+              <button
+                onClick={() => setIsMenuOpen(!isMenuOpen)}
+                className="p-2 transition-colors duration-200"
+                style={{
+                  minWidth: '44px',
+                  minHeight: '44px',
+                }}
+                aria-label="Menú"
+              >
+                {isMenuOpen ? (
+                  <X className="w-6 h-6 text-black" strokeWidth={2} />
+                ) : (
+                  <Menu className="w-6 h-6 text-black" strokeWidth={2} />
+                )}
+              </button>
+            </div>
           </div>
         </div>
       </nav>

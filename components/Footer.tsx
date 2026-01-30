@@ -86,7 +86,7 @@ export default function Footer() {
               letterSpacing: '0.05em',
             }}
           >
-            Pato Club - Honduras 2026
+            © 2026 Pato Club - Honduras
           </p>
         </div>
       </div>

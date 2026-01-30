@@ -62,16 +62,16 @@ export default function ProductModal({ product, isOpen, onClose }: ProductModalP
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 z-[110] bg-black/70 backdrop-blur-md"
+            className="fixed inset-0 z-[140] bg-black/70 backdrop-blur-md"
             onClick={onClose}
           />
 
-          <div className="fixed inset-0 z-[120] flex items-center justify-center p-0 sm:p-4 md:p-6 pointer-events-none">
+          <div className="fixed inset-0 z-[150] flex items-center justify-center p-0 sm:p-4 md:p-6 pointer-events-none">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: 20 }}
-              className="relative w-full h-full sm:h-auto sm:max-h-[90vh] sm:max-w-5xl bg-[#FAF6F1] pointer-events-auto overflow-hidden sm:rounded-2xl shadow-2xl flex flex-col"
+              className="relative w-full h-full sm:h-auto sm:max-h-[90vh] sm:max-w-5xl bg-[#FAF6F1] pointer-events-auto overflow-hidden sm:rounded-2xl shadow-2xl flex flex-col z-[150]"
               onClick={(e) => e.stopPropagation()}
             >
               {/* Header Fijo */}
@@ -133,12 +133,11 @@ export default function ProductModal({ product, isOpen, onClose }: ProductModalP
                               <button
                                 key={color.name}
                                 onClick={() => setColorSeleccionado(color)}
-                                className={`w-10 h-10 rounded-full border-2 transition-all ${
-                                  colorSeleccionado?.name === color.name ? 'border-black scale-110' : 'border-transparent'
+                                className={`w-10 h-10 rounded-full border transition-all ${
+                                  colorSeleccionado?.name === color.name ? 'border-black scale-110 ring-2 ring-[#FAF6F1] ring-offset-2 ring-offset-black' : 'border-black/10'
                                 }`}
                                 style={{ 
                                   backgroundColor: color.hex,
-                                  boxShadow: colorSeleccionado?.name === color.name ? `0 0 0 2px #FAF6F1, 0 0 0 4px #000000` : 'none'
                                 }}
                               />
                             ))}

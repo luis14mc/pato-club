@@ -23,6 +23,7 @@ body {
   background: var(--color-primary-cream);
   color: var(--color-primary-black);
   font-family: var(--font-body);
+  image-rendering: -webkit-optimize-contrast;
 }
 
 /* Smooth scroll behavior */

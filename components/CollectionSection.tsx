@@ -96,18 +96,7 @@ export default function CollectionSection({
           )}
 
           {/* Logo decorativo al costado - Solo Valentine's - VISIBLE EN TODAS LAS RESOLUCIONES */}
-          {isValentine && (
-            <div 
-              className="absolute left-0 -top-10 w-24 h-24 sm:w-32 sm:h-32 md:w-48 md:h-48 lg:w-56 lg:h-56 pointer-events-none"
-              style={{
-                backgroundImage: 'url(/Pato_hoodie_SF.png)',
-                backgroundPosition: 'center',
-                backgroundRepeat: 'no-repeat',
-                backgroundSize: 'contain',
-                opacity: 0.15,
-              }}
-            />
-          )}
+          
           {showFilters && (
             <div className="flex flex-wrap items-center justify-center gap-3 mt-8 px-4">
               {categories.map((category) => (

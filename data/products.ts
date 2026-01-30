@@ -13,8 +13,8 @@ export const products: Product[] = [
       'Diseño y color exclusivo y limitado',
       'Estampado premium con vinil textil',
       '70% Algodón – 30% Poliéster',
-      'afelpado suave para mayor confort térmico',
-      'calida y confortable'
+      'Afelpado suave para mayor confort térmico',
+      'cálida y confortable'
     ],
     colors: [
       { name: 'Rojo', hex: '#631B26', image: '/products/valentines/modals/hoodierojo-modal.webp' }
@@ -36,11 +36,11 @@ export const products: Product[] = [
       'Suavidad, durabilidad y caída elegante'
     ],
     colors: [
-      { name: 'Rojo', hex: '#740000', image: '/products/valentines/modals/antivalentine-modal.webp' },
-      { name: 'Gris', hex: '#767171', image: '/products/valentines/modals/antivalentine-modal.webp' },
-      { name: 'verde', hex: '#484E30', image: '/products/valentines/modals/antivalentine-modal.webp' },
-      { name: 'azul', hex: '#0027A4', image: '/products/valentines/modals/antivalentine-modal.webp' },
-      { name: 'negro', hex: '#000000', image: '/products/valentines/modals/antivalentine-modal.webp' },
+      { name: 'Rojo  Vino', hex: '#740000', image: '/products/valentines/modals/antivalentine/antivalentine-vino-modal.webp' },
+      { name: 'Gris', hex: '#767171', image: '/products/valentines/modals/antivalentine/antivalentine-gris-modal.webp' },
+      { name: 'verde', hex: '#484E30', image: '/products/valentines/modals/antivalentine/antivalentine-verde-modal.webp' },
+      { name: 'azul', hex: '#0027A4', image: '/products/valentines/modals/antivalentine/antivalentine-azul-modal.webp' },
+      { name: 'blanco', hex: '#FFFFFF', image: '/products/valentines/modals/antivalentine/antivalentine-blanco-modal.webp' },
     ],
     sizes: ['S', 'M', 'L', 'XL']
   },
@@ -59,11 +59,11 @@ export const products: Product[] = [
       'Suavidad, durabilidad y caída elegante'
     ],
     colors: [
-      { name: 'Rojo', hex: '#740000', image: '/products/valentines/modals/goldenpair-modal.webp' },
-      { name: 'Gris', hex: '#767171', image: '/products/valentines/modals/goldenpair-modal.webp' },
-      { name: 'verde', hex: '#484E30', image: '/products/valentines/modals/goldenpair-modal.webp' },
-      { name: 'azul', hex: '#0027A4', image: '/products/valentines/modals/goldenpair-modal.webp' },
-      { name: 'negro', hex: '#000000', image: '/products/valentines/modals/goldenpair-modal.webp' },
+      { name: 'Rojo vino', hex: '#740000', image: '/products/valentines/modals/goldenpair/goldenpair-vino-modal.webp' },
+      { name: 'Gris', hex: '#767171', image: '/products/valentines/modals/goldenpair/goldenpair-gris-modal.webp' },
+      { name: 'verde', hex: '#484E30', image: '/products/valentines/modals/goldenpair/goldenpair-verde-modal.webp' },
+      { name: 'azul', hex: '#0027A4', image: '/products/valentines/modals/goldenpair/goldenpair-azul-modal.webp' },
+      { name: 'blanco', hex: '#FFFFFF', image: '/products/valentines/modals/goldenpair/goldenpair-blanca-modal.webp' },
     ],
     sizes: [ 'S', 'M', 'L', 'XL']
   },
@@ -82,11 +82,11 @@ export const products: Product[] = [
       'Suavidad, durabilidad y caída elegante'
     ],
     colors: [
-      { name: 'Rojo', hex: '#740000', image: '/products/valentines/modals/frienship-modal.webp' },
-      { name: 'Gris', hex: '#767171', image: '/products/valentines/modals/frienship-modal.webp' },
-      { name: 'verde', hex: '#484E30', image: '/products/valentines/modals/frienship-modal.webp' },
-      { name: 'azul', hex: '#0027A4', image: '/products/valentines/modals/frienship-modal.webp' },
-      { name: 'negro', hex: '#000000', image: '/products/valentines/modals/frienship-modal.webp' },
+      { name: 'Rojo', hex: '#740000', image: '/products/valentines/modals/frienship/frienship-vino-modal.webp' },
+      { name: 'Gris', hex: '#767171', image: '/products/valentines/modals/frienship/frienship-gris-modal.webp' },
+      { name: 'verde', hex: '#484E30', image: '/products/valentines/modals/frienship/frienship-verde-modal.webp' },
+      { name: 'azul', hex: '#0027A4', image: '/products/valentines/modals/frienship/frienship-azul-modal.webp' },
+      { name: 'Blanco', hex: '#FFFFF', image: '/products/valentines/modals/frienship/frienship-blanco-modal.webp' },
     ],
     sizes: [ 'S', 'M', 'L', 'XL']
   },
@@ -103,11 +103,12 @@ export const products: Product[] = [
       'Cálida y confortable',
     ],
     colors: [
-      { name: 'Rojo', hex: '#740000', image: '/products/hoodies/modals/hoodie-rojovino-modal.webp' },
+      
       { name: 'Gris', hex: '#767171', image: '/products/hoodies/modals/hoodie-gris-modal.webp' },
       { name: 'verde', hex: '#484E30', image: '/products/hoodies/modals/hoodie-verde-modal.webp' },
       { name: 'azul', hex: '#0027A4', image: '/products/hoodies/modals/hoodie-azul-modal.webp' },
       { name: 'negro', hex: '#000000', image: '/products/hoodies/modals/hoodie-negro-modal.webp' },
+      { name: 'blanco', hex: '#FFFFFF', image: '/products/hoodies/modals/hoodie-blanco-modal.webp' },
     ],
     sizes: [ 'S', 'M', 'L', 'XL']
   },
@@ -124,11 +125,12 @@ export const products: Product[] = [
       'Cálida y confortable',
     ],
     colors: [
-      { name: 'Rojo', hex: '#740000', image: '/products/basicos/pantalondeportivo-wideleg.webp' },
-      { name: 'Gris', hex: '#767171', image: '/products/basicos/pantalondeportivo-wideleg.webp' },
-      { name: 'verde', hex: '#484E30', image: '/products/basicos/pantalondeportivo-wideleg.webp' },
-      { name: 'azul', hex: '#0027A4', image: '/products/basicos/pantalondeportivo-wideleg.webp' },
-      { name: 'negro', hex: '#000000', image: '/products/basicos/pantalondeportivo-wideleg.webp' },
+      { name: 'Rojo vino', hex: '#740000', image: '/products/pantalones/modals/pantalon-rojovino-modal.webp' },
+      { name: 'Gris', hex: '#767171', image: '/products/pantalones/modals/pantalon-gris-modal.webp' },
+      { name: 'Verde', hex: '#484E30', image: '/products/pantalones/modals/pantalon-verde-modal.webp' },
+      { name: 'Azul', hex: '#0027A4', image: '/products/pantalones/modals/pantalon-azul-modal.webp' },
+      { name: 'Negro', hex: '#000000', image: '/products/pantalones/modals/pantalon-negro-modal.webp' },
+      { name: 'Blanco', hex: '#FFFFFF', image: '/products/pantalones/modals/pantalon-blanco-modal.webp' },
     ],
     sizes: [ 'S', 'M', 'L', 'XL']
   },
@@ -144,11 +146,12 @@ export const products: Product[] = [
       'Suavidad, durabilidad',
     ],
     colors: [
-      { name: 'Rojo', hex: '#740000', image: '/products/basicos/semi-oversize.webp' },
-      { name: 'Gris', hex: '#767171', image: '/products/basicos/semi-oversize.webp' },
-      { name: 'verde', hex: '#484E30', image: '/products/basicos/semi-oversize.webp' },
-      { name: 'azul', hex: '#0027A4', image: '/products/basicos/semi-oversize.webp' },
-      { name: 'negro', hex: '#000000', image: '/products/basicos/semi-oversize.webp' },
+      { name: 'Rojo Vino', hex: '#740000', image: '/products/camisetas/modals/camisa-vino-modal.webp' },
+      { name: 'Gris', hex: '#767171', image: '/products/camisetas/modals/camisa-gris-modal.webp' },
+      { name: 'verde', hex: '#484E30', image: '/products/camisetas/modals/camisa-verde-modal.webp' },
+      { name: 'azul', hex: '#0027A4', image: '/products/camisetas/modals/camisa-azul-modal.webp' },
+      { name: 'negro', hex: '#000000', image: '/products/camisetas/modals/camisa-negra-modal.webp' },
+      { name: 'blanco', hex: '#FFFFFF', image: '/products/camisetas/modals/camisa-blanca-modal.webp' }
     ],
     sizes: [ 'S', 'M', 'L', 'XL']
   },

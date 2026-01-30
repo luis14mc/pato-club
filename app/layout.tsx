@@ -17,8 +17,30 @@ const workSans = Work_Sans({
 });
 
 export const metadata: Metadata = {
-  title: "Pato Club — Premium Streetwear",
-  description: "Colección exclusiva de streetwear de lujo. Diseños únicos y calidad excepcional.",
+  title: "Pato Club | Streetwear Exclusivo Honduras",
+  description: "Pato Club - La marca de ropa urbana más exclusiva de Honduras. Colecciones limitadas y envíos a todo el país. Pedidos directos vía WhatsApp.",
+  openGraph: {
+    title: "Pato Club | Streetwear Exclusivo Honduras",
+    description: "Pato Club - La marca de ropa urbana más exclusiva de Honduras. Colecciones limitadas y envíos a todo el país. Pedidos directos vía WhatsApp.",
+    url: "https://patoclub.hn",
+    siteName: "Pato Club",
+    images: [
+      {
+        url: "/og-preview.webp", // Asegúrate de que esta imagen exista o se cree
+        width: 1200,
+        height: 600,
+        alt: "Pato Club Streetwear Honduras",
+      },
+    ],
+    locale: "es_HN",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Pato Club | Streetwear Exclusivo Honduras",
+    description: "Pato Club - La marca de ropa urbana más exclusiva de Honduras. Colecciones limitadas y envíos a todo el país.",
+    images: ["/og-preview.webp"],
+  },
 };
 
 export default function RootLayout({

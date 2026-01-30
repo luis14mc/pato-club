@@ -38,7 +38,7 @@ export default function ProductCard({ product, onClick }: ProductCardProps) {
         >
           <Image
             src={product.image}
-            alt={product.name}
+            alt={`Camiseta Pato Club - ${product.name}`}
             fill
             sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
             className={`object-cover transition-all duration-1000 group-hover:scale-110 ${
@@ -49,6 +49,7 @@ export default function ProductCard({ product, onClick }: ProductCardProps) {
             }}
             onLoad={() => setImageLoaded(true)}
             priority={false}
+            loading="lazy"
             quality={95}
             decoding="async"
           />
