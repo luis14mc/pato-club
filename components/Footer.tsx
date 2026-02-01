@@ -1,158 +1,92 @@
 'use client';
 
-import Link from 'next/link';
-import { Facebook, Instagram } from 'lucide-react';
-import { SiTiktok } from 'react-icons/si';
-import Logo from './Logo';
+import Image from 'next/image';
+import { SiInstagram, SiTiktok, SiFacebook } from 'react-icons/si';
 
 export default function Footer() {
   return (
     <footer 
-      className="py-20 md:py-24 lg:py-28"
-      style={{ backgroundColor: '#ECE0C8' }}  // Crema oficial
+      className="py-12 md:py-16"
+      style={{ backgroundColor: '#000000' }}
     >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Grid de 2 columnas minimalista */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-16 md:gap-20 mb-20">
-          {/* Columna 1: Logo y Frase */}
-          <div className="space-y-6 text-center md:text-left">
-            <Logo variant="black" size={50} />
-            <p 
-              className="text-sm font-medium italic"
-              style={{ 
-                color: '#000000',
-                fontFamily: 'var(--font-bricolage), serif',
-              }}
-            >
-              Hecho con intención.
-            </p>
+      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="flex flex-col items-center justify-center space-y-8 text-center">
+          
+          {/* Logo Pato Club en Blanco */}
+          <div className="relative w-32 h-12 md:w-40 md:h-16">
+            <Image
+              src="/PatoTMwhite.png"
+              alt="Pato Club"
+              fill
+              className="object-contain"
+              priority
+            />
           </div>
 
-          {/* Columna 2: Redes Sociales */}
-          <div className="space-y-6 text-center md:text-left">
-            <h3 
-              className="text-sm tracking-[0.3em] uppercase font-bold"
+          {/* Redes Sociales - Iconos Minimalistas */}
+          <div className="space-y-4">
+            <p 
+              className="text-xs md:text-sm tracking-wider uppercase text-center font-semibold"
               style={{
-                color: '#000000',
+                color: '#CCCCCC',
                 fontFamily: 'var(--font-bricolage), serif',
               }}
             >
-              Conecta con Nosotros
-            </h3>
+              Síguenos en nuestras redes sociales
+            </p>
             
-            {/* Iconos limpios - Solo glyphs sin fondos */}
-            <div className="flex items-center justify-center md:justify-start gap-6">
+            <div className="flex items-center justify-center gap-8">
               <a
-                href="https://www.tiktok.com/@patoclub"
+                href="https://www.instagram.com/patoclubhn?igsh=MThldzJ3b3I2MzZpZQ%3D%3D&utm_source=qr"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="transition-opacity duration-200 hover:opacity-60"
+                className="transition-all duration-300 hover:scale-110"
+                aria-label="Instagram"
+              >
+                <SiInstagram 
+                  className="w-6 h-6 md:w-7 md:h-7"
+                  style={{ color: '#FFFFFF' }}
+                />
+              </a>
+              
+              <a
+                href="https://www.tiktok.com/@patoclubhn?_r=1&_t=ZM-93DCHkp2gqh"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="transition-all duration-300 hover:scale-110"
                 aria-label="TikTok"
               >
                 <SiTiktok 
-                  className="w-5 h-5"
-                  style={{ color: '#000000' }}
+                  className="w-6 h-6 md:w-7 md:h-7"
+                  style={{ color: '#FFFFFF' }}
                 />
               </a>
-              
+
               <a
-                href="https://www.instagram.com/patoclub"
+                href="https://www.facebook.com/share/17oate4viE/?mibextid=wwXIfr"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="transition-opacity duration-200 hover:opacity-60"
-                aria-label="Instagram"
-              >
-                <Instagram 
-                  className="w-5 h-5"
-                  style={{ color: '#000000' }}
-                  strokeWidth={1.5}
-                />
-              </a>
-              
-              <a
-                href="https://www.facebook.com/patoclub"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="transition-opacity duration-200 hover:opacity-60"
+                className="transition-all duration-300 hover:scale-110"
                 aria-label="Facebook"
               >
-                <Facebook 
-                  className="w-5 h-5"
-                  style={{ color: '#000000' }}
-                  strokeWidth={1.5}
+                <SiFacebook 
+                  className="w-6 h-6 md:w-7 md:h-7"
+                  style={{ color: '#FFFFFF' }}
                 />
               </a>
             </div>
           </div>
-        </div>
 
-        {/* Enlaces de información */}
-        <div className="border-t border-black/10 pt-12 mb-12">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 text-sm text-center md:text-left">
-            <Link 
-              href="#"
-              className="transition-opacity duration-200 hover:opacity-60"
-              style={{
-                color: '#000000',
-                fontFamily: 'var(--font-work-sans), sans-serif',
-              }}
-            >
-              Envíos y Devoluciones
-            </Link>
-            <Link 
-              href="#"
-              className="transition-opacity duration-200 hover:opacity-60"
-              style={{
-                color: '#000000',
-                fontFamily: 'var(--font-work-sans), sans-serif',
-              }}
-            >
-              Guía de Tallas
-            </Link>
-            <Link 
-              href="#"
-              className="transition-opacity duration-200 hover:opacity-60"
-              style={{
-                color: '#000000',
-                fontFamily: 'var(--font-work-sans), sans-serif',
-              }}
-            >
-              Cuidado de Productos
-            </Link>
-            <Link 
-              href="#"
-              className="transition-opacity duration-200 hover:opacity-60"
-              style={{
-                color: '#000000',
-                fontFamily: 'var(--font-work-sans), sans-serif',
-              }}
-            >
-              Términos y Condiciones
-            </Link>
-          </div>
-        </div>
-
-        {/* Copyright y Ubicación - Texto legal minimalista */}
-        <div className="border-t border-black/10 pt-12 text-center space-y-3">
+          {/* Copyright - Leyenda Minimalista */}
           <p 
-            className="text-xs font-normal"
+            className="text-xs md:text-sm font-light"
             style={{
-              color: '#000000',
+              color: '#CCCCCC',
               fontFamily: 'var(--font-work-sans), sans-serif',
-              opacity: 0.5,
+              letterSpacing: '0.05em',
             }}
           >
-            © 2026 Pato Club. Todos los derechos reservados.
-          </p>
-          <p 
-            className="text-[10px] font-light tracking-wider uppercase"
-            style={{
-              color: '#000000',
-              fontFamily: 'var(--font-work-sans), sans-serif',
-              opacity: 0.4,
-            }}
-          >
-            Honduras
+            © 2026 Pato Club - Honduras
           </p>
         </div>
       </div>

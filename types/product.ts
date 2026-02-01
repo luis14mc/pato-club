@@ -6,4 +6,10 @@ export interface Product {
   category: string;
   description: string;
   features: string[];
+  sizes?: string[];
+  colors?: {
+    name: string;
+    hex: string;
+    image: string;
+  }[];
 }

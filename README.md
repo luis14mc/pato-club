@@ -1,334 +1,114 @@
-# PATO CLUB — Premium Streetwear
+# Pato Club - E-commerce Website
 
-> E-commerce platform for exclusive streetwear collection with luxury design and exceptional quality.
+Sitio web oficial de Pato Club, marca de streetwear premium de Honduras.
 
-![Next.js](https://img.shields.io/badge/Next.js-16.1.2-black?style=flat-square&logo=next.js)
-![TypeScript](https://img.shields.io/badge/TypeScript-5.0-blue?style=flat-square&logo=typescript)
-![Tailwind CSS](https://img.shields.io/badge/Tailwind-4.1-38bdf8?style=flat-square&logo=tailwind-css)
-![Status](https://img.shields.io/badge/Status-Production%20Ready-success?style=flat-square)
+## 🦆 Sobre el Proyecto
 
----
+Pato Club es una tienda en línea minimalista y elegante que muestra colecciones exclusivas de streetwear de alta gama. El sitio está diseñado con un enfoque en la experiencia visual y la facilidad de uso, permitiendo a los clientes explorar productos y realizar pedidos directamente vía WhatsApp.
 
-## Table of Contents
+## 🚀 Tecnologías
 
-- [Description](#description)
-- [Tech Stack](#tech-stack)
-- [Installation](#installation)
-- [Project Structure](#project-structure)
-- [Design System](#design-system)
-- [Product Catalog](#product-catalog)
-- [Roadmap](#roadmap)
-- [License](#license)
+- **Framework:** Next.js 16 (App Router)
+- **Lenguaje:** TypeScript
+- **Estilos:** Tailwind CSS
+- **Animaciones:** Framer Motion
+- **Iconos:** Lucide React, React Icons
+- **Fuentes:** Bricolage Grotesque, Work Sans
+- **Optimización:** WebP, Next.js Image, SEO Metadata
 
----
-
-## Description
-
-**Pato Club** is a premium e-commerce platform specializing in luxury streetwear. Built with modern web technologies, the platform delivers an exceptional user experience with optimized performance, clean design, and seamless WhatsApp integration for direct sales.
-
-### Key Features
-
-- Product catalog with 11 items across 6 categories
-- Interactive product modal with size and color selection
-- Direct WhatsApp purchase integration
-- Fully responsive design (mobile, tablet, desktop)
-- Custom 404 page with brand identity
-- Performance optimized with Next.js 16 + Turbopack
-- Strict TypeScript implementation
-- Accessibility compliant (WCAG 2.1 AA)
-
----
-
-## Tech Stack
-
-### Core Technologies
-
-- **Next.js 16.1.2** - React Framework with App Router and Turbopack
-- **TypeScript 5.0+** - Static type checking and enhanced IDE support
-- **React 19** - Modern UI library with latest features
-- **Tailwind CSS 4.1** - Utility-first CSS framework with custom theme
-
-### Additional Libraries
-
-- **Framer Motion** - Production-ready motion library for React
-- **Lucide React** - Beautiful & consistent icon toolkit
-- **Google Fonts** - Bricolage Grotesque (headings) + Work Sans (body)
-
-### Development Tools
-
-- **ESLint** - Code quality and consistency
-- **PostCSS** - CSS transformations with @tailwindcss/postcss
-- **Git** - Version control
-
----
-
-## Installation
-
-### Prerequisites
-
-- Node.js 18.0.0 or higher
-- npm 9.0.0 or higher
-
-### Setup
+## 📦 Instalación
 
 ```bash
-# Clone repository
-git clone https://github.com/luis14mc/pato-club.git
+# Clonar el repositorio
+git clone [url-del-repositorio]
+
+# Navegar al directorio
 cd pato-club
 
-# Install dependencies
+# Instalar dependencias
 npm install
 
-# Run development server
+# Ejecutar en desarrollo
 npm run dev
 
-# Open browser at http://localhost:3000
+# Compilar para producción
+npm run build
 ```
 
-### Available Scripts
+## 🎨 Paleta de Colores
 
-```bash
-npm run dev        # Development server (localhost:3000)
-npm run build      # Production build
-npm run start      # Production server
-npm run lint       # Code linting
-```
+- **Crema Principal:** `#ECE0C8` (Fondo principal)
+- **Crema Suave:** `#FAF6F1` (Modales y secciones alternas)
+- **Verde Bosque:** `#014B28` (Botones de acción y acentos)
+- **Dorado:** `#D09306` (Hover y elementos premium)
+- **Rojo Vino:** `#631B26` (Edición especial Valentine's)
 
----
+## 📱 Características
 
-## Project Structure
+- ✅ **SEO Optimizado:** Meta tags configuradas para OpenGraph, Twitter y buscadores.
+- ✅ **Diseño Responsive:** Experiencia fluida en móvil, tablet y desktop.
+- ✅ **Modal de Producto:** Vista detallada con scroll personalizado, selección de talla/color y características.
+- ✅ **Integración WhatsApp:** Pedidos directos y botón flotante de contacto dinámico.
+- ✅ **Optimización de Rendimiento:** Uso de imágenes WebP, `image-rendering` optimizado y carga diferida.
+- ✅ **Navegación Fluida:** Scroll suave entre secciones y menú móvil animado.
 
-```
+## 📂 Estructura Completa del Proyecto
+
+```text
 pato-club/
-├── app/
-│   ├── globals.css           # Global styles + Tailwind theme
-│   ├── layout.tsx            # Root layout with fonts configuration
-│   ├── page.tsx              # Homepage with state management
-│   └── not-found.tsx         # Custom 404 page
-│
-├── components/
-│   ├── Footer.tsx            # Three-column footer
-│   ├── Hero.tsx              # Hero section
-│   ├── Isotipo.tsx           # Brand isotipo component
-│   ├── Logo.tsx              # Brand logo component
-│   ├── Navbar.tsx            # Responsive navigation bar
-│   ├── ProductCard.tsx       # Product card with hover effects
-│   ├── ProductModal.tsx      # Interactive product modal
-│   ├── ValentineBanner.tsx   # Special edition banner
-│   └── WhatsAppButton.tsx    # Floating support button
-│
-├── data/
-│   └── products.ts           # Product catalog (11 items)
-│
-├── types/
-│   └── product.ts            # TypeScript Product interface
-│
-├── public/
-│   ├── products/             # Product images (11 JPG files)
-│   ├── isotipo.png           # Brand isotipo
-│   ├── Pato black.png        # Black logo variant
-│   └── Pato white.png        # White logo variant
-│
-├── docs/                     # Technical documentation
-├── next.config.ts            # Next.js configuration
-├── postcss.config.mjs        # PostCSS configuration
-├── tsconfig.json             # TypeScript configuration
-└── package.json              # Dependencies and scripts
+├── app/                        # Núcleo de la aplicación (App Router)
+│   ├── layout.tsx              # Estructura global, SEO y Fuentes
+│   ├── page.tsx                # Página principal (Home)
+│   ├── globals.css             # Estilos globales y scrollbars personalizados
+│   └── not-found.tsx           # Manejo de errores 404
+├── components/                 # Componentes de la interfaz
+│   ├── Navbar.tsx              # Navegación principal y menú móvil
+│   ├── Hero.tsx                # Sección de impacto inicial con Parallax
+│   ├── CollectionSection.tsx   # Motor de renderizado de colecciones y filtros
+│   ├── ProductCard.tsx         # Tarjeta de producto individual con efectos hover
+│   ├── ProductModal.tsx        # Modal detallado con lógica de compra
+│   ├── ValentineBanner.tsx     # Banner temático de edición especial
+│   ├── BasicsBanner.tsx        # Banner de transición a básicos
+│   ├── Footer.tsx              # Pie de página minimalista
+│   ├── WhatsAppButton.tsx      # Botón flotante de contacto directo
+│   ├── ScrollToTop.tsx         # Botón de navegación rápida hacia arriba
+│   ├── Logo.tsx                # Componente de marca principal
+│   └── Isotipo.tsx             # Componente de marca secundario
+├── data/                       # Gestión de datos
+│   └── products.ts             # Catálogo maestro de productos (Single Source of Truth)
+├── public/                     # Recursos estáticos optimizados
+│   ├── products/               # Galería de productos organizada por categorías
+│   ├── PTMwhite.png            # Favicon y logos de marca
+│   ├── hero.webp               # Imagen principal optimizada
+│   └── og-preview.webp         # Vista previa para compartir en redes
+├── types/                      # Definiciones de tipos
+│   └── product.ts              # Interfaces de TypeScript para productos
+└── package.json                # Dependencias y scripts del proyecto
 ```
 
----
+## 🛍️ Colecciones y Secciones
 
-## Design System
+1.  **Love is Red (Valentine's):** Edición limitada con estética romántica.
+2.  **Básicos:** Esenciales atemporales (Hoodie Boxy, Pantalón Wide Leg, Camiseta Dos Tonos).
+3.  **Hoodies:** Colección completa de sudaderas en 6 colores premium.
+4.  **Pantalón Deportivo:** Siluetas Wide Leg diseñadas para el movimiento.
+5.  **Camisetas:** Cortes Semi-Oversize en materiales de alta calidad.
 
-### Color Palette
+## 📞 Canales Oficiales
 
-**Primary Colors**
+- **WhatsApp:** [+504 9630 9525](https://wa.me/50496309525)
+- **Instagram:** [@patoclubhn](https://www.instagram.com/patoclubhn)
+- **TikTok:** [@patoclubhn](https://www.tiktok.com/@patoclubhn)
 
-| Color | Hex | Usage |
-|-------|-----|-------|
-| Cream | `#ECE0C8` | Main background, mobile menu |
-| Black | `#000000` | Primary text, buttons |
-| White | `#FFFFFF` | Modal backgrounds, cards |
+## 📄 Licencia
 
-**Secondary Colors**
-
-| Color | Hex | Usage |
-|-------|-----|-------|
-| Forest Green | `#014B28` | Primary action buttons (COMPRAR, WhatsApp) |
-| Bronze | `#A27852` | Accents, hover states |
-| Gold | `#D09306` | Active links, special badges |
-
-### Typography
-
-- **Headings:** Bricolage Grotesque (Bold, 700)
-- **Body:** Work Sans (Regular 400 / Semibold 600)
-- **Special:** `tracking-wider` for uppercase labels
-
-### Brand Assets
-
-- **Primary Logo:** `Pato black.png` / `Pato white.png`
-- **Isotipo:** `isotipo.png` (brand icon)
-- **Location:** `/public/` directory
+© 2026 Pato Club. Todos los derechos reservados. Este software y sus activos son propiedad exclusiva de Pato Club. El uso, reproducción o distribución sin autorización previa está estrictamente prohibido.
 
 ---
 
-## Product Catalog
+**Hecho con intención en Honduras 🇭🇳**
 
-### Overview
+## 👨‍💻 Desarrollado por
 
-- **Total Products:** 11
-- **Categories:** 6 (Special Edition, Basics, Hoodies, Sweaters, Jackets, Pants, Accessories)
-- **Price Range:** L. 395 - L. 1,245
-- **Average Price:** L. 721.82
-
-### Categories
-
-| Category | Products | Example |
-|----------|----------|---------|
-| Special Edition | 2 | Love is Red (L. 945) |
-| Basics | 2 | Essential Tee White (L. 545) |
-| Hoodies | 2 | Hoodie Black Premium (L. 945) |
-| Sweaters | 1 | Crewneck Grey (L. 795) |
-| Jackets | 1 | Varsity Jacket Olive (L. 1,245) |
-| Pants | 1 | Wide Legs Pants (L. 845) |
-| Accessories | 2 | Cap Navy (L. 395) |
-
-Full catalog details available in: `CATALOG_SUMMARY.md`
-
----
-
-## Roadmap
-
-### Version 1.0 (Current - Production Ready)
-
-- [x] Complete product catalog with 11 items
-- [x] Interactive product modal
-- [x] WhatsApp integration for direct sales
-- [x] Responsive design (mobile, tablet, desktop)
-- [x] Custom 404 page
-- [x] Complete technical documentation
-- [x] Production build optimization
-
-### Version 1.1 (Q1 2026)
-
-- [ ] Advanced category filtering
-- [ ] Product search functionality
-- [ ] Wishlist/Favorites system
-- [ ] Newsletter subscription
-- [ ] Blog/Magazine section
-
-### Version 2.0 (Q2 2026)
-
-- [ ] Real inventory management system
-- [ ] Multiple product variants (colors, sizes)
-- [ ] Full shopping cart functionality
-- [ ] Integrated checkout process
-- [ ] Admin dashboard
-- [ ] Analytics integration
-
----
-
-## Performance
-
-### Build Statistics
-
-```
-Compilation Time: 3.2s
-TypeScript Errors: 0
-Build Status: SUCCESS
-```
-
-### Target Metrics
-
-| Metric | Target | Tool |
-|--------|--------|------|
-| Performance | > 90 | Lighthouse |
-| Accessibility | > 95 | Lighthouse |
-| Best Practices | > 90 | Lighthouse |
-| SEO | > 90 | Lighthouse |
-
----
-
-## Deployment
-
-### Vercel (Recommended)
-
-```bash
-# Connect repository to Vercel
-# Framework: Next.js (auto-detected)
-# Build Command: npm run build
-# Output Directory: .next
-# Deploy: Automatic on push to master
-```
-
-Deploy URL: `https://pato-club.vercel.app`
-
-### Alternative Platforms
-
-- Netlify
-- AWS Amplify
-- DigitalOcean App Platform
-- Railway
-
----
-
-## Configuration
-
-### Environment Variables (Optional)
-
-Create `.env.local` file:
-
-```env
-# WhatsApp
-NEXT_PUBLIC_WHATSAPP_NUMBER=504XXXXXXXX
-
-# Social Media
-NEXT_PUBLIC_INSTAGRAM_URL=https://instagram.com/patoclub
-NEXT_PUBLIC_TIKTOK_URL=https://tiktok.com/@patoclub
-NEXT_PUBLIC_FACEBOOK_URL=https://facebook.com/patoclub
-
-# Analytics (optional)
-NEXT_PUBLIC_GA_ID=G-XXXXXXXXXX
-```
-
----
-
-## Documentation
-
-### Technical Documents
-
-- `AUDIT_REPORT.md` - Complete QA report
-- `PRODUCTION_CHECKLIST.md` - Deployment checklist
-- `CATALOG_SUMMARY.md` - Product catalog overview
-- `BRAND_IDENTITY.md` - Visual identity guidelines
-- `IDENTITY_IMPLEMENTATION.md` - Technical implementation guide
-
----
-
-## License
-
-Copyright (c) 2026 Pato Club. All rights reserved.
-
-This project is proprietary software developed for Pato Club.
-
----
-
-## Developer
-
-**Ing. Luis Martínez**  
-Software Developer
-
-**Company:** Pato Club  
-**Project:** Premium Streetwear E-commerce Platform  
-**Year:** 2026
-
----
-
-## Contact
-
-**Pato Club**
-
-- Website: patoclub.com
-- Instagram: @patoclub
-- TikTok: @patoclub
-- Email: info@patoclub.com
+**Luis Martínez Cerrato**  
+Full Stack Developer

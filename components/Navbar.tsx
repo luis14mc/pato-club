@@ -4,8 +4,8 @@ import { useState, useEffect } from 'react';
 import { usePathname } from 'next/navigation';
 import { motion, AnimatePresence } from 'framer-motion';
 import Link from 'next/link';
-import { Search, ShoppingBag, Menu, X } from 'lucide-react';
-import Logo from './Logo';
+import Image from 'next/image';
+import { Menu, X } from 'lucide-react';
 
 export default function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -54,88 +54,101 @@ export default function Navbar() {
     >
       <nav className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-20">
-          {/* Enlaces de navegación - Desktop (Izquierda) */}
-          <div className="hidden md:flex items-center gap-8 flex-1">
-            <Link
-              href="/new-arrivals"
-              className={`text-sm tracking-wider transition-colors duration-200 font-semibold ${
-                isActive('/new-arrivals')
-                  ? 'text-gold'
-                  : 'text-black/70 hover:text-bronze'
-              }`}
-            >
-              NEW ARRIVALS
-            </Link>
-            <Link
-              href="/basics"
-              className={`text-sm tracking-wider transition-colors duration-200 font-semibold ${
-                isActive('/basics')
-                  ? 'text-gold'
-                  : 'text-black/70 hover:text-bronze'
-              }`}
-            >
-              BASICS
-            </Link>
-          </div>
-
-          {/* Logo Central */}
-          <div className="flex-1 md:flex-initial flex justify-start md:justify-center">
+          <div className="flex-1 flex justify-start md:justify-start">
             <Link
               href="/"
               className="hover:opacity-80 transition-opacity duration-200"
             >
-              <Logo variant="black" size={50} />
+              <div className="relative w-[80px] h-[32px]">
+                <Image
+                  src="/PTMblack.png"
+                  alt="Pato Club"
+                  fill
+                  className="object-contain"
+                  priority
+                />
+              </div>
             </Link>
           </div>
 
-          {/* Iconos (Derecha) - Desktop */}
-          <div className="hidden md:flex items-center gap-6 flex-1 justify-end">
-            <button
-              className="p-2 hover:bg-cream rounded-full transition-colors duration-200"
-              aria-label="Buscar"
+          <div className="hidden md:flex flex-[2] items-center justify-center gap-8 lg:gap-10">
+            <Link
+              href="#valentine-products"
+              onClick={(e) => {
+                e.preventDefault();
+                const section = document.getElementById('valentine-products');
+                section?.scrollIntoView({ behavior: 'smooth' });
+              }}
+              className="text-sm lg:text-base font-semibold tracking-wider uppercase transition-colors duration-200"
+              style={{
+                color: '#000000',
+                fontFamily: 'var(--font-bricolage), serif',
+              }}
+              onMouseEnter={(e) => e.currentTarget.style.color = '#D09306'}
+              onMouseLeave={(e) => e.currentTarget.style.color = '#000000'}
             >
-              <Search className="w-5 h-5 text-black" strokeWidth={1.5} />
-            </button>
-            <button
-              className="p-2 hover:bg-cream rounded-full transition-colors duration-200 relative"
-              aria-label="Carrito"
+              NEW ARRIVALS
+            </Link>
+            
+            <Link
+              href="#basics-section"
+              onClick={(e) => {
+                e.preventDefault();
+                const section = document.getElementById('basics-section');
+                section?.scrollIntoView({ behavior: 'smooth' });
+              }}
+              className="text-sm lg:text-base font-semibold tracking-wider uppercase transition-colors duration-200"
+              style={{
+                color: '#000000',
+                fontFamily: 'var(--font-bricolage), serif',
+              }}
+              onMouseEnter={(e) => e.currentTarget.style.color = '#D09306'}
+              onMouseLeave={(e) => e.currentTarget.style.color = '#000000'}
             >
-              <ShoppingBag className="w-5 h-5 text-black" strokeWidth={1.5} />
-              <span className="absolute top-1 right-1 w-2 h-2 bg-forest rounded-full" />
-            </button>
+              BÁSICOS
+            </Link>
+
+            <Link
+              href="#all-products"
+              onClick={(e) => {
+                e.preventDefault();
+                const section = document.getElementById('all-products');
+                section?.scrollIntoView({ behavior: 'smooth' });
+              }}
+              className="text-sm lg:text-base font-semibold tracking-wider uppercase transition-colors duration-200"
+              style={{
+                color: '#000000',
+                fontFamily: 'var(--font-bricolage), serif',
+              }}
+              onMouseEnter={(e) => e.currentTarget.style.color = '#D09306'}
+              onMouseLeave={(e) => e.currentTarget.style.color = '#000000'}
+            >
+              PRODUCTOS
+            </Link>
           </div>
 
-          {/* Iconos Mobile (Derecha) */}
-          <div className="flex md:hidden items-center gap-4">
-            <button
-              className="p-2 hover:bg-cream rounded-full transition-colors duration-200"
-              aria-label="Buscar"
-            >
-              <Search className="w-5 h-5 text-black" strokeWidth={1.5} />
-            </button>
-            <button
-              className="p-2 hover:bg-cream rounded-full transition-colors duration-200 relative"
-              aria-label="Carrito"
-            >
-              <ShoppingBag className="w-5 h-5 text-black" strokeWidth={1.5} />
-              <span className="absolute top-1 right-1 w-2 h-2 bg-forest rounded-full" />
-            </button>
-            <button
-              onClick={() => setIsMenuOpen(!isMenuOpen)}
-              className="p-2 hover:bg-cream rounded-full transition-colors duration-200"
-              aria-label="Menú"
-            >
-              {isMenuOpen ? (
-                <X className="w-6 h-6 text-black" strokeWidth={2} />
-              ) : (
-                <Menu className="w-6 h-6 text-black" strokeWidth={1.5} />
-              )}
-            </button>
+          <div className="flex-1 flex items-center justify-end">
+            <div className="md:hidden">
+              <button
+                onClick={() => setIsMenuOpen(!isMenuOpen)}
+                className="p-2 transition-colors duration-200"
+                style={{
+                  minWidth: '44px',
+                  minHeight: '44px',
+                }}
+                aria-label="Menú"
+              >
+                {isMenuOpen ? (
+                  <X className="w-6 h-6 text-black" strokeWidth={2} />
+                ) : (
+                  <Menu className="w-6 h-6 text-black" strokeWidth={2} />
+                )}
+              </button>
+            </div>
           </div>
         </div>
       </nav>
 
-      {/* Mobile Menu - FONDO SÓLIDO GARANTIZADO */}
       <AnimatePresence>
         {isMenuOpen && (
           <motion.div
@@ -155,12 +168,19 @@ export default function Navbar() {
               bottom: 0,
             }}
           >
-            {/* Header del menú con botón de cierre prominente */}
             <div 
               className="flex items-center justify-between h-20 px-6 border-b-2 border-black/20"
               style={{ backgroundColor: '#ECE0C8' }}
             >
-              <Logo variant="black" size={40} />
+              <div className="relative w-[60px] h-[24px]">
+                <Image
+                  src="/PTMblack.png"
+                  alt="Pato Club"
+                  fill
+                  className="object-contain"
+                  priority
+                />
+              </div>
               <button
                 onClick={closeMenu}
                 className="p-3 bg-black text-white hover:bg-gold hover:text-black rounded-full transition-all duration-200 shadow-lg"
@@ -170,80 +190,78 @@ export default function Navbar() {
               </button>
             </div>
 
-            {/* Contenido del menú con fondo garantizado */}
             <nav 
               className="flex flex-col items-center justify-center h-[calc(100vh-5rem)] space-y-8 px-6 bg-[#ECE0C8]"
               style={{ backgroundColor: '#ECE0C8' }}
             >
-              {/* Isotipo Superior - MÁS GRANDE */}
               <div className="mb-6">
-                <Logo variant="black" size={100} className="opacity-90" />
+                <div className="relative w-[180px] h-[70px] opacity-90">
+                  <Image
+                    src="/PatoTMblack.png"
+                    alt="Pato Club"
+                    fill
+                    className="object-contain"
+                    priority
+                  />
+                </div>
               </div>
 
-              {/* Enlaces principales - TEXTO MÁS GRANDE Y IMPONENTE */}
               <Link
-                href="/new-arrivals"
-                onClick={closeMenu}
+                href="#valentine-products"
+                onClick={(e) => {
+                  e.preventDefault();
+                  closeMenu();
+                  const section = document.getElementById('valentine-products');
+                  section?.scrollIntoView({ behavior: 'smooth' });
+                }}
                 className="font-serif text-4xl md:text-5xl font-bold tracking-tighter transition-colors duration-200"
                 style={{
-                  color: isActive('/new-arrivals') ? '#D09306' : '#000000',
+                  color: '#000000',
                   fontFamily: 'var(--font-bricolage), serif',
                 }}
                 onMouseEnter={(e) => e.currentTarget.style.color = '#D09306'}
-                onMouseLeave={(e) => e.currentTarget.style.color = isActive('/new-arrivals') ? '#D09306' : '#000000'}
+                onMouseLeave={(e) => e.currentTarget.style.color = '#000000'}
               >
                 NEW ARRIVALS
               </Link>
               
               <Link
-                href="/basics"
-                onClick={closeMenu}
+                href="#basics-section"
+                onClick={(e) => {
+                  e.preventDefault();
+                  closeMenu();
+                  const section = document.getElementById('basics-section');
+                  section?.scrollIntoView({ behavior: 'smooth' });
+                }}
                 className="font-serif text-4xl md:text-5xl font-bold tracking-tighter transition-colors duration-200"
                 style={{
-                  color: isActive('/basics') ? '#D09306' : '#000000',
+                  color: '#000000',
                   fontFamily: 'var(--font-bricolage), serif',
                 }}
                 onMouseEnter={(e) => e.currentTarget.style.color = '#D09306'}
-                onMouseLeave={(e) => e.currentTarget.style.color = isActive('/basics') ? '#D09306' : '#000000'}
+                onMouseLeave={(e) => e.currentTarget.style.color = '#000000'}
               >
-                BASICS
+                BÁSICOS
               </Link>
 
-              {/* Línea divisoria con bronce */}
-              <div className="w-40 h-[3px] bg-bronze/50 my-4" />
-
-              {/* Enlaces secundarios */}
               <Link
-                href="#products"
-                onClick={closeMenu}
-                className="text-xl tracking-wide text-black/80 hover:text-gold transition-colors duration-200 font-semibold"
+                href="#all-products"
+                onClick={(e) => {
+                  e.preventDefault();
+                  closeMenu();
+                  const section = document.getElementById('all-products');
+                  section?.scrollIntoView({ behavior: 'smooth' });
+                }}
+                className="font-serif text-4xl md:text-5xl font-bold tracking-tighter transition-colors duration-200"
+                style={{
+                  color: '#000000',
+                  fontFamily: 'var(--font-bricolage), serif',
+                }}
+                onMouseEnter={(e) => e.currentTarget.style.color = '#D09306'}
+                onMouseLeave={(e) => e.currentTarget.style.color = '#000000'}
               >
-                Productos
+                PRODUCTOS
               </Link>
-              <Link
-                href="#about"
-                onClick={closeMenu}
-                className="text-xl tracking-wide text-black/80 hover:text-gold transition-colors duration-200 font-semibold"
-              >
-                Nosotros
-              </Link>
-              <Link
-                href="#contact"
-                onClick={closeMenu}
-                className="text-xl tracking-wide text-black/80 hover:text-gold transition-colors duration-200 font-semibold"
-              >
-                Contacto
-              </Link>
-
-              {/* Footer del menú */}
-              <div className="mt-8 text-center space-y-3 pb-8">
-                <p className="text-xs tracking-widest text-black/60 uppercase font-bold">
-                  Síguenos
-                </p>
-                <p className="text-base text-black font-bold">
-                  @patoclub
-                </p>
-              </div>
             </nav>
           </motion.div>
         )}

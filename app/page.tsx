@@ -1,155 +1,117 @@
 'use client';
 
-import { SiInstagram, SiWhatsapp } from 'react-icons/si';
-import Image from 'next/image';
-import { motion } from 'framer-motion';
+import { useState } from 'react';
+import Navbar from '@/components/Navbar';
+import Hero from '@/components/Hero';
+import ValentineBanner from '@/components/ValentineBanner';
+import CollectionSection from '@/components/CollectionSection';
+import BasicsBanner from '@/components/BasicsBanner';
+import Footer from '@/components/Footer';
+import ProductModal from '@/components/ProductModal';
+import WhatsAppButton from '@/components/WhatsAppButton';
+import ScrollToTop from '@/components/ScrollToTop';
+import { products } from '@/data/products';
+import { Product } from '@/types/product';
 
-export default function ComingSoon() {
+export default function Home() {
+  const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const handleProductClick = (product: Product) => {
+    setSelectedProduct(product);
+    setIsModalOpen(true);
+  };
+
+  const handleCloseModal = () => {
+    setIsModalOpen(false);
+    setTimeout(() => setSelectedProduct(null), 300);
+  };
+
+  const valentineProducts = products.filter(p => p.category === 'Edición Especial');
+  const basicsProducts = products.filter(p => p.category === 'Basics');
+  const hoodiesProducts = products.filter(p => p.category === 'Hoodies');
+  const pantsProducts = products.filter(p => p.category === 'Pantalón Deportivo');
+  const tshirtProducts = products.filter(p => p.category === 'Camiseta');
+  const allProducts = products; 
+
   return (
-    <div
-      className="h-screen w-screen flex flex-col items-center justify-between px-4 sm:px-6 py-8 sm:py-12 relative overflow-hidden"
-      style={{ backgroundColor: '#ECE0C8' }}
-    >
-      {/* Logo decorativo de fondo (sutil) */}
-      <div className="absolute inset-0 flex items-center justify-center opacity-[0.08] pointer-events-none">
-        <Image
-          src="/isotipo.png"
-          alt="Pato Club Background"
-          width={600}
-          height={600}
-          className="object-contain"
-          priority
+    <div className="min-h-screen" style={{ backgroundColor: '#ECE0C8' }}>
+      <Navbar />
+      <div className="h-20" />
+      <Hero />
+
+      <ValentineBanner />
+      {valentineProducts.length > 0 && (
+        <CollectionSection
+          id="valentine-products"
+          title="Love is Red"
+          description="Edición especial para celebrar con estilo."
+          products={valentineProducts}
+          isValentine={true}
+          onProductClick={handleProductClick}
         />
-      </div>
+      )}
 
-      {/* Contenido Principal Centrado */}
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8, ease: 'easeOut' }}
-        className="relative z-10 flex-1 flex flex-col items-center justify-center text-center space-y-6 sm:space-y-8 md:space-y-10 max-w-5xl mx-auto w-full"
-      >
-        {/* Logo Principal */}
-        <div className="flex justify-center">
-          <div className="relative w-[200px] h-[80px] sm:w-[240px] sm:h-[100px] md:w-[280px] md:h-[120px]">
-            <Image
-              src="/PatoTMblack.png"
-              alt="Pato Club"
-              fill
-              className="object-contain"
-              priority
-              unoptimized
-            />
-          </div>
-        </div>
+      <BasicsBanner />
 
-        {/* Título Principal */}
-        <h6
-          className="text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-bold leading-tight"
-          style={{
-            color: '#000000',
-            fontFamily: 'var(--font-bricolage), serif',
-            letterSpacing: '0.05em',
-          }}
-        >
-          self-explanatory
-          <br />
-          
-        </h6>
+      {basicsProducts.length > 0 && (
+        <CollectionSection
+          id="basics-section"
+          title="Básicos"
+          description="Esenciales atemporales."
+          products={basicsProducts}
+          onProductClick={handleProductClick}
+        />
+      )}
 
-        {/* Línea decorativa */}
-        <div className="flex justify-center">
-          <div
-            className="w-20 sm:w-24 h-[2px]"
-            style={{ backgroundColor: '#000000' }}
-          />
-        </div>
+      {hoodiesProducts.length > 0 && (
+        <CollectionSection
+          id="hoodies-section"
+          title="Hoodies"
+          description="Comodidad y estilo."
+          products={hoodiesProducts}
+          onProductClick={handleProductClick}
+          backgroundColor="cream-soft"
+        />
+      )}
 
-        {/* Subtítulo */}
-        <p
-          className="text-base sm:text-lg md:text-xl lg:text-2xl leading-relaxed px-4"
-          style={{
-            color: '#000000',
-            fontFamily: 'var(--font-work-sans), sans-serif',
-            opacity: 0.8,
-          }}
-        >
-          Valentine's Edition & Core Collection.
-          <br />
-          <span className="italic">01.02.26</span>
-        </p>
+      {pantsProducts.length > 0 && (
+        <CollectionSection
+          id="pants-section"
+          title="Pantalón Deportivo"
+          description="Confort y movimiento."
+          products={pantsProducts}
+          onProductClick={handleProductClick}
+          backgroundColor="cream"
+        />
+      )}
 
-        {/* Iconos de Redes Sociales */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.8, delay: 0.4 }}
-          className="flex items-center justify-center gap-6 sm:gap-8"
-        >
-          <a
-            href="https://www.instagram.com/patoclubhn"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="transition-opacity duration-300 hover:opacity-60"
-            aria-label="Instagram"
-          >
-            <SiInstagram
-              className="w-6 h-6 sm:w-7 sm:h-7 md:w-8 md:h-8"
-              style={{ color: '#000000' }}
-            />
-          </a>
+      {tshirtProducts.length > 0 && (
+        <CollectionSection
+          id="tshirts-section"
+          title="Camiseta"
+          description="Básicos esenciales."
+          products={tshirtProducts}
+          onProductClick={handleProductClick}
+          backgroundColor="cream-soft"
+        />
+      )}
 
-          <a
-            href="https://wa.me/50496309525?text=Hola%20Pato%20Club%2C%20quiero%20m%C3%A1s%20informaci%C3%B3n%20sobre%20la%20colecci%C3%B3n."
-            target="_blank"
-            rel="noopener noreferrer"
-            className="transition-opacity duration-300 hover:opacity-60"
-            aria-label="WhatsApp"
-          >
-            <SiWhatsapp
-              className="w-6 h-6 sm:w-7 sm:h-7 md:w-8 md:h-8"
-              style={{ color: '#000000' }}
-            />
-          </a>
-        </motion.div>
+      {allProducts.length > 0 && (
+        <CollectionSection
+          id="all-products"
+          title="Colección Completa"
+          description="Todo nuestro catálogo."
+          products={allProducts}
+          showFilters={true}
+          onProductClick={handleProductClick}
+        />
+      )}
 
-        {/* Tag de Coming Soon */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.8, delay: 0.6 }}
-        >
-          <span
-            className="inline-block px-5 py-2 text-[10px] sm:text-xs tracking-[0.3em] uppercase font-bold border"
-            style={{
-              color: '#000000',
-              borderColor: '#000000',
-              fontFamily: 'var(--font-bricolage), serif',
-            }}
-          >
-            Coming Soon
-          </span>
-        </motion.div>
-      </motion.div>
-
-      {/* Footer Legal Minimalista */}
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 0.8, delay: 0.8 }}
-        className="relative z-10 text-center w-full pb-2"
-      >
-        <p
-          className="text-[10px] sm:text-xs"
-          style={{
-            color: '#000000',
-            fontFamily: 'var(--font-work-sans), sans-serif',
-            opacity: 0.4,
-          }}
-        >
-          © 2026 Pato Club. Honduras.
-        </p>
-      </motion.div>
+      <Footer />
+      <ProductModal product={selectedProduct} isOpen={isModalOpen} onClose={handleCloseModal} />
+      <WhatsAppButton />
+      <ScrollToTop />
     </div>
   );
 }

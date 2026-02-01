@@ -12,58 +12,45 @@ interface ProductModalProps {
   onClose: () => void;
 }
 
-const TALLAS = ['XS-S', 'M-L', 'XL', 'XXL'];
-const COLORES = [
-  { name: 'Negro', hex: '#000000' },
-  { name: 'Rojo', hex: '#DC2626' },
-  { name: 'Blanco', hex: '#FFFFFF' },
-];
+const TALLAS_DEFAULT = ['XS-S', 'M-L', 'XL', 'XXL'];
 
 export default function ProductModal({ product, isOpen, onClose }: ProductModalProps) {
   const [tallaSeleccionada, setTallaSeleccionada] = useState<string>('');
-  const [colorSeleccionado, setColorSeleccionado] = useState<string>('');
+  const [colorSeleccionado, setColorSeleccionado] = useState<any>(null);
 
-  // Cerrar con tecla ESC
+  const TALLAS_DISPONIBLES = product?.sizes || TALLAS_DEFAULT;
+
   useEffect(() => {
     const handleEscape = (e: KeyboardEvent) => {
-      if (e.key === 'Escape' && isOpen) {
-        onClose();
-      }
+      if (e.key === 'Escape' && isOpen) onClose();
     };
-
     if (isOpen) {
       document.addEventListener('keydown', handleEscape);
       document.body.style.overflow = 'hidden';
-      document.documentElement.style.overflow = 'hidden';
     }
-
     return () => {
       document.removeEventListener('keydown', handleEscape);
       document.body.style.overflow = 'unset';
-      document.documentElement.style.overflow = 'unset';
     };
   }, [isOpen, onClose]);
 
-  // Resetear selecciones al abrir nuevo producto
   useEffect(() => {
     if (product) {
       setTallaSeleccionada('');
-      setColorSeleccionado('');
+      setColorSeleccionado(null);
     }
   }, [product]);
 
   if (!product) return null;
 
-  // Construir mensaje de WhatsApp
-  const handleComprar = () => {
-    if (!tallaSeleccionada || !colorSeleccionado) {
-      alert('Por favor selecciona una talla y un color');
-      return;
-    }
+  const currentImage = colorSeleccionado?.image || product.image;
+  const isButtonDisabled = !tallaSeleccionada || !colorSeleccionado;
 
-    const mensaje = `Hola Pato Club, me interesa el producto *${product.name}* (Código: ${product.id}) en talla *${tallaSeleccionada}* y color *${colorSeleccionado}*. ¿Tienen disponibilidad?`;
-    
-    const whatsappUrl = `https://wa.me/50433333333?text=${encodeURIComponent(mensaje)}`;
+  const handleComprar = () => {
+    if (isButtonDisabled) return;
+    const colorText = colorSeleccionado ? ` en color *${colorSeleccionado.name}*` : '';
+    const mensaje = `Hola Pato Club, me interesa la *${product.name}*${colorText} en talla *${tallaSeleccionada}*. ¿Tienen disponibilidad?`;
+    const whatsappUrl = `https://wa.me/50496309525?text=${encodeURIComponent(mensaje)}`;
     window.open(whatsappUrl, '_blank');
   };
 
@@ -71,164 +58,156 @@ export default function ProductModal({ product, isOpen, onClose }: ProductModalP
     <AnimatePresence>
       {isOpen && (
         <>
-          {/* Backdrop con blur */}
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            transition={{ duration: 0.3 }}
-            className="fixed inset-0 z-[70] bg-black/40 backdrop-blur-xl"
+            className="fixed inset-0 z-[140] bg-black/70 backdrop-blur-md"
             onClick={onClose}
           />
 
-          {/* Modal Container - RESPONSIVE OPTIMIZADO */}
-          <div className="fixed inset-0 z-[80] flex items-center justify-center p-2 sm:p-4 pointer-events-none overflow-y-auto">
+          <div className="fixed inset-0 z-[150] flex items-center justify-center p-0 sm:p-4 md:p-6 pointer-events-none">
             <motion.div
-              initial={{ opacity: 0, scale: 0.95, y: 20 }}
-              animate={{ opacity: 1, scale: 1, y: 0 }}
-              exit={{ opacity: 0, scale: 0.95, y: 20 }}
-              transition={{ duration: 0.3, ease: 'easeOut' }}
-              className="relative w-full max-w-6xl my-4 bg-white shadow-2xl pointer-events-auto max-h-[95vh] overflow-hidden"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: 20 }}
+              className="relative w-full h-full sm:h-auto sm:max-h-[90vh] sm:max-w-5xl bg-[#FAF6F1] pointer-events-auto overflow-hidden sm:rounded-2xl shadow-2xl flex flex-col z-[150]"
               onClick={(e) => e.stopPropagation()}
             >
-              {/* Botón de Cierre - MEJORADO PARA MOBILE */}
-              <button
-                onClick={onClose}
-                className="absolute top-3 right-3 sm:top-4 sm:right-4 z-[100] w-10 h-10 sm:w-12 sm:h-12 flex items-center justify-center bg-black text-white hover:bg-gold hover:text-black rounded-full transition-all duration-200 shadow-2xl"
-                aria-label="Cerrar modal"
-              >
-                <X className="w-5 h-5 sm:w-6 sm:h-6" strokeWidth={2.5} />
-              </button>
-
-              {/* Layout RESPONSIVE - Columna única en mobile, dos en desktop */}
-              <div className="flex flex-col md:grid md:grid-cols-2 max-h-[95vh] overflow-y-auto">
-                {/* Columna Imagen - AJUSTADA PARA MOBILE */}
-                <div className="relative bg-zinc-50 h-[40vh] sm:h-[50vh] md:h-auto md:min-h-[600px]">
-                  <Image
-                    src={product.image}
-                    alt={product.name}
-                    fill
-                    sizes="(max-width: 768px) 100vw, 50vw"
-                    className="object-cover"
-                    priority
-                  />
-                </div>
-
-                {/* Columna Información - PADDING OPTIMIZADO */}
-                <div className="p-4 sm:p-6 md:p-8 lg:p-12 flex flex-col">
-                  {/* Header del Producto */}
-                  <div className="mb-6">
-                    <p className="text-[10px] sm:text-xs tracking-widest uppercase text-zinc-500 mb-2">
-                      {product.category}
-                    </p>
-                    <h2 className="font-serif text-2xl sm:text-3xl md:text-4xl font-bold text-black mb-3 pr-8">
-                      {product.name}
-                    </h2>
-                    <p className="text-xl sm:text-2xl font-semibold text-black">
-                      L. {new Intl.NumberFormat('es-HN', {
-                        minimumFractionDigits: 2,
-                        maximumFractionDigits: 2,
-                      }).format(product.price)}
-                    </p>
-                  </div>
-
-                  {/* Descripción - TEXTO AJUSTADO */}
-                  <p className="text-sm sm:text-base text-zinc-700 leading-relaxed mb-6">
-                    {product.description}
-                  </p>
-
-                  {/* Selector de Tallas - WRAP EN MOBILE */}
-                  <div className="mb-6">
-                    <label className="block text-xs sm:text-sm tracking-wider uppercase text-black font-bold mb-3">
-                      Selecciona tu talla
-                    </label>
-                    <div className="flex flex-wrap gap-2 sm:gap-3">
-                      {TALLAS.map((talla) => (
-                        <button
-                          key={talla}
-                          onClick={() => setTallaSeleccionada(talla)}
-                          className={`px-4 sm:px-6 py-2 sm:py-3 text-xs sm:text-sm font-bold tracking-wide transition-all duration-200 ${
-                            tallaSeleccionada === talla
-                              ? 'border-2 border-black bg-black text-white'
-                              : 'border-2 border-zinc-300 text-black hover:border-bronze hover:text-bronze'
-                          }`}
-                        >
-                          {talla}
-                        </button>
-                      ))}
-                    </div>
-                  </div>
-
-                  {/* Selector de Colores */}
-                  <div className="mb-6">
-                    <label className="block text-xs sm:text-sm tracking-wider uppercase text-black font-bold mb-3">
-                      Color
-                    </label>
-                    <div className="flex gap-3">
-                      {COLORES.map((color) => (
-                        <button
-                          key={color.name}
-                          onClick={() => setColorSeleccionado(color.name)}
-                          className={`w-10 h-10 sm:w-12 sm:h-12 rounded-full transition-all duration-200 ${
-                            colorSeleccionado === color.name
-                              ? 'ring-4 ring-offset-2 ring-black scale-110'
-                              : 'ring-2 ring-zinc-300 hover:scale-105 hover:ring-bronze'
-                          }`}
-                          style={{ backgroundColor: color.hex }}
-                          aria-label={color.name}
-                          title={color.name}
-                        >
-                          {color.hex === '#FFFFFF' && (
-                            <span className="w-full h-full block rounded-full border-2 border-zinc-300" />
-                          )}
-                        </button>
-                      ))}
-                    </div>
-                    {colorSeleccionado && (
-                      <p className="text-xs sm:text-sm text-zinc-600 mt-2 font-medium">
-                        Color: <span className="text-black font-bold">{colorSeleccionado}</span>
-                      </p>
-                    )}
-                  </div>
-
-                  {/* Características - COMPACTO EN MOBILE */}
-                  {product.features && product.features.length > 0 && (
-                    <div className="mb-6">
-                      <h3 className="text-xs sm:text-sm tracking-wider uppercase text-black font-bold mb-3">
-                        Características
-                      </h3>
-                      <ul className="space-y-2">
-                        {product.features.map((feature, index) => (
-                          <li key={index} className="flex items-start gap-2">
-                            <Check className="w-4 h-4 sm:w-5 sm:h-5 text-forest flex-shrink-0 mt-0.5" strokeWidth={2.5} />
-                            <span className="text-xs sm:text-sm text-zinc-700 leading-tight">{feature}</span>
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
-                  )}
-
-                  {/* Botón de Comprar - STICKY EN MOBILE */}
-                  <div className="mt-auto pt-4 sm:pt-6 space-y-2 sm:space-y-3 sticky bottom-0 bg-white pb-4">
-                    <button
-                      onClick={handleComprar}
-                      disabled={!tallaSeleccionada || !colorSeleccionado}
-                      className={`w-full h-12 sm:h-14 tracking-widest text-xs sm:text-sm font-bold transition-all duration-300 shadow-lg ${
-                        tallaSeleccionada && colorSeleccionado
-                          ? 'bg-forest text-white hover:bg-gold hover:text-black'
-                          : 'bg-zinc-200 text-zinc-400 cursor-not-allowed'
-                      }`}
+              <div className="flex items-center justify-between px-6 py-4 bg-[#FAF6F1] border-b border-black/5 z-30">
+                <div className="flex flex-col">
+                  <span className="text-[10px] tracking-[0.3em] uppercase font-bold text-black/40" style={{ fontFamily: 'var(--font-bricolage), serif' }}>
+                    Detalles del Producto
+                  </span>
+                  <div className="hidden md:flex items-center gap-1 mt-1">
+                    <motion.div 
+                      animate={{ y: [0, 4, 0] }}
+                      transition={{ duration: 2, repeat: Infinity }}
                     >
-                      COMPRAR VÍA WHATSAPP
-                    </button>
-                    
-                    {(!tallaSeleccionada || !colorSeleccionado) && (
-                      <p className="text-[10px] sm:text-xs text-zinc-500 text-center font-medium">
-                        ⚠️ Selecciona talla y color
+                      <svg className="w-3 h-3 text-[#A27852]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
+                      </svg>
+                    </motion.div>
+                    <span className="text-[8px] uppercase tracking-widest text-[#A27852] font-semibold">Desliza para ver más</span>
+                  </div>
+                </div>
+                <button onClick={onClose} className="p-2 hover:bg-black/5 rounded-full transition-colors">
+                  <X className="w-6 h-6 text-black" />
+                </button>
+              </div>
+
+              <div className="flex-grow overflow-y-auto scroll-smooth custom-scrollbar">
+                <div className="flex flex-col md:flex-row h-full">
+                  
+                <div className="w-full md:w-1/2 bg-white flex items-center justify-center p-0 border-r border-black/5">
+                  <div className="relative w-full h-[50vh] md:h-full">
+                    <Image
+                      src={currentImage}
+                      alt={product.name}
+                      fill
+                      className="object-contain md:object-cover transition-transform duration-700"
+                      priority
+                      unoptimized
+                    />
+                  </div>
+                </div>
+
+                  <div className="w-full md:w-1/2 p-6 md:p-10 lg:p-12 space-y-8">
+                    <div className="space-y-3">
+                      <p className="text-[10px] tracking-[0.2em] uppercase text-[#A27852] font-semibold" style={{ fontFamily: 'var(--font-work-sans), sans-serif' }}>
+                        {product.category}
                       </p>
+                      <h2 className="text-2xl md:text-4xl font-bold text-black leading-tight" style={{ fontFamily: 'var(--font-bricolage), serif' }}>
+                        {product.name}
+                      </h2>
+                      <p className="text-xl md:text-2xl font-bold text-black" style={{ fontFamily: 'var(--font-bricolage), serif' }}>
+                        L. {new Intl.NumberFormat('es-HN', { minimumFractionDigits: 2 }).format(product.price)}
+                      </p>
+                    </div>
+
+                    <p className="text-xs md:text-sm text-black/60 leading-relaxed" style={{ fontFamily: 'var(--font-work-sans), sans-serif' }}>
+                      {product.description}
+                    </p>
+
+                    {/* Selectores */}
+                    <div className="space-y-6">
+                      {/* Colores */}
+                      {product.colors && (
+                        <div className="space-y-3">
+                          <span className="text-[10px] font-bold tracking-widest uppercase text-black/40" style={{ fontFamily: 'var(--font-bricolage), serif' }}>
+                            Color: <span className="text-black">{colorSeleccionado?.name || 'Selecciona'}</span>
+                          </span>
+                          <div className="flex flex-wrap gap-3">
+                            {product.colors.map((color) => (
+                              <button
+                                key={color.name}
+                                onClick={() => setColorSeleccionado(color)}
+                                className={`w-10 h-10 rounded-full border transition-all ${
+                                  colorSeleccionado?.name === color.name ? 'border-black scale-110 ring-2 ring-[#FAF6F1] ring-offset-2 ring-offset-black' : 'border-black/10'
+                                }`}
+                                style={{ 
+                                  backgroundColor: color.hex,
+                                }}
+                              />
+                            ))}
+                          </div>
+                        </div>
+                      )}
+
+                      {/* Tallas */}
+                      <div className="space-y-3">
+                        <span className="text-[10px] font-bold tracking-widest uppercase text-black/40" style={{ fontFamily: 'var(--font-bricolage), serif' }}>
+                          Talla: <span className="text-black">{tallaSeleccionada || 'Selecciona'}</span>
+                        </span>
+                        <div className="flex flex-wrap gap-2">
+                          {TALLAS_DISPONIBLES.map((talla) => (
+                            <button
+                              key={talla}
+                              onClick={() => setTallaSeleccionada(talla)}
+                              className={`px-6 py-3 text-[10px] font-bold border transition-all ${
+                                tallaSeleccionada === talla ? 'bg-black text-white border-black' : 'bg-transparent text-black border-black/10 hover:border-black'
+                              }`}
+                              style={{ fontFamily: 'var(--font-work-sans), sans-serif' }}
+                            >
+                              {talla}
+                            </button>
+                          ))}
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* Características */}
+                    {product.features && (
+                      <div className="space-y-4 pt-4">
+                        <span className="text-[10px] font-bold tracking-widest uppercase text-black/40" style={{ fontFamily: 'var(--font-bricolage), serif' }}>
+                          Características
+                        </span>
+                        <ul className="grid grid-cols-1 gap-3">
+                          {product.features.map((f, i) => (
+                            <li key={i} className="flex items-center gap-3 text-[11px] text-black/70" style={{ fontFamily: 'var(--font-work-sans), sans-serif' }}>
+                              <Check className="w-4 h-4 text-[#014B28]" />
+                              {f}
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
                     )}
                   </div>
                 </div>
+              </div>
+
+              {/* Footer Fijo con Botón */}
+              <div className="p-6 bg-[#FAF6F1] border-t border-black/5 z-40">
+                <button
+                  onClick={handleComprar}
+                  disabled={isButtonDisabled}
+                  className={`w-full h-16 text-xs font-bold tracking-[0.3em] transition-all duration-300 shadow-lg ${
+                    isButtonDisabled ? 'bg-black/10 text-black/20 cursor-not-allowed' : 'bg-[#014B28] text-white hover:bg-[#01351c]'
+                  }`}
+                  style={{ fontFamily: 'var(--font-bricolage), serif' }}
+                >
+                  {isButtonDisabled ? 'SELECCIONA COLOR Y TALLA' : 'PEDIR POR WHATSAPP'}
+                </button>
               </div>
             </motion.div>
           </div>

@@ -30,59 +30,51 @@ export default function ProductCard({ product, onClick }: ProductCardProps) {
       tabIndex={0}
       aria-label={`Ver detalles de ${product.name}`}
     >
-      {/* Card minimalista - SOLO imagen sobre crema */}
-      <div className="group relative overflow-hidden transition-all duration-500 hover:-translate-y-1">
-        {/* Imagen protagonista */}
+      <div className="group relative overflow-hidden transition-all duration-700 hover:-translate-y-2">
         <div 
-          className="relative aspect-[3/4] overflow-hidden mb-6"
-          style={{ backgroundColor: '#ECE0C8' }}
+          className="relative aspect-[3/4] overflow-hidden mb-6 bg-white"
         >
           <Image
             src={product.image}
-            alt={product.name}
+            alt={`Camiseta Pato Club - ${product.name}`}
             fill
             sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
-            className={`object-cover transition-all duration-700 group-hover:scale-105 ${
+            className={`object-cover transition-all duration-1000 group-hover:scale-110 ${
               imageLoaded ? 'opacity-100' : 'opacity-0'
             }`}
+            style={{ 
+              imageRendering: '-webkit-optimize-contrast',
+            }}
             onLoad={() => setImageLoaded(true)}
             priority={false}
+            loading="lazy"
+            quality={95}
+            decoding="async"
+            unoptimized={true}
           />
           
-          {/* Badge minimalista - Solo borde */}
-          {isValentineEdition && (
-            <div className="absolute top-3 left-3 z-10">
-              <span 
-                className="inline-block px-3 py-1 text-[10px] tracking-[0.2em] uppercase font-bold"
-                style={{
-                  border: '1px solid #000000',
-                  backgroundColor: 'rgba(236, 224, 200, 0.95)',  // Crema semi-transparente
-                  color: '#000000',
-                  fontFamily: 'var(--font-bricolage), serif',
-                  fontWeight: '700',
-                }}
-              >
-                VALENTINE'S
-              </span>
-            </div>
-          )}
+          <div className="absolute inset-0 bg-black opacity-0 group-hover:opacity-5 transition-opacity duration-700" />
           
-          {/* Botón minimalista - outline */}
-          <div className="absolute inset-x-0 bottom-0 translate-y-full group-hover:translate-y-0 transition-transform duration-500">
+          <div className="absolute inset-x-0 bottom-0 translate-y-full group-hover:translate-y-0 transition-all duration-500 ease-out">
             <button 
-              className="w-full py-4 font-body font-bold tracking-widest text-xs uppercase transition-colors duration-200"
+              className="w-full py-5 font-body font-bold tracking-[0.15em] text-xs uppercase transition-all duration-300"
               style={{ 
-                minHeight: '44px',
-                border: '1px solid #000000',
-                backgroundColor: 'rgba(236, 224, 200, 0.98)',
+                minHeight: '56px',
+                backgroundColor: '#D09306',
                 color: '#000000',
+                fontFamily: 'var(--font-bricolage), serif',
               }}
               onMouseEnter={(e) => {
-                e.currentTarget.style.backgroundColor = '#000000';
-                e.currentTarget.style.color = '#FFFFFF';
+                if (isValentineEdition) {
+                  e.currentTarget.style.backgroundColor = '#631B26';
+                  e.currentTarget.style.color = '#FFFFFF';
+                } else {
+                  e.currentTarget.style.backgroundColor = '#000000';
+                  e.currentTarget.style.color = '#FFFFFF';
+                }
               }}
               onMouseLeave={(e) => {
-                e.currentTarget.style.backgroundColor = 'rgba(236, 224, 200, 0.98)';
+                e.currentTarget.style.backgroundColor = '#D09306';
                 e.currentTarget.style.color = '#000000';
               }}
             >
@@ -91,39 +83,35 @@ export default function ProductCard({ product, onClick }: ProductCardProps) {
           </div>
         </div>
 
-        {/* Información limpia - minimalismo máximo */}
-        <div className="space-y-3">
-          {/* Categoría sutil */}
+        <div className="space-y-4 px-2">
           <p 
-            className="text-[11px] tracking-[0.2em] uppercase font-medium"
+            className="text-[10px] tracking-[0.25em] uppercase font-semibold"
             style={{ 
-              color: '#000000',
-              opacity: 0.5,
+              color: '#A27852',
+              fontFamily: 'var(--font-work-sans), sans-serif',
             }}
           >
             {product.category}
           </p>
 
-          {/* Nombre del producto - protagonista */}
           <h3 
-            className="text-base md:text-lg leading-tight font-normal"
+            className="text-lg md:text-xl leading-tight font-medium"
             style={{
               color: '#000000',
               fontFamily: 'var(--font-work-sans), sans-serif',
-              lineHeight: '1.4',
+              lineHeight: '1.3',
             }}
           >
             {product.name}
           </h3>
           
-          {/* Precio destacado con mucho espacio */}
           <p 
-            className="text-xl md:text-2xl font-bold pt-2"
+            className="text-2xl md:text-3xl font-bold pt-1"
             style={{ 
               fontFamily: 'var(--font-bricolage), serif',
               color: '#000000',
               fontWeight: '700',
-              letterSpacing: '-0.02em',
+              letterSpacing: '-0.01em',
             }}
           >
             L. {formatPrice(product.price)}
