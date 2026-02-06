@@ -14,6 +14,7 @@ export default function Isotipo({ className = '', size = 24 }: IsotipoProps) {
       height={size}
       className={`object-contain ${className}`}
       priority
+      unoptimized
     />
   );
 }

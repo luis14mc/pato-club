@@ -162,6 +162,7 @@ export const products: Product[] = [
     image: '/products/hoodies/Hoodie-negro.webp',
     category: 'Hoodies',
     description: 'Diseño boxy con estructura, mangas anchas, canalé grueso en la cintura y puños, capucha estructurada, bolsas invisibles, comodidad y estilo urbano elevado.',
+    priority: true,
     features: [
       '70% Algodón – 30% Poliéster',
       'Afelpado suave para mayor confort térmico',
@@ -213,6 +214,7 @@ export const products: Product[] = [
     image: '/products/hoodies/Hoodie-rojo.webp',
     category: 'Hoodies',
     description: 'Diseño boxy con estructura, mangas anchas, canalé grueso en la cintura y puños, capucha estructurada, bolsas invisibles, comodidad y estilo urbano elevado.',
+    priority: true,
     features: [
       '70% Algodón – 30% Poliéster',
       'Afelpado suave para mayor confort térmico',

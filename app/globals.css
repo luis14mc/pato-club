@@ -68,3 +68,37 @@ html {
 .custom-scrollbar::-webkit-scrollbar-thumb:hover {
   background: #D09306;
 }
+
+/* Hero Component Utilities */
+.hero-title {
+  font-family: var(--font-bricolage), serif;
+  letter-spacing: -0.02em;
+}
+
+.hero-subtitle {
+  font-family: var(--font-bricolage), serif;
+}
+
+.hero-button {
+  font-family: var(--font-bricolage), serif;
+  background-color: #B07D05;
+  color: #000000;
+}
+
+.hero-button:hover {
+  background-color: #A27852;
+  color: #FFFFFF;
+}
+
+.hero-image-overlay {
+  opacity: 0.5;
+  image-rendering: -webkit-optimize-contrast;
+}
+
+.hero-scroll-indicator-border {
+  border-color: rgba(176, 125, 5, 0.5);
+}
+
+.hero-scroll-indicator-dot {
+  background-color: #B07D05;
+}

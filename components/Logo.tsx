@@ -17,6 +17,7 @@ export default function Logo({ className = '', variant = 'black', size = 120 }: 
       height={size}
       className={`object-contain ${className}`}
       priority
+      unoptimized
     />
   );
 }

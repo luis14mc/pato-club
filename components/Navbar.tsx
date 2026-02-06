@@ -10,16 +10,24 @@ import { Menu, X } from 'lucide-react';
 export default function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
+  const [isMounted, setIsMounted] = useState(false);
   const pathname = usePathname();
 
+  // Client-only mount detection to prevent hydration mismatch
   useEffect(() => {
+    setIsMounted(true); // eslint-disable-line
+  }, []);
+
+  useEffect(() => {
+    if (!isMounted) return;
+    
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 10);
     };
 
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
+  }, [isMounted]);
 
   const closeMenu = () => setIsMenuOpen(false);
 
@@ -44,14 +52,15 @@ export default function Navbar() {
     return pathname === href;
   };
 
+  // Clases base que son idénticas en servidor y cliente
+  const headerClasses = `fixed top-0 left-0 right-0 z-[100] transition-all duration-300 ${
+    isMounted && isScrolled
+      ? 'bg-white/95 backdrop-blur-md border-b-2 border-bronze'
+      : 'bg-white/90 backdrop-blur-md'
+  }`;
+
   return (
-    <header
-      className={`fixed top-0 left-0 right-0 z-[100] transition-all duration-300 ${
-        isScrolled
-          ? 'bg-white/95 backdrop-blur-md border-b-2 border-bronze'
-          : 'bg-white/90 backdrop-blur-md'
-      }`}
-    >
+    <header className={headerClasses} suppressHydrationWarning>
       <nav className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-20">
           <div className="flex-1 flex justify-start md:justify-start">
@@ -66,6 +75,7 @@ export default function Navbar() {
                   fill
                   className="object-contain"
                   priority
+                  unoptimized
                 />
               </div>
             </Link>
@@ -149,8 +159,9 @@ export default function Navbar() {
         </div>
       </nav>
 
-      <AnimatePresence>
-        {isMenuOpen && (
+      {isMounted && (
+        <AnimatePresence>
+          {isMenuOpen && (
           <motion.div
             initial={{ opacity: 0, x: '100%' }}
             animate={{ opacity: 1, x: 0 }}
@@ -179,6 +190,7 @@ export default function Navbar() {
                   fill
                   className="object-contain"
                   priority
+                  unoptimized
                 />
               </div>
               <button
@@ -202,6 +214,7 @@ export default function Navbar() {
                     fill
                     className="object-contain"
                     priority
+                    unoptimized
                   />
                 </div>
               </div>
@@ -264,8 +277,9 @@ export default function Navbar() {
               </Link>
             </nav>
           </motion.div>
-        )}
-      </AnimatePresence>
+          )}
+        </AnimatePresence>
+      )}
     </header>
   );
 }
