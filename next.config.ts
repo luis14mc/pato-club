@@ -14,16 +14,7 @@ const nextConfig: NextConfig = {
     contentSecurityPolicy: "default-src 'self'; script-src 'none'; sandbox;",
   },
   
-  // Esto quita el warning de "metadataBase property"
-  // Es vital para que las imágenes de WhatsApp (OpenGraph) funcionen en patohn.com
-  metadataBase: new URL('https://patohn.com'), 
   
-  // Como usas Turbopack, esto ayuda a que el desarrollo sea aún más veloz
-  experimental: {
-    turbo: {
-      // Configuraciones específicas de Turbo si las necesitas
-    },
-  },
   
   async headers() {
     return [
