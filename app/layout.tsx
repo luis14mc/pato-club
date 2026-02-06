@@ -15,6 +15,7 @@ const workSans = Work_Sans({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL('https://patohn.com'),
   title: "Pato Club | Streetwear Exclusivo Honduras",
   description: "Pato Club - La marca de ropa urbana más exclusiva de Honduras. Colecciones limitadas y envíos a todo el país. Pedidos directos vía WhatsApp.",
   openGraph: {
@@ -57,9 +58,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="es" className="scroll-smooth">
+    <html lang="es" className="scroll-smooth" suppressHydrationWarning>
       <body
         className={`${bricolage.variable} ${workSans.variable} font-sans antialiased bg-cream text-black`}
+        suppressHydrationWarning
       >
         <div className="min-h-screen">
           {children}

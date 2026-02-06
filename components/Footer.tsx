@@ -20,6 +20,7 @@ export default function Footer() {
               fill
               className="object-contain"
               priority
+              unoptimized
             />
           </div>
 

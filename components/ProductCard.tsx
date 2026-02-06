@@ -1,16 +1,24 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Image from 'next/image';
 import { Product } from '@/types/product';
 
 interface ProductCardProps {
   product: Product;
   onClick: (product: Product) => void;
+  isPriority?: boolean;
 }
 
-export default function ProductCard({ product, onClick }: ProductCardProps) {
+export default function ProductCard({ product, onClick, isPriority = false }: ProductCardProps) {
   const [imageLoaded, setImageLoaded] = useState(false);
+  const [isMounted, setIsMounted] = useState(false);
+  const shouldPrioritize = product.priority || isPriority;
+
+  // Hydration Shield: Solo activar interacciones en el cliente
+  useEffect(() => {
+    setIsMounted(true); // eslint-disable-line
+  }, []);
 
   const formatPrice = (price: number) => {
     return new Intl.NumberFormat('es-HN', {
@@ -25,10 +33,11 @@ export default function ProductCard({ product, onClick }: ProductCardProps) {
   return (
     <article 
       className="group cursor-pointer w-full" 
-      onClick={() => onClick(product)}
+      onClick={() => isMounted && onClick(product)}
       role="button"
       tabIndex={0}
       aria-label={`Ver detalles de ${product.name}`}
+      suppressHydrationWarning
     >
       <div className="group relative overflow-hidden transition-all duration-700 hover:-translate-y-2">
         <div 
@@ -46,8 +55,8 @@ export default function ProductCard({ product, onClick }: ProductCardProps) {
               imageRendering: '-webkit-optimize-contrast',
             }}
             onLoad={() => setImageLoaded(true)}
-            priority={false}
-            loading="lazy"
+            priority={shouldPrioritize}
+            loading={shouldPrioritize ? "eager" : "lazy"}
             quality={95}
             decoding="async"
             unoptimized={true}

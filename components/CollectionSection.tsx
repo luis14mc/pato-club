@@ -156,7 +156,7 @@ export default function CollectionSection({
         </div>
 
         <div 
-          className={`grid grid-cols-1 gap-8 md:gap-10 lg:gap-12 justify-center ${
+          className={`relative grid grid-cols-1 gap-8 md:gap-10 lg:gap-12 justify-center ${
             filteredProducts.length === 1
               ? 'max-w-md mx-auto'
               : filteredProducts.length === 2
@@ -166,11 +166,12 @@ export default function CollectionSection({
                   : 'md:grid-cols-2 lg:grid-cols-4'
           }`}
         >
-          {filteredProducts.map((product) => (
+          {filteredProducts.map((product, index) => (
             <ProductCard
               key={product.id}
               product={product}
               onClick={onProductClick}
+              isPriority={index < 4}
             />
           ))}
         </div>

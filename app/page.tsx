@@ -1,17 +1,39 @@
 'use client';
 
 import { useState } from 'react';
+import dynamic from 'next/dynamic';
 import Navbar from '@/components/Navbar';
-import Hero from '@/components/Hero';
-import ValentineBanner from '@/components/ValentineBanner';
 import CollectionSection from '@/components/CollectionSection';
-import BasicsBanner from '@/components/BasicsBanner';
 import Footer from '@/components/Footer';
 import ProductModal from '@/components/ProductModal';
 import WhatsAppButton from '@/components/WhatsAppButton';
 import ScrollToTop from '@/components/ScrollToTop';
 import { products } from '@/data/products';
 import { Product } from '@/types/product';
+
+// Carga dinámica sin SSR para componentes con Framer Motion useScroll
+// Esto elimina completamente el hydration mismatch porque estos componentes
+// NUNCA se renderizan en el servidor — solo en el cliente.
+const Hero = dynamic(() => import('@/components/Hero'), {
+  ssr: false,
+  loading: () => (
+    <section className="relative w-full h-[100vh] bg-black" />
+  ),
+});
+
+const ValentineBanner = dynamic(() => import('@/components/ValentineBanner'), {
+  ssr: false,
+  loading: () => (
+    <section className="relative w-full h-[50vh] md:h-[70vh] overflow-hidden bg-black" />
+  ),
+});
+
+const BasicsBanner = dynamic(() => import('@/components/BasicsBanner'), {
+  ssr: false,
+  loading: () => (
+    <section className="relative w-full h-[50vh] md:h-[70vh] overflow-hidden bg-black" />
+  ),
+});
 
 export default function Home() {
   const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
@@ -32,10 +54,10 @@ export default function Home() {
   const hoodiesProducts = products.filter(p => p.category === 'Hoodies');
   const pantsProducts = products.filter(p => p.category === 'Pantalón Deportivo');
   const tshirtProducts = products.filter(p => p.category === 'Camiseta');
-  const allProducts = products; 
+  const allProducts = products;
 
   return (
-    <div className="min-h-screen" style={{ backgroundColor: '#ECE0C8' }}>
+    <div className="min-h-screen relative" style={{ backgroundColor: '#ECE0C8' }}>
       <Navbar />
       <div className="h-20" />
       <Hero />
