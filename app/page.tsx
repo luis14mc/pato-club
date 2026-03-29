@@ -8,6 +8,7 @@ import Footer from '@/components/Footer';
 import ProductModal from '@/components/ProductModal';
 import WhatsAppButton from '@/components/WhatsAppButton';
 import ScrollToTop from '@/components/ScrollToTop';
+import LinenEditionBanner from '@/components/LinenEditionBanner';
 import { products } from '@/data/products';
 import { Product } from '@/types/product';
 
@@ -21,12 +22,7 @@ const Hero = dynamic(() => import('@/components/Hero'), {
   ),
 });
 
-const ValentineBanner = dynamic(() => import('@/components/ValentineBanner'), {
-  ssr: false,
-  loading: () => (
-    <section className="relative w-full h-[50vh] md:h-[70vh] overflow-hidden bg-black" />
-  ),
-});
+
 
 const BasicsBanner = dynamic(() => import('@/components/BasicsBanner'), {
   ssr: false,
@@ -49,6 +45,8 @@ export default function Home() {
     setTimeout(() => setSelectedProduct(null), 300);
   };
 
+  const linenEsentialProducts = products.filter(p => p.category === 'Esential Edition');
+  const linenpremiumProducts = products.filter(p => p.category === 'Premium Edition');
   const valentineProducts = products.filter(p => p.category === 'Edición Especial');
   const basicsProducts = products.filter(p => p.category === 'Basics');
   const hoodiesProducts = products.filter(p => p.category === 'Hoodies');
@@ -60,9 +58,35 @@ export default function Home() {
     <div className="min-h-screen relative" style={{ backgroundColor: '#ECE0C8' }}>
       <Navbar />
       <div className="h-20" />
+
+
       <Hero />
 
-      <ValentineBanner />
+      
+
+      {/* Sección Linen Edition */}
+      <LinenEditionBanner />
+      {/* Edición Premium */}
+      <CollectionSection
+        id="linen-edition-premium"
+        title="Edición Premium"
+        products={linenpremiumProducts}
+        onProductClick={handleProductClick}
+        backgroundColor="cream-soft"
+        titleColor="#2B5B2B"
+      />
+      {/* Edición Básico */}
+      <CollectionSection
+        id="linen-edition-basico"
+        title="Edición Esencial"
+        products={linenEsentialProducts}
+        onProductClick={handleProductClick}
+        backgroundColor="cream-soft"
+        titleColor="#2B5B2B"
+      />
+
+      <BasicsBanner />
+      {/* Sección Love is Red (después de Hero) */}
       {valentineProducts.length > 0 && (
         <CollectionSection
           id="valentine-products"
@@ -73,8 +97,6 @@ export default function Home() {
           onProductClick={handleProductClick}
         />
       )}
-
-      <BasicsBanner />
 
       {basicsProducts.length > 0 && (
         <CollectionSection

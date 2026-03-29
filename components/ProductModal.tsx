@@ -18,7 +18,7 @@ export default function ProductModal({ product, isOpen, onClose }: ProductModalP
   const [tallaSeleccionada, setTallaSeleccionada] = useState<string>('');
   const [colorSeleccionado, setColorSeleccionado] = useState<any>(null);
 
-  const TALLAS_DISPONIBLES = product?.sizes || TALLAS_DEFAULT;
+  const TALLAS_DISPONIBLES = product?.sizes || [];
 
   useEffect(() => {
     const handleEscape = (e: KeyboardEvent) => {
@@ -44,12 +44,22 @@ export default function ProductModal({ product, isOpen, onClose }: ProductModalP
   if (!product) return null;
 
   const currentImage = colorSeleccionado?.image || product.image;
-  const isButtonDisabled = !tallaSeleccionada || !colorSeleccionado;
+  // Lógica para saber si hay colores o tallas
+  const hasColors = product.colors && product.colors.length > 0;
+  const hasSizes = product.sizes && product.sizes.length > 0;
+  // El botón solo se deshabilita si hay colores/tallas y no se han seleccionado
+  const isButtonDisabled = (hasColors && !colorSeleccionado) || (hasSizes && !tallaSeleccionada);
 
   const handleComprar = () => {
     if (isButtonDisabled) return;
-    const colorText = colorSeleccionado ? ` en color *${colorSeleccionado.name}*` : '';
-    const mensaje = `Hola Pato Club, me interesa la *${product.name}*${colorText} en talla *${tallaSeleccionada}*. ¿Tienen disponibilidad?`;
+    let mensaje = `Hola Pato Club, me interesa la *${product.name}*`;
+    if (hasColors && colorSeleccionado) {
+      mensaje += ` en color *${colorSeleccionado.name}*`;
+    }
+    if (hasSizes && tallaSeleccionada) {
+      mensaje += ` en talla *${tallaSeleccionada}*`;
+    }
+    mensaje += '. ¿Tienen disponibilidad?';
     const whatsappUrl = `https://wa.me/50496309525?text=${encodeURIComponent(mensaje)}`;
     window.open(whatsappUrl, '_blank');
   };
@@ -132,13 +142,13 @@ export default function ProductModal({ product, isOpen, onClose }: ProductModalP
                     {/* Selectores */}
                     <div className="space-y-6">
                       {/* Colores */}
-                      {product.colors && (
+                      {hasColors && (
                         <div className="space-y-3">
                           <span className="text-[10px] font-bold tracking-widest uppercase text-black/40" style={{ fontFamily: 'var(--font-bricolage), serif' }}>
                             Color: <span className="text-black">{colorSeleccionado?.name || 'Selecciona'}</span>
                           </span>
                           <div className="flex flex-wrap gap-3">
-                            {product.colors.map((color) => (
+                            {product.colors!.map((color) => (
                               <button
                                 key={color.name}
                                 onClick={() => setColorSeleccionado(color)}
@@ -155,25 +165,27 @@ export default function ProductModal({ product, isOpen, onClose }: ProductModalP
                       )}
 
                       {/* Tallas */}
-                      <div className="space-y-3">
-                        <span className="text-[10px] font-bold tracking-widest uppercase text-black/40" style={{ fontFamily: 'var(--font-bricolage), serif' }}>
-                          Talla: <span className="text-black">{tallaSeleccionada || 'Selecciona'}</span>
-                        </span>
-                        <div className="flex flex-wrap gap-2">
-                          {TALLAS_DISPONIBLES.map((talla) => (
-                            <button
-                              key={talla}
-                              onClick={() => setTallaSeleccionada(talla)}
-                              className={`px-6 py-3 text-[10px] font-bold border transition-all ${
-                                tallaSeleccionada === talla ? 'bg-black text-white border-black' : 'bg-transparent text-black border-black/10 hover:border-black'
-                              }`}
-                              style={{ fontFamily: 'var(--font-work-sans), sans-serif' }}
-                            >
-                              {talla}
-                            </button>
-                          ))}
+                      {hasSizes && (
+                        <div className="space-y-3">
+                          <span className="text-[10px] font-bold tracking-widest uppercase text-black/40" style={{ fontFamily: 'var(--font-bricolage), serif' }}>
+                            Talla: <span className="text-black">{tallaSeleccionada || 'Selecciona'}</span>
+                          </span>
+                          <div className="flex flex-wrap gap-2">
+                            {TALLAS_DISPONIBLES.map((talla) => (
+                              <button
+                                key={talla}
+                                onClick={() => setTallaSeleccionada(talla)}
+                                className={`px-6 py-3 text-[10px] font-bold border transition-all ${
+                                  tallaSeleccionada === talla ? 'bg-black text-white border-black' : 'bg-transparent text-black border-black/10 hover:border-black'
+                                }`}
+                                style={{ fontFamily: 'var(--font-work-sans), sans-serif' }}
+                              >
+                                {talla}
+                              </button>
+                            ))}
+                          </div>
                         </div>
-                      </div>
+                      )}
                     </div>
 
                     {/* Características */}
@@ -206,7 +218,15 @@ export default function ProductModal({ product, isOpen, onClose }: ProductModalP
                   }`}
                   style={{ fontFamily: 'var(--font-bricolage), serif' }}
                 >
-                  {isButtonDisabled ? 'SELECCIONA COLOR Y TALLA' : 'PEDIR POR WHATSAPP'}
+                  {isButtonDisabled
+                    ? hasColors && hasSizes
+                      ? 'SELECCIONA COLOR Y TALLA'
+                      : hasColors
+                        ? 'SELECCIONA COLOR'
+                        : hasSizes
+                          ? 'SELECCIONA TALLA'
+                          : 'PEDIR POR WHATSAPP'
+                    : 'PEDIR POR WHATSAPP'}
                 </button>
               </div>
             </motion.div>

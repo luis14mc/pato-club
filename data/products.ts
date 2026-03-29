@@ -1,6 +1,199 @@
 import { Product } from '@/types/product';
 
 export const products: Product[] = [
+  // LINEN EDITION - Edición Premium
+  {
+    id: 'LINEN001',
+    name: 'Pato CLUB – Camisa Cuello Mao',
+    price: 1445,
+    image: '/products/linen/premium/camisa_mao_verde_premium.webp',
+    category: 'Premium Edition',
+    description: 'Silueta moderna y minimalista con cuello mao, diseñada para brindar frescura, comodidad y sofisticación sin esfuerzo.',
+    features: [
+      '100% lino natural',
+      'Tejido ligero y transpirable',
+      'Fresco y cómodo para uso diario',
+      'Textura suave con caída natual',
+      'Acabados premium y costuras reforzadas', 
+    ],
+    colors: [
+      { name: 'Verde', hex: '#8A9A5B', image: '/products/linen/premium/camisa_mao_verde_premium.webp' },
+      { name: 'Beige', hex: '#FFF4DD', image: '/products/linen/premium/camisa_mao_beige_premium.webp' },
+      { name: 'Azul', hex: '#0E2841', image: '/products/linen/premium/camisa_mao_azul_premium.webp' },
+      { name: 'Blanco', hex: '#FFFFFF', image: '/products/linen/premium/camisa_mao_blanco_premium.webp' },
+      { name: 'Negro', hex: '#000000', image: '/products/linen/premium/camisa_mao_negro_premium.webp' },
+    ],
+    sizes: ['XS', 'S', 'M', 'L', 'XL']
+  },
+  {
+    id: 'LINEN002',
+    name: 'Pato CLUB – Camisa Clásica',
+    price: 1445,
+    image: '/products/linen/premium/clasica_verde_premium.webp',
+    category: 'Premium Edition',
+    description: 'Corte limpio, caída ligera, cuello clásico y una textura natural que eleva cualquier look. Un esencial atemporal pensado para acompañarte todos los días.',
+    features: [
+      '100% lino natural',
+      'Tejido ligero y transpirable',
+      'Fresco y cómodo para uso diario',
+      'Textura suave con caída natual',
+      'Acabados premium y costuras reforzadas',
+    ],
+    colors: [
+      { name: 'Verde', hex: '#8A9A5B', image: '/products/linen/premium/clasica_verde_premium.webp' },
+      { name: 'Beige', hex: '#FFF4DD', image: '/products/linen/premium/clasica_beige_premium.webp' },
+      { name: 'Azul', hex: '#0E2841', image: '/products/linen/premium/clasica_azul_premium.webp' },
+      { name: 'Blanco', hex: '#FFFFFF', image: '/products/linen/premium/clasica_blanco_premium.webp' },
+      { name: 'Negro', hex: '#000000', image: '/products/linen/premium/clasica_negro_premium.webp' },
+    ],
+    sizes: ['XS', 'S', 'M', 'L', 'XL']
+  },
+  {
+    id: 'LINEN003',
+    name: 'Pato CLUB – Pantalón Relax Fit',
+    price: 1445,
+    image: '/products/linen/premium/pantalon_verde_premium.webp',
+    category: 'Premium Edition',
+    description: 'Diseñado para moverse contigo. Silueta relajada y tejido ligero ofrecen comodidad, frescura y estilo en cada paso.',
+    features: [
+      '100% lino natural',
+      'Pretina cómoda con doble ajuste flexible',
+      'Corte relajado y caída fluida',
+      'Frescura y libertad de movimiento',
+      'Diseño versátil para uso diario'
+    ],
+    colors: [
+      { name: 'Verde', hex: '#8A9A5B', image: '/products/linen/premium/pantalon_verde_premium.webp' },
+      { name: 'Beige', hex: '#FFF4DD', image: '/products/linen/premium/pantalon_beige_premium.webp' },
+      { name: 'Azul', hex: '#0E2841', image: '/products/linen/premium/pantalon_azul_premium.webp' },
+      { name: 'Blanco', hex: '#FFFFFF', image: '/products/linen/premium/pantalon_blanco_premium.webp' },
+      { name: 'Negro', hex: '#000000', image: '/products/linen/premium/pantalon_negro_premium.webp' },
+    ],
+    sizes: ['XS', 'S', 'M', 'L', 'XL']
+  },
+  {
+    id: 'LINEN004',
+    name: 'Pato CLUB – Carryall Bag',
+    price: 745,
+    image: '/products/linen/premium/bag_cafe_premium.webp',
+    category: 'Premium Edition',
+    description: 'Espacio, diseño y estilo en una pieza versátil. Un bolso pensado para acompañarte todos los días con el sello distintivo de Pato.',
+    features: [
+      'Lona estructurada de alta resistencia',
+      'Asas reforzadas con acabado premium',
+      'Amplio espacio interior con múltiples compartimientos',
+      'Bolsillos frontales funcionales',
+      'Diseño elegante para uso diario'
+    ],
+    colors: [
+      { name: 'Café', hex: '#604000', image: '/products/linen/premium/bag_cafe_premium.webp' },
+      { name: 'Azul', hex: '#0E2841', image: '/products/linen/premium/bag_azul_premium.webp' },
+      { name: 'Negro', hex: '#000000', image: '/products/linen/premium/bag_negro_premium.webp' }
+    ],
+    sizes: []
+  },
+  {
+    id: 'LINEN005',
+    name: 'Pato CLUB Pato STUDIO x Sweet Crochet – Pato Charm',
+    price: 345,
+    image: '/products/linen/premium/pato_premium.webp',
+    category: 'Premium Edition',
+    description: 'Una colaboración con Sweet Crochet de un pequeño ícono de Pato diseñado para acompañarte a donde vayas. Hecho a mano con detalle y pensado para darle un toque único a tu bolso.',
+    features: [
+      'Tejido artesanal hecho a mano',
+      'Diseño exclusivo de Pato',
+      'Clip metálico resistente',
+      'Ligero y fácil de llevar',
+      'Ideal para bolso o llavero'
+    ],
+    colors: [
+    ],
+    sizes: []
+  },
+  // LINEN EDITION - Edición Esencial
+  {
+    id: 'LINEN006',
+    name: 'Pato CLUB – Camisa Cuello Mao',
+    price: 1045,
+    image: '/products/linen/esential/mao_blanca_esential.webp',
+    category: 'Esential Edition',
+    description: 'Silueta moderna y minimalista con cuello mao, diseñada para brindar frescura, comodidad y sofisticación sin esfuerzo.',
+    features: [
+      '100% lino rayón',
+      'Tejido ligero y transpirable',
+      'Fresco y cómodo para uso diario',
+      'Textura suave con caída natual',
+      'Acabados premium y costuras reforzadas',
+    ],
+    colors: [
+      { name: 'Blanco', hex: '#FFFFFF', image: '/products/linen/esential/mao_blanca_esential.webp' },
+      { name: 'Café claro', hex: '#FFC489', image: '/products/linen/esential/mao_cafe_esential.webp' },
+      { name: 'Negro', hex: '#000000', image: '/products/linen/esential/mao_negro_esential.webp' },
+    ],
+    sizes: ['XS', 'S', 'M', 'L', 'XL']
+  },
+  {
+    id: 'LINEN007',
+    name: 'Pato CLUB – Camisa Clásica',
+    price: 1045,
+    image: '/products/linen/esential/clasica_blanco_esential.webp',
+    category: 'Esential Edition',
+    description: 'Corte limpio, caída ligera, cuello clásico y una textura natural que eleva cualquier look. Un esencial atemporal pensado para acompañarte todos los días.',
+    features: [
+      '100% lino rayón',
+      'Tejido ligero y transpirable',
+      'Fresco y cómodo para uso diario',
+      'Textura suave con caída natural',
+      'Acabados premium y costuras reforzadas',
+    ],
+    colors: [
+      { name: 'Blanco', hex: '#FFFFFF', image: '/products/linen/esential/clasica_blanco_esential.webp' },
+      { name: 'Café claro', hex: '#FFC489', image: '/products/linen/esential/clasica_cafe_esential.webp' },
+      { name: 'Negro', hex: '#000000', image: '/products/linen/esential/clasica_negro_esential.webp' },
+    ],
+    sizes: ['XS', 'S', 'M', 'L', 'XL']
+  },
+  {
+    id: 'LINEN008',
+    name: 'Pato CLUB – Pantalón Relax Fit',
+    price: 1045,
+    image: '/products/linen/esential/pantalon_blanco_esential.webp',
+    category: 'Esential Edition',
+    description: 'Diseñado para moverse contigo. Silueta relajada y tejido ligero ofrecen comodidad, frescura y estilo en cada paso.',
+    features: [
+      '100% lino rayón',
+      'Pretina cómoda con doble ajuste flexible',
+      'Corte relajado y caída fluida',
+      'Frescura y libertad de movimiento',
+      'Diseño versátil para uso diario',
+    ],
+     colors: [
+      { name: 'Blanco', hex: '#FFFFFF', image: '/products/linen/esential/pantalon_blanco_esential.webp' },
+      { name: 'Café claro', hex: '#FFC489', image: '/products/linen/esential/pantalon_cafe_esential.webp' },
+      { name: 'Negro', hex: '#000000', image: '/products/linen/esential/pantalon_negro_esential.webp' },
+    ],
+    sizes: ['XS', 'S', 'M', 'L', 'XL']
+  },
+  {
+    id: 'LINEN009',
+    name: 'Pato CLUB – Camiseta Cuello Mao',
+    price: 745,
+    image: '/products/linen/esential/camiseta_blanco_esential.webp',
+    category: 'Esential Edition',
+    description: 'Diseño minimalista con cuello mao, corte slim fit, caída elegante, alto gramaje en tonos diferentes y confort para el día a día.',
+    features: [
+      '65% Rayón – 30% Nylon – 5% Spandex',
+      'Suavidad, durabilidad',
+      'Ajustado al cuerpo',
+    ],
+    colors: [
+      { name: 'Verde olivo', hex: '#556B2F', image: '/products/linen/esential/camiseta_verde_esential.webp' },
+      { name: 'Blanco', hex: '#FFFFFF', image: '/products/linen/esential/camiseta_blanco_esential.webp' },
+      { name: 'Azul', hex: '#0E2841', image: '/products/linen/esential/camiseta_azul_esential.webp' },
+      { name: 'Beige', hex: '#F5F5DC', image: '/products/linen/esential/camiseta_beige_esential.webp' },
+    ],
+    sizes: ['XS', 'S', 'M', 'L', 'XL']
+  },
   {
     id: 'PC003750',
     name: 'Pato CLUB - Love is Red Edition',
