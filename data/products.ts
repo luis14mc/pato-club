@@ -135,7 +135,7 @@ export const products: Product[] = [
   {
     id: 'LINEN007',
     name: 'Pato CLUB – Camisa Clásica',
-    price: 745,
+    price: 1045,
     image: '/products/linen/esential/clasica_blanco_esential.webp',
     category: 'Esential Edition',
     description: 'Corte limpio, caída ligera, cuello clásico y una textura natural que eleva cualquier look. Un esencial atemporal pensado para acompañarte todos los días.',
