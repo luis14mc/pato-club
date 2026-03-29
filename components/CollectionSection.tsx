@@ -14,6 +14,7 @@ interface CollectionSectionProps {
   backgroundColor?: 'cream' | 'cream-soft';
   showFilters?: boolean;
   onProductClick: (product: Product) => void;
+  titleColor?: string;
 }
 
 export default function CollectionSection({
@@ -25,6 +26,7 @@ export default function CollectionSection({
   backgroundColor = 'cream',
   showFilters = false,
   onProductClick,
+  titleColor,
 }: CollectionSectionProps) {
   const [selectedCategory, setSelectedCategory] = useState<string>('Todos');
 
@@ -68,7 +70,7 @@ export default function CollectionSection({
                 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-6 md:mb-8"
                 style={{ 
                   letterSpacing: '0.05em',
-                  color: '#000000',
+                  color: titleColor || '#000000',
                   fontFamily: 'var(--font-bricolage), serif',
                 }}
               >
